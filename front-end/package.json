@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "eslint-config-airbnb": "^18.2.1",
     "next": "10.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -18,6 +20,7 @@
     "@types/node": "^15.0.1",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
+    "eslint": "^5.16.0",
     "typescript": "^4.2.4"
   }
 }

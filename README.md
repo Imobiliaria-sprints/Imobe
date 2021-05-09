@@ -21,3 +21,8 @@ Segundo os Indicadores Imobiliários Nacionais, divulgados pela Câmara Brasilei
 
 ![ListPubs](./img/listpubs.png)
 ![Users](./img/users.png)
+
+----
+
+## Visão de negócio
+A Visão de Negócios Imobiliários vem intermediando negociações seguras e concretas entre locadores, inquilinos, vendedores e compradores nos diversos segmentos imobiliários como residencial, comercial e industrial.
