@@ -44,8 +44,8 @@
   font-size: 1.4rem;
 }
 .signin form .input-block .input-icon {
-  position: relative;
   width: 100%;
+  position: relative;
 }
 
 .signin form .input-block .input-icon input {
@@ -60,11 +60,8 @@
 .signin form .input-block .input-icon img {
   width: 25px;
   position: absolute;
-  z-index: 0;
-
   left: 0;
   top: 2px;
-
   transform: translate(50%, 50%);
 }
 .signin form a {
