@@ -4,14 +4,13 @@ body {
 }
 
 .container {
- width: 100%;
+  width: 100%;
 }
 
 .container-image {
   min-width: 100vw !important;
-
 }
-.container-image img{
+.container-image img {
   width: 100%;
 }
 
@@ -31,13 +30,13 @@ main {
   margin-bottom: 0.8rem;
 }
 .text-apresentation span {
-  font-family: 'KoHo', sans-serif;
+  font-family: "KoHo", sans-serif;
   color: var(--gray-700);
 }
 
 .icon-with-link {
   margin-top: 1rem;
-  font-family: 'KoHo', sans-serif;
+  font-family: "KoHo", sans-serif;
   cursor: pointer;
 }
 
@@ -52,29 +51,35 @@ main {
   align-items: flex-end;
 }
 
-.buttons button:first-child {
+.buttons .signin {
   background: var(--green-500);
   width: 18rem;
   height: 3.5rem;
+  text-align: center;
+  line-height: 3.5rem;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   border-radius: 0.3rem;
   border: none;
   color: var(--white);
   transition: filter 0.3s ease-in;
 }
-.buttons button:last-child {
+.buttons .singup {
   background: var(--white);
   width: 18rem;
   height: 3.5rem;
   font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
   margin-top: 3rem;
   border: 1px solid var(--gray-500);
   border-radius: 0.3rem;
+  text-align: center;
+  line-height: 3.5rem;
   color: var(--black);
   transition: filter 0.3s ease-in;
 }
 
-.buttons button:hover {
+.buttons a:hover {
   filter: brightness(0.9);
 }
 
@@ -101,7 +106,7 @@ main {
   background: var(--green-600);
   padding: 0.3rem 1.4rem;
   border-radius: 1rem;
-  font-family: 'KoHo', sans-serif;
+  font-family: "KoHo", sans-serif;
   align-items: center;
   white-space: nowrap;
   cursor: pointer;
@@ -113,5 +118,5 @@ main {
 }
 
 .category span + span {
- margin-left: 3rem;
+  margin-left: 3rem;
 }
