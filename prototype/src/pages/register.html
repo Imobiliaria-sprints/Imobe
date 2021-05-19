@@ -10,7 +10,61 @@
     />
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="stylesheet" href="../styles/components/header.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="left-side">
+        <header>
+          <img src="../assets/icons/logo.svg" alt="logo-marca" />
+          <img src="../assets/icons/burger.svg" alt="burger" id="menu" />
+        </header>
+        <div class="menu-open"></div>
+        <div class="signin">
+          <form>
+            <h1>Crie uma conta</h1>
+            <div class="input-block">
+              <label for="name">Nome</label>
+              <div class="input-icon">
+                <img src="../assets/icons/name.svg" alt="name" />
+                <input type="text" placeholder="Digite seu name" id="name" />
+              </div>
+            </div>
+            <div class="input-block">
+              <label for="email">Email</label>
+              <div class="input-icon">
+                <img src="../assets/icons/email.svg" alt="email" />
+                <input type="text" placeholder="Digite seu email" id="email" />
+              </div>
+            </div>
+            <div class="input-block">
+              <label for="phone">Telefone</label>
+              <div class="input-icon">
+                <img src="../assets/icons/phone.svg" alt="phone" />
+                <input type="phone" placeholder="Digite sua senha" id="phone" />
+              </div>
+            </div>
+            <div class="input-block">
+              <label for="password">Senha</label>
+              <div class="input-icon">
+                <img src="../assets/icons/password.svg" alt="password" />
+                <input
+                  type="password"
+                  placeholder="Digite sua senha"
+                  id="password"
+                />
+              </div>
+            </div>
+            <a href="#">Já tenho uma conta</a>
+            <button type="button">Enviar</button>
+          </form>
+        </div>
+      </div>
+      <div class="right-side">
+        <img src="../assets/img/registerHouse.jpeg" alt="LoginImage" />
+      </div>
+    </div>
+    <script src="../script/index.js"></script>
+  </body>
 </html>
