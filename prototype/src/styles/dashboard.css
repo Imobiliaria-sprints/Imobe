@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-columns: 69rem 1fr;
+}
+.container .left-side {
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.container .right-side img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
