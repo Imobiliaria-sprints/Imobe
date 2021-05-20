@@ -20,7 +20,7 @@
 .info-user .list-visity {
   display: flex;
   width: 100%;
-  padding: 2rem 0;
+  padding: 1rem 0;
   align-items: center;
   overflow-x: auto;
 }
@@ -240,4 +240,30 @@
   border: 1px solid #d4d4d4;
   font-family: "KoHo", sans-serif;
   border-radius: 0.7rem;
+}
+
+.all-info-user .socials h3 {
+  font-size: 1.7rem;
+  margin: 0.9rem 0;
+  font-weight: 500;
+}
+
+.all-info-user .socials .social {
+  display: flex;
+}
+
+.socials .social div {
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.socials .social div:hover {
+  filter: brightness(0.9);
+}
+.socials .social div img {
+  width: 3rem;
+}
+
+.socials .social div + div {
+  margin-left: 0.5rem;
 }
