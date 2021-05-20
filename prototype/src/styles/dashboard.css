@@ -7,8 +7,237 @@
   position: relative;
 }
 
-.container .right-side img {
+.info-user {
+  padding: 1.2rem 1rem;
+}
+
+.info-user h1,
+.posts h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1.4rem;
+}
+.info-user .list-visity {
+  display: flex;
   width: 100%;
-  height: 100vh;
+  padding: 2rem 0;
+  align-items: center;
+  overflow-x: auto;
+}
+.list-visity .card {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+  font-family: "KoHo", sans-serif;
+}
+
+.card .realtor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 0.7rem;
+}
+.realtor img {
+  width: 70px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+.realtor span {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+
+.information-visity div:nth-child(1) img {
+  width: 20px;
+  margin-right: 0.5rem;
+}
+
+.information-visity div:nth-child(1) {
+  font-size: 1.2rem;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.information-visity div:nth-child(2) img {
+  width: 20px;
+  margin-right: 0.5rem;
+}
+
+.information-visity div:nth-child(2) {
+  font-size: 1.2rem;
+  color: var(--gray-500);
+  display: flex;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+}
+
+.all-posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.all-posts .card-post {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+  font-family: "KoHo", sans-serif;
+  display: flex;
+}
+
+.all-posts .card-post .image-card-post {
+  width: 20rem;
+  border-radius: 1rem 0 0 1rem;
+  height: 14rem;
   object-fit: cover;
+}
+.info-post {
+  padding: 0.7rem 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.description-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.description-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.description-text .location {
+  font-size: 1.1rem;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+}
+.description-text .location img {
+  width: 25px;
+  margin-right: 0.5rem;
+}
+
+.description-post {
+  display: flex;
+  align-items: center;
+  margin-top: 0.7rem;
+}
+
+.description-text .icon-block {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--gray-500);
+}
+
+.description-text .icon-block + .icon-block::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 2.5px;
+  background: var(--gray-700);
+  margin: 0 0.5rem;
+}
+
+.description-text .icon-block img {
+  width: 25px;
+  margin-right: 0.5rem;
+}
+
+.all-posts .card-post + .card-post {
+  margin: 0.75rem;
+}
+
+.info-post .values {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-post .values span {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--blue-900);
+}
+
+.info-post .values span p {
+  color: var(--green-500);
+  margin-left: 0.3rem;
+}
+
+.info-post .values .likes {
+  display: flex;
+  align-items: center;
+}
+
+.info-post .values .likes img {
+  width: 25px;
+  margin-left: 0.5rem;
+}
+
+.container .right-side {
+  border-left: 1px solid #d4d4d4;
+  height: 100vh;
+}
+
+.container .right-side .background-user {
+  position: relative;
+}
+
+.container .right-side .background-user .user-background-image {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.background-user .user {
+  position: absolute;
+  bottom: -100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.background-user .user img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border: 5px solid var(--background);
+  border-radius: 50%;
+  margin-bottom: 0.6rem;
+}
+
+.background-user .user span {
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  color: var(--blue-900);
+}
+
+.all-info-user {
+  width: 100%;
+  padding: 0.5rem 2rem;
+  margin-top: 8.5rem;
+}
+
+.all-info-user .bio {
+  max-width: 18rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  border: 1px solid #d4d4d4;
+  font-family: "KoHo", sans-serif;
+  border-radius: 0.7rem;
 }
