@@ -31,8 +31,34 @@ header .active {
   display: none;
   position: absolute;
   left: 0;
-  z-index: 4000;
+  z-index: 2000;
   width: 100%;
+  align-items: center;
+  justify-content: center;
   height: calc(100% - 4.6rem);
   background: var(--background);
+}
+
+.menu-open nav {
+  max-width: calc(100% - 10rem);
+  margin: 0 auto;
+  text-align: center;
+}
+.menu-open nav li {
+  list-style: none;
+  font-family: "KoHo", sans-serif;
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: x-large;
+}
+
+.menu-open nav li:hover {
+  background: rgb(235, 235, 235);
+}
+
+.menu-open nav li + li {
+  margin-top: 1.5rem;
 }

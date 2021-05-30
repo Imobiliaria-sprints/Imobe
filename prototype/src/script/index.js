@@ -9,7 +9,7 @@ burger.addEventListener("click", (event) => {
       : (burger.className = "");
 
   if (menuIsActive === "active") {
-    menuOpen.style.display = "block";
+    menuOpen.style.display = "flex";
     event.target.src = "../assets/icons/close.svg";
   } else {
     menuOpen.style.display = "none";

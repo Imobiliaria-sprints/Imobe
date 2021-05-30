@@ -89,6 +89,12 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   font-family: "KoHo", sans-serif;
   display: flex;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.all-posts .card-post:hover {
+  transform: scale(1.01);
 }
 
 .all-posts .card-post .image-card-post {

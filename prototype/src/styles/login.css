@@ -64,7 +64,7 @@
   top: 2px;
   transform: translate(50%, 50%);
 }
-.signin form a {
+.signin form .register {
   width: fit-content;
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
@@ -72,25 +72,30 @@
   margin: 1.2rem 0;
 }
 
-.signin form a:focus,
-.signin form a:hover {
+.signin form .register:focus,
+.signin form .register:hover {
   color: var(--green-500);
 }
 
-.signin form button {
+.signin form .button-access {
   width: 100%;
   height: 4rem;
   margin-top: 1.5rem;
   color: var(--white);
   background-color: var(--green-500);
   font-size: 1.5rem;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
   border-radius: 0.6rem;
-  transition: filter 0.2s;
+  transition: background 0.2s;
 }
 
-.signin form button:hover {
-  filter: brightness(0.9);
+.signin form .button-access:hover {
+  background: rgb(29, 105, 76);
 }
 
 .container .right-side img {
