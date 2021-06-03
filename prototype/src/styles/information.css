@@ -1,0 +1,57 @@
+.container {
+  display: grid;
+  grid-template-columns: 69rem 1fr;
+}
+
+.container .left-side {
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.information-container {
+  width: 100%;
+  font-family: "KoHo", sans-serif;
+}
+
+.information-container h1 {
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+}
+
+.information-container .answer .open,
+.close {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 0.4rem;
+  padding: 1rem;
+}
+
+.information-container .answer .open:hover,
+.information-container .answer .close:hover {
+  background: #eceaea;
+}
+
+.information-container .answer .open + .open,
+.information-container .answer .close + .close {
+  margin-top: 2.5rem;
+}
+
+.content-info {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  transition: all 0.2s;
+  padding: 0 1rem;
+  color: var(--gray-500);
+  height: 0;
+}
+
+.container .right-side img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
