@@ -1,34 +1,22 @@
 const all_information = document.querySelectorAll(".information section");
-const block_information = document.querySelector(".content-info");
-const block_information_p = document.querySelector(".content-info p");
-const open = document.querySelector(".close");
-const open_img = document.querySelector(".close img");
 
-let value = block_information.clientHeight;
+all_information.forEach((element) => {
+  element.addEventListener("click", () => {
+    let value = element.children[1].children[0];
+    let getImage = element.children[0].children[1];
+    let toggle;
 
-all_information.forEach((element, index) => {
-  element.addEventListener("click", (e) => {
-    let block_information = element.querySelector(".content-info");
-    let open = element.querySelector(".close");
+    if (element.children[0].className === "close") {
+      toggle = element.children[0].className = "open";
+      getImage.src = "../assets/icons/arrow-up.svg";
+    } else {
+      toggle = element.children[0].className = "close";
+      getImage.src = "../assets/icons/arrow-down.svg";
+    }
 
-    let isOpen = "";
-    isOpen =
-      open.className === "close"
-        ? (open.className = "open")
-        : (open.className = "close");
-
-    open.className === "close"
-      ? (open_img.src = "../assets/icons/arrow-up.svg")
-      : (open_img.src = "../assets/icons/arrow-down.svg");
-
-    isOpen === "open"
-      ? (element.children[0].style.height = `${value}px`)
-      : (block_information.style.height = `${
-          block_information_p.clientHeight * 1.1
-        }px`);
-
-    console.log(open);
+    toggle === "close"
+      ? (element.children[1].style.height = `0px`)
+      : (element.children[1].style.height = `${value.clientHeight * 1.1}px`);
   });
 });
-
 console.log(all_information);
