@@ -143,7 +143,19 @@
         </div>
       </div>
       <div class="right-side">
-        <img />
+        <form>
+          <input id="name" type="text" placeholder="Digite seu nome" />
+          <textarea
+            id="description"
+            placeholder="Faça um comentário"
+          ></textarea>
+          <input id="feedback" type="range" max="5" min="0" />
+          <div class="preview"></div>
+
+          <button type="button">Enviar</button>
+        </form>
+
+        <div id="all_feedback"></div>
       </div>
     </div>
     <script src="../script/index.js"></script>
