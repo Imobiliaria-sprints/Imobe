@@ -1,10 +1,10 @@
 import { hash } from "bcryptjs";
 import { getCustomRepository, Repository } from "typeorm";
-import { ICreateUserDTO } from "../dtos/ICreateUser";
-import { User } from "../entities/User";
-import { UserRepository } from "../repositories/UserRepository";
+import { ICreateUserDTO } from "../../dtos/ICreateUser";
+import { User } from "../../entities/User";
+import { UserRepository } from "../../repositories/UserRepository";
 
-class UserService {
+class CrateUserUseCase {
   private userRepository: Repository<User>;
   constructor() {
     this.userRepository = getCustomRepository(UserRepository);
@@ -45,4 +45,4 @@ class UserService {
   }
 }
 
-export { UserService };
+export { CrateUserUseCase };

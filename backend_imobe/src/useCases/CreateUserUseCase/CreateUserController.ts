@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { UserService } from "../service/UserService";
+import { CrateUserUseCase } from "./CrateUserUseCase";
 
-class UserController {
+class CreateUserController {
   async create(request: Request, response: Response): Promise<Response> {
-    const userService = new UserService();
+    const createUserUseCase = new CrateUserUseCase();
 
     const { name, phone, email, password } = request.body;
     try {
-      const user = await userService.create(name, phone, email, password);
+      const user = await createUserUseCase.create(name, phone, email, password);
 
       return response.status(201).json({ user });
     } catch (error) {
@@ -16,4 +16,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default new CreateUserController();
