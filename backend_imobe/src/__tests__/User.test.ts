@@ -1,30 +1,37 @@
 import "reflect-metadata";
 
-import { getCustomRepository } from "typeorm";
-import connection from "../database";
+import request from "supertest";
+import { app } from "../app";
+import { Connection, createConnection } from "typeorm";
 
-import { UserRepository } from "../repositories/UserRepository";
+let connection: Connection;
 
-beforeAll(async () => {
-  await connection.create();
-});
+describe("App", () => {
+  beforeAll(async () => {
+    connection = await createConnection();
 
-afterAll(async () => {
-  await connection.close();
-});
+    await connection.query("DROP TABLE IF EXISTS users");
+    await connection.query("DROP TABLE IF EXISTS migrations");
 
-beforeEach(async () => {
-  await connection.clear();
-});
-
-test("Should be able to create a new user", async () => {
-  const userRepo = getCustomRepository(UserRepository);
-  const user = userRepo.create({
-    name: "test",
-    phone: "6846542423",
-    email: "test@example.com",
-    password: "12345",
+    await connection.runMigrations();
   });
 
-  expect(user.name).toEqual("test");
+  beforeEach(async () => {
+    await connection.query("DELETE FROM users");
+  });
+
+  afterAll(async () => {
+    await connection.close();
+  });
+
+  it("Should be able to create a new user", async () => {
+    const response = await request(app).post("/users").send({
+      name: "test1",
+      phone: "12345678910",
+      email: "olamundoo@test.com.br",
+      password: "test1234",
+    });
+
+    expect(response.status).toBe(201);
+  });
 });
