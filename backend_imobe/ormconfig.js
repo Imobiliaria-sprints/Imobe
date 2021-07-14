@@ -5,7 +5,7 @@ dotenv.config({
 });
 
 module.exports = {
-  type: "postgres",
+  type: process.env.TYPEORM_DATABASE,
   host: "localhost",
   port: 5432,
   username: "postgres",
@@ -15,7 +15,7 @@ module.exports = {
   entities: [process.env.TYPEORM_ENTITY],
   migrations: [process.env.TYPEORM_MIGRATION],
   cli: {
-    entitiesDir: "src/models",
+    entitiesDir: "src/entities",
     migrationsDir: process.env.TYPEORM_MIGRATION_DIR,
   },
 };

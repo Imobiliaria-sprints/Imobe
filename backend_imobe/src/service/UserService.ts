@@ -19,7 +19,7 @@ class UserService {
     const userAlreadyExists = await this.userRepository.findOne({ email });
 
     if (userAlreadyExists) {
-      return userAlreadyExists;
+      throw new Error("User already exists!");
     }
 
     const passwordHash = await hash(password, 8);
@@ -36,8 +36,8 @@ class UserService {
     return user;
   }
 
-  async findByEmail(user: ICreateUserDTO): Promise<User> {
-    const userAlreadyExists = await this.userRepository.findOne(user.email);
+  async findByEmail({ email }: ICreateUserDTO): Promise<User> {
+    const userAlreadyExists = await this.userRepository.findOne({ email });
     if (!userAlreadyExists) {
       throw new Error(`User not found`);
     }
