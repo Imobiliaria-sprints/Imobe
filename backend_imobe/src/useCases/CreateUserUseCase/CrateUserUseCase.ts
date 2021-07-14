@@ -1,4 +1,5 @@
 import { hash } from "bcryptjs";
+import { classToPlain } from "class-transformer";
 import { getCustomRepository, Repository } from "typeorm";
 import { ICreateUserDTO } from "../../dtos/ICreateUser";
 import { User } from "../../entities/User";
@@ -10,12 +11,7 @@ class CrateUserUseCase {
     this.userRepository = getCustomRepository(UserRepository);
   }
 
-  async create(
-    name: string,
-    phone: string,
-    email: string,
-    password: string
-  ): Promise<User> {
+  async create(name: string, phone: string, email: string, password: string) {
     const userAlreadyExists = await this.userRepository.findOne({ email });
 
     if (userAlreadyExists) {
@@ -33,15 +29,7 @@ class CrateUserUseCase {
 
     await this.userRepository.save(user);
 
-    return user;
-  }
-
-  async findByEmail({ email }: ICreateUserDTO): Promise<User> {
-    const userAlreadyExists = await this.userRepository.findOne({ email });
-    if (!userAlreadyExists) {
-      throw new Error(`User not found`);
-    }
-    return userAlreadyExists;
+    return classToPlain(user);
   }
 }
 
