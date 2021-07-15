@@ -2,7 +2,7 @@ import "reflect-metadata";
 import "express-async-errors";
 import connection from "./database";
 import express from "express";
-import { router } from "./router/router";
+import { router } from "./router";
 import { errorResponse } from "./errors/errorResponse";
 
 connection();
