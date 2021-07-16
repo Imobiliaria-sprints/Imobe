@@ -1,18 +1,18 @@
 import { hash } from "bcryptjs";
 import { classToPlain } from "class-transformer";
-import { getCustomRepository, Repository } from "typeorm";
-import { ICreateUserDTO } from "../../dtos/ICreateUser";
-import { User } from "../../entities/User";
+import { getCustomRepository } from "typeorm";
 import { UserRepository } from "../../repositories/UserRepository";
+import { ICreateUserUseCase } from "./ICreateUserUseCase";
 
-class CrateUserUseCase {
-  private userRepository: Repository<User>;
-  constructor() {
-    this.userRepository = getCustomRepository(UserRepository);
-  }
-
-  async create(name: string, phone: string, email: string, password: string) {
-    const userAlreadyExists = await this.userRepository.findOne({ email });
+class CrateUserUseCase implements ICreateUserUseCase {
+  async execute(
+    name: string,
+    phone: string,
+    email: string,
+    password: string
+  ): Promise<Record<string, any>> {
+    const userRepository = getCustomRepository(UserRepository);
+    const userAlreadyExists = await userRepository.findOne({ email });
 
     if (userAlreadyExists) {
       throw new Error("User already exists!");
@@ -20,14 +20,14 @@ class CrateUserUseCase {
 
     const passwordHash = await hash(password, 8);
 
-    const user = this.userRepository.create({
+    const user = userRepository.create({
       name,
       phone,
       email,
       password: passwordHash,
     });
 
-    await this.userRepository.save(user);
+    await userRepository.save(user);
 
     return classToPlain(user);
   }

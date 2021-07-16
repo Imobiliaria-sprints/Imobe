@@ -3,7 +3,7 @@ import CreateUserController from "./useCases/CreateUserUseCase/CreateUserControl
 import CreateUserAuthenticateController from "./useCases/CreateUserAuthenticated/CreateUserAuthenticateController";
 const router = Router();
 
-router.post("/users", CreateUserController.create);
+router.post("/users", CreateUserController.handle);
 router.post("/login", CreateUserAuthenticateController.handle);
 
 export { router };
