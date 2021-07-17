@@ -41,7 +41,6 @@ class SendMailUseCase implements ISendMailUseCase {
       from: "Lucas <noreplay@imobe.com.br>",
     });
 
-    console.log("Message sent %s", message.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(message));
   }
 }
