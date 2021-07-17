@@ -1,8 +1,10 @@
 import { hash } from "bcryptjs";
 import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
+import { resolve } from "path";
 import { UserRepository } from "../../repositories/UserRepository";
 import { ICreateUserUseCase } from "./ICreateUserUseCase";
+import SendMailUseCase from "../SendMailUseCase/SendMailUseCase";
 
 class CrateUserUseCase implements ICreateUserUseCase {
   async execute(
@@ -28,6 +30,26 @@ class CrateUserUseCase implements ICreateUserUseCase {
     });
 
     await userRepository.save(user);
+
+    const variables = {
+      name: user.name,
+    };
+
+    const createUserPath = resolve(
+      __dirname,
+      "..",
+      "..",
+      "views",
+      "emails",
+      "userCreated.hbs"
+    );
+
+    await SendMailUseCase.execute(
+      user.email,
+      "Conta criada com sucesso!",
+      variables,
+      createUserPath
+    );
 
     return classToPlain(user);
   }
