@@ -1,8 +1,10 @@
+import { ISendMailDTO } from "./ISendMailDTO";
+
 export interface ISendMailUseCase {
-  execute(
-    to: string,
-    subject: string,
-    variables: object,
-    path: string
-  ): Promise<void>;
+  execute({
+    to,
+    subject,
+    variables,
+    path,
+  }: ISendMailDTO): Promise<string | false>;
 }

@@ -3,33 +3,31 @@ import { ISendMailUseCase } from "./ISendMailUseCase";
 import nodemailer, { Transporter } from "nodemailer";
 import handlebars from "handlebars";
 import fs from "fs";
+import { ISendMailDTO } from "./ISendMailDTO";
 
 class SendMailUseCase implements ISendMailUseCase {
   private client: Transporter;
-
+  key = "SendMail";
   constructor() {
-    nodemailer.createTestAccount().then((account) => {
-      const transporter = nodemailer.createTransport({
-        host: account.smtp.host,
-        port: account.smtp.port,
-        secure: account.smtp.secure,
-        auth: {
-          user: account.user,
-          pass: account.pass,
-        },
-      });
-
-      this.client = transporter;
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAILTRAP_HOST,
+      port: Number(process.env.MAILTRAP_PORT),
+      auth: {
+        user: process.env.MAILTRAP_USER,
+        pass: process.env.MAILTRAP_PASS,
+      },
     });
-  }
-  async execute(
-    to: string,
-    subject: string,
-    variables: object,
-    path: string
-  ): Promise<void> {
-    const templateFileContent = fs.readFileSync(path).toString("utf-8");
 
+    this.client = transporter;
+  }
+  async execute({
+    to,
+    subject,
+    variables,
+    path,
+  }: ISendMailDTO): Promise<string | false> {
+    console.log({ path });
+    const templateFileContent = fs.readFileSync(path).toString("utf-8");
     const mailTemplateParse = handlebars.compile(templateFileContent);
 
     const html = mailTemplateParse(variables);
@@ -40,8 +38,8 @@ class SendMailUseCase implements ISendMailUseCase {
       html,
       from: "Lucas <noreplay@imobe.com.br>",
     });
-
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(message));
+    console.log(nodemailer.getTestMessageUrl(message));
+    return nodemailer.getTestMessageUrl(message);
   }
 }
 
