@@ -1,10 +1,12 @@
 import "reflect-metadata";
 
-import request from "supertest";
+import request, { agent } from "supertest";
 import { app } from "../app";
 import { Connection, createConnection } from "typeorm";
+import { Server } from "http";
 
 let connection: Connection;
+let server: Server;
 
 describe("App", () => {
   beforeAll(async () => {
@@ -14,6 +16,7 @@ describe("App", () => {
     await connection.query("DROP TABLE IF EXISTS migrations");
 
     await connection.runMigrations();
+    server = app.listen(3333);
   });
 
   beforeEach(async () => {
@@ -21,6 +24,7 @@ describe("App", () => {
   });
 
   afterAll(async () => {
+    server && server.close();
     await connection.close();
   });
 

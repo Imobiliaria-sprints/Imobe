@@ -20,13 +20,7 @@ class SendMailUseCase implements ISendMailUseCase {
 
     this.client = transporter;
   }
-  async execute({
-    to,
-    subject,
-    variables,
-    path,
-  }: ISendMailDTO): Promise<string | false> {
-    console.log({ path });
+  async execute({ to, subject, variables, path }: ISendMailDTO): Promise<void> {
     const templateFileContent = fs.readFileSync(path).toString("utf-8");
     const mailTemplateParse = handlebars.compile(templateFileContent);
 
@@ -38,8 +32,6 @@ class SendMailUseCase implements ISendMailUseCase {
       html,
       from: "Lucas <noreplay@imobe.com.br>",
     });
-    console.log(nodemailer.getTestMessageUrl(message));
-    return nodemailer.getTestMessageUrl(message);
   }
 }
 

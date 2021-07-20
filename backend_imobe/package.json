@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "cross-env NODE_ENV=dev ts-node-dev node_modules/typeorm/cli.js",
-    "test": "cross-env NODE_ENV=test jest -i --detectOpenHandles"
+    "test": "cross-env NODE_ENV=test jest -i --detectOpenHandles  --forceExit"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
