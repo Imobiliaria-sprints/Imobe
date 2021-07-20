@@ -43,4 +43,4 @@ class SendMailUseCase implements ISendMailUseCase {
   }
 }
 
-export default new SendMailUseCase();
+export { SendMailUseCase };

@@ -1,6 +1,6 @@
 import Queue from "bull";
-import emailProcess from "../processes/email";
-import SendMailUseCase from "../useCases/SendMailUseCase/SendMailUseCase";
+import emailProcess from "../processes/email.process";
+import { SendMailUseCase } from "../useCases/SendMailUseCase/SendMailUseCase";
 import { BullAdapter } from "bull-board/bullAdapter";
 import { createBullBoard } from "bull-board";
 
@@ -11,12 +11,15 @@ interface SendMailData {
   path: string;
 }
 
-const sendMailQueue = new Queue(SendMailUseCase.key, {
+const sendMailUseCase = new SendMailUseCase();
+
+const sendMailQueue = new Queue(sendMailUseCase.key, {
   redis: process.env.REDIS_HOSTS,
 });
 
 createBullBoard([]).setQueues([new BullAdapter(sendMailQueue)]);
-sendMailQueue.process(emailProcess).then((response) => console.log(response));
+
+sendMailQueue.process(emailProcess);
 
 const sendNewEmail = async (data: SendMailData) => {
   await sendMailQueue.add(data, {

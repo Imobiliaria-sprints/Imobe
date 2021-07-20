@@ -3,6 +3,8 @@ import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
 import { UserRepository } from "../../repositories/UserRepository";
 import { ICreateUserUseCase } from "./ICreateUserUseCase";
+import { resolve } from "path";
+import { sendNewEmail } from "../../queue/sendMailQueue";
 
 class CrateUserUseCase implements ICreateUserUseCase {
   async execute(
@@ -28,6 +30,28 @@ class CrateUserUseCase implements ICreateUserUseCase {
     });
 
     await userRepository.save(user);
+
+    const variables = {
+      name: user.name,
+    };
+
+    const createUserPath = resolve(
+      __dirname,
+      "..",
+      "..",
+      "views",
+      "emails",
+      "userCreated.hbs"
+    );
+
+    const userMail = {
+      to: user.email,
+      subject: "Conta criada com sucesso!",
+      variables,
+      path: createUserPath,
+    };
+
+    await sendNewEmail(userMail);
 
     return classToPlain(user);
   }
