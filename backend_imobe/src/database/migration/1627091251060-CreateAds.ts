@@ -24,6 +24,14 @@ export class CreateAds1627091251060 implements MigrationInterface {
             type: "float",
           },
           {
+            name: "square_meters",
+            type: "float",
+          },
+          {
+            name: "user_id",
+            type: "uuid",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -32,6 +40,16 @@ export class CreateAds1627091251060 implements MigrationInterface {
             name: "updated_at",
             type: "timestamp",
             default: "now()",
+          },
+        ],
+        foreignKeys: [
+          {
+            name: "FKUserCreateAds",
+            referencedTableName: "users",
+            referencedColumnNames: ["id"],
+            columnNames: ["user_id"],
+            onUpdate: "CASCADE",
+            onDelete: "CASCADE",
           },
         ],
       })
