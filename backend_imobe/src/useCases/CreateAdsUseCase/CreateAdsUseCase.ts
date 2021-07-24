@@ -3,7 +3,7 @@ import { Ads } from "../../entities/Ads";
 import { AdsRepository } from "../../repositories/AdsRepository";
 import { UserRepository } from "../../repositories/UserRepository";
 import { ICreateAdsDTO } from "./ICreateAdsDTO";
-import { ICreateAdsUseCase } from "./ICreateAdsUseCase";
+import { ICreateAdsUseCase } from "../../interfaces/ICreateAdsUseCase";
 
 class CreateAdsUseCase implements ICreateAdsUseCase {
   async execute({

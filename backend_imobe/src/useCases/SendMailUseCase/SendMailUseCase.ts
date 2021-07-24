@@ -1,4 +1,4 @@
-import { ISendMailUseCase } from "./ISendMailUseCase";
+import { ISendMailUseCase } from "../../interfaces/ISendMailUseCase";
 
 import nodemailer, { Transporter } from "nodemailer";
 import handlebars from "handlebars";
@@ -26,7 +26,7 @@ class SendMailUseCase implements ISendMailUseCase {
 
     const html = mailTemplateParse(variables);
 
-    const message = await this.client.sendMail({
+    await this.client.sendMail({
       to,
       subject,
       html,

@@ -12,9 +12,9 @@ describe("App", () => {
   beforeAll(async () => {
     connection = await createConnection();
 
-    await connection.query("DROP TABLE IF EXISTS users");
-    await connection.query("DROP TABLE IF EXISTS migrations");
     await connection.query("DROP TABLE IF EXISTS ads");
+    await connection.query("DROP TABLE IF EXISTS migrations");
+    await connection.query("DROP TABLE IF EXISTS users");
 
     await connection.runMigrations();
 

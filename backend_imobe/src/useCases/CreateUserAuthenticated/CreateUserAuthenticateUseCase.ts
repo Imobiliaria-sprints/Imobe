@@ -2,7 +2,7 @@ import { compare } from "bcryptjs";
 import { getCustomRepository } from "typeorm";
 import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
 import { UserRepository } from "../../repositories/UserRepository";
-import { ICreateUserAuthenticateUseCase } from "./ICreateUserAuthenticateUseCase";
+import { ICreateUserAuthenticateUseCase } from "../../interfaces/ICreateUserAuthenticateUseCase";
 
 class CreateUserAuthenticateUseCase implements ICreateUserAuthenticateUseCase {
   async execute(email: string, password: string): Promise<string> {
