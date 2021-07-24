@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import request, { agent } from "supertest";
+import request from "supertest";
 import { app } from "../app";
 import { Connection, createConnection } from "typeorm";
 import { Server } from "http";
@@ -14,13 +14,16 @@ describe("App", () => {
 
     await connection.query("DROP TABLE IF EXISTS users");
     await connection.query("DROP TABLE IF EXISTS migrations");
+    await connection.query("DROP TABLE IF EXISTS ads");
 
     await connection.runMigrations();
+
     server = app.listen(3333);
   });
 
   beforeEach(async () => {
     await connection.query("DELETE FROM users");
+    await connection.query("DELETE FROM ads");
   });
 
   afterAll(async () => {

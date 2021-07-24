@@ -1,13 +1,15 @@
 import { Router } from "express";
 import CreateUserController from "./useCases/CreateUserUseCase/CreateUserController";
 import CreateUserAuthenticateController from "./useCases/CreateUserAuthenticated/CreateUserAuthenticateController";
-import { ensureAuthentited } from "./middlewares/ensureAuthenticad";
+import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
+import CreateAdsController from "./useCases/CreateAdsUseCase/CreateAdsController";
 
 const router = Router();
 
 router.post("/users", CreateUserController.handle);
 router.post("/login", CreateUserAuthenticateController.handle);
-router.get("/dashboard", ensureAuthentited, (request, response) => {
+router.post("/ads", ensureAuthenticated, CreateAdsController.handle);
+router.get("/dashboard", ensureAuthenticated, (request, response) => {
   return response.json({ hello: "world" });
 });
 
