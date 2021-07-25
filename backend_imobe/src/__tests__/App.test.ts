@@ -67,7 +67,7 @@ describe("App", () => {
     expect(response.status).toBe(201);
   });
 
-  it("Should be able to create a new user", async () => {
+  it("Should be able to create a new ads", async () => {
     await request(app).post("/users").send({
       name: "test1",
       phone: "12345678910",
@@ -78,15 +78,21 @@ describe("App", () => {
       email: "olamundoo@test.com.br",
       password: "test1234",
     });
+    const [, token] = Object.keys(authenticatedUser.body).map((key) => [
+      key,
+      authenticatedUser.body[key],
+    ])[0];
 
-    await request(app)
+    const response = await request(app)
       .post("/ads")
-      .set("Authorization", `${authenticatedUser}`)
       .send({
         title: "Casa test",
         rooms: 3,
         price: 350000.0,
         square_meters: 57.2,
-      });
+      })
+      .set("Authorization", `bearer ${token}`);
+
+    expect(response.status).toBe(201);
   });
 });
