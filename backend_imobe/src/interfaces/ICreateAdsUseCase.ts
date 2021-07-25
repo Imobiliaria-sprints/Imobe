@@ -8,5 +8,5 @@ export interface ICreateAdsUseCase {
     rooms,
     square_meters,
     user_id,
-  }: ICreateAdsDTO): Promise<Ads>;
+  }: ICreateAdsDTO): Promise<Ads | Ads[]>;
 }
