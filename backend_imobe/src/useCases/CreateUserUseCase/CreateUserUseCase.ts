@@ -1,20 +1,23 @@
 import { hash } from "bcryptjs";
 import { classToPlain } from "class-transformer";
-import { getCustomRepository } from "typeorm";
+import { getCustomRepository, Repository } from "typeorm";
 import { UserRepository } from "../../repositories/UserRepository";
 import { ICreateUserUseCase } from "../../interfaces/ICreateUserUseCase";
 import { resolve } from "path";
 import { sendNewEmail } from "../../queue/sendMailQueue";
+import { User } from "../../entities/User";
+import { IUserRepository } from "../../repositories/IUserRepository";
 
 class CrateUserUseCase implements ICreateUserUseCase {
+  constructor(private userRepository: IUserRepository) {}
+
   async execute(
     name: string,
     phone: string,
     email: string,
     password: string
   ): Promise<Record<string, any>> {
-    const userRepository = getCustomRepository(UserRepository);
-    const userAlreadyExists = await userRepository.findOne({ email });
+    const userAlreadyExists = await this.userRepository.findOneUser(email);
 
     if (userAlreadyExists) {
       throw new Error("User already exists!");
@@ -22,17 +25,15 @@ class CrateUserUseCase implements ICreateUserUseCase {
 
     const passwordHash = await hash(password, 8);
 
-    const user = userRepository.create({
+    const user = this.userRepository.createUser({
       name,
       phone,
       email,
       password: passwordHash,
     });
 
-    await userRepository.save(user);
-
     const variables = {
-      name: user.name,
+      name: (await user).name,
     };
 
     const createUserPath = resolve(
@@ -45,7 +46,7 @@ class CrateUserUseCase implements ICreateUserUseCase {
     );
 
     const userMail = {
-      to: user.email,
+      to: (await user).email,
       subject: "Conta criada com sucesso!",
       variables,
       path: createUserPath,

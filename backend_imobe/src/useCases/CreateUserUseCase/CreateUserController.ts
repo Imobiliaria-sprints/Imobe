@@ -1,9 +1,13 @@
 import { Request, Response } from "express";
-import { CrateUserUseCase } from "./CrateUserUseCase";
+import { getCustomRepository } from "typeorm";
+import { UserRepository } from "../../repositories/UserRepository";
+import { CrateUserUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const createUserUseCase = new CrateUserUseCase();
+    const userRepository = getCustomRepository(UserRepository);
+
+    const createUserUseCase = new CrateUserUseCase(userRepository);
 
     const { name, phone, email, password } = request.body;
     try {

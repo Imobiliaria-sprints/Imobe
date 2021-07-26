@@ -3,7 +3,6 @@ import CreateUserController from "./useCases/CreateUserUseCase/CreateUserControl
 import CreateUserAuthenticateController from "./useCases/CreateUserAuthenticated/CreateUserAuthenticateController";
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 import CreateAdsController from "./useCases/CreateAdsUseCase/CreateAdsController";
-import ListUserController from "./useCases/ListUserUseCase/ListUserController";
 import ListAdsController from "./useCases/ListAdsUserUseCase/ListAdsController";
 
 const router = Router();
