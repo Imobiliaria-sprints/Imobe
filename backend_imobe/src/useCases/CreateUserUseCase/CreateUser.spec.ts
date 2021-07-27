@@ -1,9 +1,44 @@
 import { UserRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
+import { IUserRepository } from "../../repositories/IUserRepository";
 import { CrateUserUseCase } from "./CreateUserUseCase";
 describe("Create user", () => {
-  it("Should be able to a new user", () => {
-    const userRepository = new UserRepositoryInMemory();
+  let userRepository: IUserRepository;
+  let createUserUseCase: CrateUserUseCase;
 
-    const user = new CrateUserUseCase(userRepository);
+  beforeAll(() => {
+    userRepository = new UserRepositoryInMemory();
+
+    createUserUseCase = new CrateUserUseCase(userRepository);
+  });
+
+  it("Should be able to a new user", async () => {
+    const user = await createUserUseCase.execute(
+      "Test Create User",
+      "123456789",
+      "test@example.com",
+      "test"
+    );
+
+    expect(user).toHaveProperty("id");
+    expect(user).toHaveProperty("created_at");
+    expect(user).toHaveProperty("updated_at");
+  });
+
+  it("Should not be able to create an existing user", async () => {
+    await createUserUseCase.execute(
+      "Test Existing User",
+      "121313456789",
+      "testexisting@example.com",
+      "testexisting"
+    );
+
+    await expect(
+      createUserUseCase.execute(
+        "Test Existing User",
+        "121313456789",
+        "testexisting@example.com",
+        "testexisting"
+      )
+    ).rejects.toEqual(new Error("User already exists!"));
   });
 });

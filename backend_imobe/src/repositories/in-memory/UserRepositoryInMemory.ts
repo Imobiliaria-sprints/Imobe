@@ -1,14 +1,16 @@
-import { User } from "../../entities/User";
 import { v4 as uuid } from "uuid";
-import { Repository } from "typeorm";
+import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
-import { ICreateUserDTO } from "../../dtos/ICreateUser";
 
 class UserRepositoryInMemory implements IUserRepository {
   private users: User[] = [];
 
   async createUser(user: User): Promise<User> {
-    Object.assign(user);
+    Object.assign(user, {
+      id: uuid,
+      created_at: Date,
+      updated_at: Date,
+    });
 
     this.users.push(user);
 

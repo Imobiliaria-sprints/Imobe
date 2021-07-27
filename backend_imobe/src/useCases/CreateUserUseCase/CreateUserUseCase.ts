@@ -32,27 +32,27 @@ class CrateUserUseCase implements ICreateUserUseCase {
       password: passwordHash,
     });
 
-    const variables = {
-      name: (await user).name,
-    };
+    // const variables = {
+    //   name: (await user).name,
+    // };
 
-    const createUserPath = resolve(
-      __dirname,
-      "..",
-      "..",
-      "views",
-      "emails",
-      "userCreated.hbs"
-    );
+    // const createUserPath = resolve(
+    //   __dirname,
+    //   "..",
+    //   "..",
+    //   "views",
+    //   "emails",
+    //   "userCreated.hbs"
+    // );
 
-    const userMail = {
-      to: (await user).email,
-      subject: "Conta criada com sucesso!",
-      variables,
-      path: createUserPath,
-    };
+    // const userMail = {
+    //   to: (await user).email,
+    //   subject: "Conta criada com sucesso!",
+    //   variables,
+    //   path: createUserPath,
+    // };
 
-    await sendNewEmail(userMail);
+    // await sendNewEmail(userMail);
 
     return classToPlain(user);
   }

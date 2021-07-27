@@ -11,9 +11,9 @@ cors();
 
 connection();
 
-createClient(process.env.REDIS_HOSTS).on("message", () =>
-  console.log("connected")
-);
+// createClient(process.env.REDIS_HOSTS).on("message", () =>
+//   console.log("connected")
+// );
 
 const app = express();
 
