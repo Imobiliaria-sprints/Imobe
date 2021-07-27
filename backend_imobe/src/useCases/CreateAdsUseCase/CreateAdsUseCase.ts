@@ -1,37 +1,35 @@
-import { getCustomRepository } from "typeorm";
 import { Ads } from "../../entities/Ads";
-import { AdsRepository } from "../../repositories/factory/AdsRepository";
-import { UserRepository } from "../../repositories/factory/UserRepository";
 import { ICreateAdsDTO } from "./ICreateAdsDTO";
 import { ICreateAdsUseCase } from "../../interfaces/ICreateAdsUseCase";
+import { IAdsRepository } from "../../repositories/IAdsRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
 
 class CreateAdsUseCase implements ICreateAdsUseCase {
-  async execute({
-    title,
-    price,
-    rooms,
-    square_meters,
-    user_id,
-  }: ICreateAdsDTO): Promise<Ads> {
-    const adsRepository = getCustomRepository(AdsRepository);
+  constructor(
+    private adsRepository: IAdsRepository,
+    private userRepository: IUserRepository
+  ) {}
 
-    const userRepository = getCustomRepository(UserRepository);
-
-    const user = await userRepository.findOne(user_id);
+  async execute(
+    title: string,
+    price: number,
+    rooms: number,
+    square_meters: number,
+    user_id: string
+  ): Promise<Ads> {
+    const user = await this.userRepository.findOneUserById(user_id);
 
     if (!user) {
       throw new Error("User not found");
     }
 
-    const ads = adsRepository.create({
+    const ads = await this.adsRepository.createAds({
       title,
-      rooms,
       price,
+      rooms,
       square_meters,
       user_id,
     });
-
-    await adsRepository.save(ads);
 
     return ads;
   }

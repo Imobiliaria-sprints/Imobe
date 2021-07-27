@@ -39,7 +39,7 @@ describe("App", () => {
       password: "test1234",
     });
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
 
     const user = await request(app).post("/users").send({
       name: "test1",
@@ -64,7 +64,7 @@ describe("App", () => {
       password: "test1234",
     });
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
   });
 
   it("Should be able to create a new ads", async () => {
@@ -93,6 +93,6 @@ describe("App", () => {
       })
       .set("Authorization", `bearer ${token}`);
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
   });
 });

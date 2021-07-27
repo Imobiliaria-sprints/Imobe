@@ -22,8 +22,13 @@ class UserRepository extends Repository<User> implements IUserRepository {
 
     return user;
   }
-  async findOneUser(email: string): Promise<boolean> {
+  async findOneUserByEmail(email: string): Promise<boolean> {
     const user = await this.findOne({ where: { email } });
+
+    return !!user;
+  }
+  async findOneUserById(id: string): Promise<boolean> {
+    const user = await this.findOne({ where: { id } });
 
     return !!user;
   }

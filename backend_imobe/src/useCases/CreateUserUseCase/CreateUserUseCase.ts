@@ -17,7 +17,9 @@ class CrateUserUseCase implements ICreateUserUseCase {
     email: string,
     password: string
   ): Promise<Record<string, any>> {
-    const userAlreadyExists = await this.userRepository.findOneUser(email);
+    const userAlreadyExists = await this.userRepository.findOneUserByEmail(
+      email
+    );
 
     if (userAlreadyExists) {
       throw new Error("User already exists!");

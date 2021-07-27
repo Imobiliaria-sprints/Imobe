@@ -13,7 +13,7 @@ class CreateUserAuthenticateController {
         password
       );
 
-      return response.status(201).json({ token: token });
+      return response.json({ token: token });
     } catch (error) {
       return response.status(401).json({ message: error });
     }

@@ -1,4 +1,7 @@
 import { Request, Response } from "express";
+import { getCustomRepository } from "typeorm";
+import { AdsRepository } from "../../repositories/factory/AdsRepository";
+import { UserRepository } from "../../repositories/factory/UserRepository";
 import { CreateAdsUseCase } from "./CreateAdsUseCase";
 
 class CreateAdsController {
@@ -6,17 +9,27 @@ class CreateAdsController {
     const { title, rooms, price, square_meters } = request.body;
     const { user_id } = request;
 
-    const createAdsUseCase = new CreateAdsUseCase();
+    const adsRepository = getCustomRepository(AdsRepository);
+    const userRepository = getCustomRepository(UserRepository);
 
-    const ads = await createAdsUseCase.execute({
-      title,
-      rooms,
-      price,
-      square_meters,
-      user_id,
-    });
+    const createAdsUseCase = new CreateAdsUseCase(
+      adsRepository,
+      userRepository
+    );
 
-    return response.status(201).json(ads);
+    try {
+      const ads = await createAdsUseCase.execute(
+        title,
+        price,
+        rooms,
+        square_meters,
+        user_id
+      );
+
+      return response.json(ads);
+    } catch (error) {
+      return response.status(400).json({ error });
+    }
   }
 }
 
