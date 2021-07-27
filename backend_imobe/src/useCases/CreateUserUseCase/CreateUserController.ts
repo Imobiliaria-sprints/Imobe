@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { UserRepository } from "../../repositories/UserRepository";
+import { UserRepository } from "../../repositories/factory/UserRepository";
 import { CrateUserUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {

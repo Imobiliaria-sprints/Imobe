@@ -1,7 +1,7 @@
 import { hash } from "bcryptjs";
 import { classToPlain } from "class-transformer";
 import { getCustomRepository, Repository } from "typeorm";
-import { UserRepository } from "../../repositories/UserRepository";
+import { UserRepository } from "../../repositories/factory/UserRepository";
 import { ICreateUserUseCase } from "../../interfaces/ICreateUserUseCase";
 import { resolve } from "path";
 import { sendNewEmail } from "../../queue/sendMailQueue";

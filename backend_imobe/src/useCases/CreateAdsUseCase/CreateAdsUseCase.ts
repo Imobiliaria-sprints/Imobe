@@ -1,7 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { Ads } from "../../entities/Ads";
-import { AdsRepository } from "../../repositories/AdsRepository";
-import { UserRepository } from "../../repositories/UserRepository";
+import { AdsRepository } from "../../repositories/factory/AdsRepository";
+import { UserRepository } from "../../repositories/factory/UserRepository";
 import { ICreateAdsDTO } from "./ICreateAdsDTO";
 import { ICreateAdsUseCase } from "../../interfaces/ICreateAdsUseCase";
 

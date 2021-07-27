@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
 import { getCustomRepository } from "typeorm";
 import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
-import { UserRepository } from "../../repositories/UserRepository";
+import { UserRepository } from "../../repositories/factory/UserRepository";
 import { ICreateUserAuthenticateUseCase } from "../../interfaces/ICreateUserAuthenticateUseCase";
 
 class CreateUserAuthenticateUseCase implements ICreateUserAuthenticateUseCase {

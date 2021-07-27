@@ -1,7 +1,7 @@
 import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
 import { Ads } from "../../entities/Ads";
-import { AdsRepository } from "../../repositories/AdsRepository";
+import { AdsRepository } from "../../repositories/factory/AdsRepository";
 
 class ListAdsUserUseCase {
   async execute(user_id: string): Promise<Record<string, any>> {

@@ -1,7 +1,7 @@
 import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
 import { ICreateUserUseCase } from "../../interfaces/ICreateUserUseCase";
-import { UserRepository } from "../../repositories/UserRepository";
+import { UserRepository } from "../../repositories/factory/UserRepository";
 
 class ListUserUseCase implements ICreateUserUseCase {
   async execute(id: string): Promise<Record<string, any>> {
