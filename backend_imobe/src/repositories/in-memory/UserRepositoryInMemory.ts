@@ -23,9 +23,9 @@ class UserRepositoryInMemory implements IUserRepository {
     return user;
   }
   async findOneUserById(id: string): Promise<boolean> {
-    const user = this.users.some((user) => user.id === id);
+    const user = this.users.filter((user) => user.id === id);
 
-    return user;
+    return !!user;
   }
 }
 
