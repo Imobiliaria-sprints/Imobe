@@ -8,7 +8,7 @@ import { sendNewEmail } from "../../queue/sendMailQueue";
 import { User } from "../../entities/User";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
-class CrateUserUseCase implements ICreateUserUseCase {
+class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
   async execute(
@@ -60,4 +60,4 @@ class CrateUserUseCase implements ICreateUserUseCase {
   }
 }
 
-export { CrateUserUseCase };
+export { CreateUserUseCase };

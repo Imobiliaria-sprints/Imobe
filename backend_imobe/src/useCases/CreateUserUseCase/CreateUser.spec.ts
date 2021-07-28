@@ -1,15 +1,15 @@
 import { UserRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
 import { IUserRepository } from "../../repositories/IUserRepository";
-import { CrateUserUseCase } from "./CreateUserUseCase";
+import { CreateUserUseCase } from "./CreateUserUseCase";
 
 describe("Create user", () => {
   let userRepository: IUserRepository;
-  let createUserUseCase: CrateUserUseCase;
+  let createUserUseCase: CreateUserUseCase;
 
   beforeAll(() => {
     userRepository = new UserRepositoryInMemory();
 
-    createUserUseCase = new CrateUserUseCase(userRepository);
+    createUserUseCase = new CreateUserUseCase(userRepository);
   });
 
   it("Should be able to a new user", async () => {
