@@ -7,7 +7,7 @@ class UserRepositoryInMemory implements IUserRepository {
 
   async createUser(user: User): Promise<User> {
     Object.assign(user, {
-      id: uuid,
+      id: uuid(),
       created_at: Date,
       updated_at: Date,
     });

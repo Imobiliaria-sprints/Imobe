@@ -7,9 +7,9 @@ class AdsRepositoryInMemory implements IAdsRepository {
 
   async createAds(ads: Ads): Promise<Ads> {
     Object.assign(ads, {
-      id: uuid,
-      created_at: Date,
-      updated_at: Date,
+      id: uuid(),
+      created_at: new Date(),
+      updated_at: new Date(),
     });
 
     this.ads.push(ads);
