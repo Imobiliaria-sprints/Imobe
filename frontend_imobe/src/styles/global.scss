@@ -7,6 +7,8 @@
 :root {
   --white: #ffffff;
   --background-imobe: #f0f0f0;
+  --black: #000000;
+  --black-smooth: #474747;
   --green-300: #49e299;
   --green-400: #39e488;
   --green-500: #27ae60;
@@ -21,6 +23,17 @@
 
   --red-400: #ed394f;
   --red-500: #eb264a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--blue-700);
+
+  font-family: Poppins, sans-serif;
 }
 
 body {
