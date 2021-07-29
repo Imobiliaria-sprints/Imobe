@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #ffffff;
+  --background-imobe: #f0f0f0;
+  --green-300: #49e299;
+  --green-400: #39e488;
+  --green-500: #27ae60;
+  --green-700: #0b8e5f;
+
+  --gray-200: #e2e2e2;
+  --gray-300: #bdbdbd;
+  --gray-700: #878787;
+  --gray-900: #404040;
+
+  --blue-700: #3b4a5b;
+
+  --red-400: #ed394f;
+  --red-500: #eb264a;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
