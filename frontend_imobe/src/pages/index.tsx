@@ -1,3 +1,13 @@
+import { Header } from "./components/Header";
+
 export default function Home() {
-  return <h1>Hello World</h1>;
+  return (
+    <div>
+      <Header>
+        <a>Entre em contato</a>
+        <a>Entre em sua conta</a>
+        <button>Faça sua conta</button>
+      </Header>
+    </div>
+  );
 }

@@ -23,6 +23,14 @@
   --red-500: #eb264a;
 }
 
+body {
+  background: var(--background-imobe);
+}
+
+button {
+  cursor: pointer;
+}
+
 a {
   color: inherit;
   text-decoration: none;
