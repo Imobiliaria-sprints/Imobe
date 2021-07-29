@@ -1,0 +1,39 @@
+.headerContainer {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1500px;
+  margin: 0 auto;
+
+  nav {
+    display: flex;
+    align-items: center;
+    font-family: Lato, sans-serif;
+    font-size: 1.2rem;
+
+    a,
+    button {
+      font-size: 1.2rem;
+    }
+
+    & > a:not(:first-child) {
+      margin-left: 1.2rem;
+    }
+
+    & > button {
+      padding: 0.7rem 1.2rem;
+      border-radius: 2rem;
+      background: var(--green-400);
+      color: var(--white);
+      border: none;
+      margin-left: 1.2rem;
+      transition: background 0.2s;
+    }
+
+    & > button:hover {
+      background: var(--green-500);
+    }
+  }
+}
