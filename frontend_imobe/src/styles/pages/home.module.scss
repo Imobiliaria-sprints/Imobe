@@ -10,12 +10,14 @@
   grid-template-columns: 35rem 1fr;
   align-items: center;
 
+  margin: 1rem 0;
+
   > div:nth-child(1) {
     height: 100%;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
 
     > h1 {
       font-size: 3.5rem;
@@ -78,7 +80,7 @@
     justify-content: flex-end;
 
     > img {
-      width: 90%;
+      width: 30rem;
       object-fit: cover;
     }
   }

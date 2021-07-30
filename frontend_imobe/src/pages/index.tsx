@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
+import { Divisor } from "../components/Divisor";
 import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
 
@@ -25,6 +26,7 @@ export default function Home() {
             <img src="/icons/house.svg" alt="house icons" />
             Ver imóveis
           </button>
+          <Divisor />
         </div>
         <div>
           <img
