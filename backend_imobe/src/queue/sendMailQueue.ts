@@ -1,6 +1,6 @@
 import Queue from "bull";
 import emailProcess from "../processes/email.process";
-import { SendMailUseCase } from "../useCases/SendMailUseCase/SendMailUseCase";
+import { SendMailProvider } from "../provider/SendMailProvider";
 
 interface SendMailData {
   to: string;
@@ -9,9 +9,9 @@ interface SendMailData {
   path: string;
 }
 
-const sendMailUseCase = new SendMailUseCase();
+const sendMailProvider = new SendMailProvider();
 
-const sendMailQueue = new Queue(sendMailUseCase.key, {
+const sendMailQueue = new Queue(sendMailProvider.key, {
   redis: process.env.REDIS_HOSTS,
 });
 

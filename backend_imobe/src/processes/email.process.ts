@@ -1,10 +1,10 @@
 import { Job, DoneCallback } from "bull";
-import { SendMailUseCase } from "../useCases/SendMailUseCase/SendMailUseCase";
+import { SendMailProvider } from "../provider/SendMailProvider";
 
 const emailProcess = async (job: Job, done: DoneCallback) => {
-  const sendMailUseCase = new SendMailUseCase();
+  const sendMailProvider = new SendMailProvider();
   try {
-    const email = await sendMailUseCase.execute({
+    const email = await sendMailProvider.execute({
       to: job.data.to,
       subject: job.data.subject,
       path: job.data.path,

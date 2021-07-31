@@ -1,11 +1,11 @@
-import { ISendMailUseCase } from "../../interfaces/ISendMailUseCase";
+import { ISendMailProvider } from "../interfaces/ISendMailProvider";
 
 import nodemailer, { Transporter } from "nodemailer";
 import handlebars from "handlebars";
 import fs from "fs";
-import { ISendMailDTO } from "./ISendMailDTO";
+import { ISendMailDTO } from "../dtos/ISendMailDTO";
 
-class SendMailUseCase implements ISendMailUseCase {
+class SendMailProvider implements ISendMailProvider {
   private client: Transporter;
   key = "SendMail";
   constructor() {
@@ -35,4 +35,4 @@ class SendMailUseCase implements ISendMailUseCase {
   }
 }
 
-export { SendMailUseCase };
+export { SendMailProvider };
