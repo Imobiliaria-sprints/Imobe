@@ -5,7 +5,7 @@
 
 .section_apresentation {
   width: 100%;
-
+  height: calc(100vh - 10rem);
   display: grid;
   grid-template-columns: 35rem 1fr;
 
