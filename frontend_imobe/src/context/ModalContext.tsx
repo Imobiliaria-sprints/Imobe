@@ -6,6 +6,7 @@ type ModalContextProviderProps = {
 
 type ModalContextData = {
   isActive: boolean;
+  modalCustomStyles: Object;
   handleModalOpen: () => void;
 };
 
@@ -18,8 +19,21 @@ export function ModalContextProvider({ children }: ModalContextProviderProps) {
     return setIsActive(!isActive);
   }
 
+  const modalCustomStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
   return (
-    <ModalContext.Provider value={{ isActive, handleModalOpen }}>
+    <ModalContext.Provider
+      value={{ isActive, handleModalOpen, modalCustomStyles }}
+    >
       {children}
     </ModalContext.Provider>
   );

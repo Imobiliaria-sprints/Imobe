@@ -3,14 +3,22 @@
 import { Divisor } from "../components/Divisor";
 import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
+import Modal from "react-modal";
+import { useModal } from "../hooks/useModal";
+
+if (typeof window !== "undefined") {
+  Modal.setAppElement("body");
+}
 
 export default function Home() {
+  const { modalCustomStyles, isActive, handleModalOpen } = useModal();
+
   return (
-    <div className={styles.home}>
+    <div id={styles.home}>
       <Header>
         <a>Entre em contato</a>
         <a>Entre em sua conta</a>
-        <button>Faça sua conta</button>
+        <button onClick={handleModalOpen}>Faça sua conta</button>
       </Header>
 
       <section className={styles.section_apresentation}>
@@ -36,6 +44,17 @@ export default function Home() {
           />
         </div>
       </section>
+      <Modal
+        isOpen={isActive}
+        style={modalCustomStyles}
+        onRequestClose={handleModalOpen}
+        contentLabel="Login Modal"
+      >
+        <h1>Crie uma conta</h1>
+        <form>
+          <div></div>
+        </form>
+      </Modal>
     </div>
   );
 }
