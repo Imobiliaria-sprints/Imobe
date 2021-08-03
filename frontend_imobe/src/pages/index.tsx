@@ -5,12 +5,13 @@ import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
 import Modal from "react-modal";
 import { useModal } from "../hooks/useModal";
+import { Input } from "../components/Input";
 
 if (typeof window !== "undefined") {
   Modal.setAppElement("body");
 }
 
-export default function Home() {
+export default function Home(props) {
   const { modalCustomStyles, isActive, handleModalOpen } = useModal();
 
   return (
@@ -50,10 +51,27 @@ export default function Home() {
         onRequestClose={handleModalOpen}
         contentLabel="Login Modal"
       >
-        <h1>Crie uma conta</h1>
-        <form>
-          <div></div>
-        </form>
+        <div className={styles.form_container}>
+          <h1>Crie uma conta</h1>
+          <form>
+            <Input
+              name="Email"
+              type="email"
+              placeholder="Digite seu melhor e-mail"
+            >
+              <img src="/icons/user.svg" alt="" />
+            </Input>
+            <Input name="Telefone" placeholder="Digite seu número">
+              <img src="/icons/user.svg" alt="" />
+            </Input>
+            <Input name="Telefone" placeholder="Digite seu número">
+              <img src="/icons/user.svg" alt="" />
+            </Input>
+            <Input name="Telefone" placeholder="Digite seu número">
+              <img src="/icons/user.svg" alt="" />
+            </Input>
+          </form>
+        </div>
       </Modal>
     </div>
   );
