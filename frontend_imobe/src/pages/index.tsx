@@ -54,21 +54,17 @@ export default function Home(props) {
         <div className={styles.form_container}>
           <h1>Crie uma conta</h1>
           <form>
-            <Input
-              name="Email"
-              type="email"
-              placeholder="Digite seu melhor e-mail"
-            >
-              <img src="/icons/user.svg" alt="" />
+            <Input name="Nome" placeholder="Digite seu nome">
+              <img src="/icons/user.svg" alt="Full name" />
             </Input>
             <Input name="Telefone" placeholder="Digite seu número">
-              <img src="/icons/user.svg" alt="" />
+              <img src="/icons/phone.svg" alt="" />
             </Input>
-            <Input name="Telefone" placeholder="Digite seu número">
-              <img src="/icons/user.svg" alt="" />
+            <Input name="Email" placeholder="Digite seu melhor e-mail">
+              <img src="/icons/email.svg" alt="" />
             </Input>
-            <Input name="Telefone" placeholder="Digite seu número">
-              <img src="/icons/user.svg" alt="" />
+            <Input name="Telefone" placeholder="Digite sua senha">
+              <img src="/icons/password.svg" alt="" />
             </Input>
           </form>
         </div>
