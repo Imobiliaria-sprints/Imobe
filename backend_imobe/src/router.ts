@@ -5,12 +5,18 @@ import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 import CreateAdsController from "./useCases/CreateAdsUseCase/CreateAdsController";
 import ListAdsController from "./useCases/ListAdsUserUseCase/ListAdsController";
 import { validationUser } from "./useCases/CreateUserUseCase/validationUser";
+import { validationAds } from "./useCases/CreateAdsUseCase/validationAds";
 
 const router = Router();
 
 router.post("/users", validationUser, CreateUserController.handle);
 router.post("/login", CreateUserAuthenticateController.handle);
-router.post("/ads", ensureAuthenticated, CreateAdsController.handle);
+router.post(
+  "/ads",
+  ensureAuthenticated,
+  validationAds,
+  CreateAdsController.handle
+);
 router.get("/dashboard", ensureAuthenticated, ListAdsController.handle);
 
 export { router };
