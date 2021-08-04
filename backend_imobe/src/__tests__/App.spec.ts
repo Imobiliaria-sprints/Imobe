@@ -36,7 +36,7 @@ describe("App", () => {
       name: "test1",
       phone: "12345678910",
       email: "olamundoo@test.com.br",
-      password: "test1234",
+      password: "test123445",
     });
 
     expect(response.status).toBe(200);
@@ -45,7 +45,7 @@ describe("App", () => {
       name: "test1",
       phone: "12345678910",
       email: "olamundoo@test.com.br",
-      password: "test1234",
+      password: "test1234312",
     });
 
     expect(user.body).toEqual({ message: "User already exists!" });
@@ -56,12 +56,12 @@ describe("App", () => {
       name: "lucas",
       phone: "123456789",
       email: "test@test.com.br",
-      password: "test1234",
+      password: "test1234312",
     });
 
     const response = await request(app).post("/login").send({
       email: "test@test.com.br",
-      password: "test1234",
+      password: "test1234312",
     });
 
     expect(response.status).toBe(200);
@@ -72,11 +72,11 @@ describe("App", () => {
       name: "test1",
       phone: "12345678910",
       email: "olamundoo@test.com.br",
-      password: "test1234",
+      password: "test12345",
     });
     const authenticatedUser = await request(app).post("/login").send({
       email: "olamundoo@test.com.br",
-      password: "test1234",
+      password: "test12345",
     });
     const [, token] = Object.keys(authenticatedUser.body).map((key) => [
       key,
@@ -86,7 +86,7 @@ describe("App", () => {
     const response = await request(app)
       .post("/ads")
       .send({
-        title: "Casa test",
+        title: "House test for created ads",
         rooms: 3,
         price: 350000.0,
         square_meters: 57.2,
