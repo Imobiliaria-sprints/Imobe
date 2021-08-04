@@ -3,7 +3,7 @@ import { getCustomRepository } from "typeorm";
 import { AdsRepository } from "../../repositories/factory/AdsRepository";
 import { UserRepository } from "../../repositories/factory/UserRepository";
 import { CreateAdsUseCase } from "./CreateAdsUseCase";
-
+import { validate } from "class-validator";
 class CreateAdsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { title, rooms, price, square_meters } = request.body;

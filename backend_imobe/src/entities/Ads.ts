@@ -11,18 +11,24 @@ import {
 import { v4 as uuid } from "uuid";
 import { User } from "./User";
 
+import { Length, IsInt, Min } from "class-validator";
+
 @Entity("ads")
 export class Ads {
   @PrimaryColumn()
   id: string;
 
   @Column()
+  @Length(10, 90)
   title: string;
 
   @Column()
+  @IsInt()
+  @Min(0)
   rooms: number;
 
   @Column()
+  @Min(1000)
   price: number;
 
   @Column()

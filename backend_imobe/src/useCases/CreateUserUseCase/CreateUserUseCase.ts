@@ -5,7 +5,6 @@ import { UserRepository } from "../../repositories/factory/UserRepository";
 import { ICreateUserUseCase } from "../../interfaces/ICreateUserUseCase";
 import { resolve } from "path";
 import { sendNewEmail } from "../../queue/sendMailQueue";
-import { User } from "../../entities/User";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
 class CreateUserUseCase implements ICreateUserUseCase {

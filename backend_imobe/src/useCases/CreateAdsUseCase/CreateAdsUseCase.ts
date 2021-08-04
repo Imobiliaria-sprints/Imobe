@@ -1,5 +1,4 @@
 import { Ads } from "../../entities/Ads";
-import { ICreateAdsDTO } from "./ICreateAdsDTO";
 import { ICreateAdsUseCase } from "../../interfaces/ICreateAdsUseCase";
 import { IAdsRepository } from "../../repositories/IAdsRepository";
 import { IUserRepository } from "../../repositories/IUserRepository";
@@ -22,6 +21,14 @@ class CreateAdsUseCase implements ICreateAdsUseCase {
     if (!user) {
       throw new Error("User not found");
     }
+
+    const data = {
+      title,
+      price,
+      rooms,
+      square_meters,
+      user_id,
+    };
 
     const ads = await this.adsRepository.createAds({
       title,

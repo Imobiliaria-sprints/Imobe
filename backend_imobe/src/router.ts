@@ -4,10 +4,11 @@ import CreateUserAuthenticateController from "./useCases/CreateUserAuthenticated
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 import CreateAdsController from "./useCases/CreateAdsUseCase/CreateAdsController";
 import ListAdsController from "./useCases/ListAdsUserUseCase/ListAdsController";
+import { validationUser } from "./useCases/CreateUserUseCase/validationUser";
 
 const router = Router();
 
-router.post("/users", CreateUserController.handle);
+router.post("/users", validationUser, CreateUserController.handle);
 router.post("/login", CreateUserAuthenticateController.handle);
 router.post("/ads", ensureAuthenticated, CreateAdsController.handle);
 router.get("/dashboard", ensureAuthenticated, ListAdsController.handle);

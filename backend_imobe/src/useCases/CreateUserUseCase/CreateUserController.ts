@@ -10,6 +10,7 @@ class CreateUserController {
     const createUserUseCase = new CreateUserUseCase(userRepository);
 
     const { name, phone, email, password } = request.body;
+
     try {
       const user = await createUserUseCase.execute(
         name,
@@ -18,7 +19,7 @@ class CreateUserController {
         password
       );
 
-      return response.json({ user });
+      return response.json(user);
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }
