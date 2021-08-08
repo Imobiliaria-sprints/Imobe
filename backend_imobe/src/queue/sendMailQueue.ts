@@ -1,13 +1,7 @@
 import Queue from "bull";
+import { ISendMailDTO } from "../dtos/ISendMailDTO";
 import emailProcess from "../processes/email.process";
 import { SendMailProvider } from "../provider/SendMailProvider";
-
-interface SendMailData {
-  to: string;
-  subject: string;
-  variables: object;
-  path: string;
-}
 
 const sendMailProvider = new SendMailProvider();
 
@@ -17,7 +11,7 @@ const sendMailQueue = new Queue(sendMailProvider.key, {
 
 sendMailQueue.process(emailProcess);
 
-const sendNewEmail = async (data: SendMailData) => {
+const sendNewEmail = async (data: ISendMailDTO) => {
   await sendMailQueue.add(data, {
     attempts: 2,
     priority: 4,

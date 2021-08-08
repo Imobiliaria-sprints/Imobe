@@ -18,6 +18,12 @@ class AdsRepository extends Repository<Ads> implements IAdsRepository {
 
     return ads;
   }
+
+  async findOneAdsById(id: string): Promise<boolean> {
+    const ads = await this.findOne(id);
+
+    return !!ads;
+  }
 }
 
 export { AdsRepository };

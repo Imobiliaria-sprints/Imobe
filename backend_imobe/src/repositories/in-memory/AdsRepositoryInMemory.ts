@@ -16,6 +16,12 @@ class AdsRepositoryInMemory implements IAdsRepository {
 
     return ads;
   }
+
+  async findOneAdsById(id: string): Promise<boolean> {
+    const ad = this.ads.filter((ad) => ad.id === id);
+
+    return !!ad;
+  }
 }
 
 export { AdsRepositoryInMemory };
