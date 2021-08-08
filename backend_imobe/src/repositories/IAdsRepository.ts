@@ -9,4 +9,6 @@ export interface IAdsRepository {
     square_meters,
     user_id,
   }: ICreateAdsDTO): Promise<Ads>;
+
+  findOneAdsById(id: string): Promise<boolean>;
 }
