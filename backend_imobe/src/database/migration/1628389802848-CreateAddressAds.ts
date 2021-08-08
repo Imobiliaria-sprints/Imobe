@@ -24,8 +24,9 @@ export class CreateAddressAds1628389802848 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "complement",
             type: "varchar",
+            name: "complement",
+            isNullable: true,
           },
           {
             name: "block",
