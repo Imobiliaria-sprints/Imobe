@@ -4,7 +4,7 @@ export class CreateAddressAds1628389802848 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "address_ads",
+        name: "address",
         columns: [
           {
             name: "id",

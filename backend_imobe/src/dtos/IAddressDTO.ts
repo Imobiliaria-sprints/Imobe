@@ -1,4 +1,4 @@
-export interface IAddressAdsDTO {
+export interface IAddressDTO {
   ads_id: string;
 
   street: string;

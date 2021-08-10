@@ -1,11 +1,11 @@
 import { getCustomRepository } from "typeorm";
-import { IAddressAdsDTO } from "../../dtos/IAddressAdsDTO";
-import { AddressAds } from "../../entities/AddressAds";
-import { ICreateAddressAdsUseCase } from "../../interfaces/ICreateAddressAdsUseCase";
-import { AddressAdsRepository } from "../../repositories/factory/AddressAdsRepository";
+import { IAddressDTO } from "../../dtos/IAddressDTO";
+import { Address } from "../../entities/Address";
+import { ICreateAddressUseCase } from "../../interfaces/ICreateAddressUseCase";
+import { AddressRepository } from "../../repositories/factory/AddressRepository";
 import { IAdsRepository } from "../../repositories/IAdsRepository";
 
-class CreateAddressAdsUseCase implements ICreateAddressAdsUseCase {
+class CreateAddressUseCase implements ICreateAddressUseCase {
   constructor(private adsRepository: IAdsRepository) {}
 
   async execute({
@@ -16,16 +16,16 @@ class CreateAddressAdsUseCase implements ICreateAddressAdsUseCase {
     zip_code,
     block,
     complement,
-  }: IAddressAdsDTO): Promise<AddressAds> {
+  }: IAddressDTO): Promise<Address> {
     const ads = await this.adsRepository.findOneAdsById(ads_id);
 
     if (!ads) {
       throw new Error("Cannot found ads");
     }
 
-    const addressAdsRepository = getCustomRepository(AddressAdsRepository);
+    const addressRepository = getCustomRepository(AddressRepository);
 
-    const addressAds = addressAdsRepository.create({
+    const address = addressRepository.create({
       ads_id,
       city,
       state,
@@ -35,8 +35,8 @@ class CreateAddressAdsUseCase implements ICreateAddressAdsUseCase {
       complement,
     });
 
-    await addressAdsRepository.save(addressAds);
+    await addressRepository.save(address);
 
-    return addressAds;
+    return address;
   }
 }

@@ -9,7 +9,7 @@ import {
 import { v4 as uuid } from "uuid";
 
 @Entity("address_ads")
-export class AddressAds {
+export class Address {
   @PrimaryColumn()
   id: string;
 
