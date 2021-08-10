@@ -40,3 +40,5 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
     return address;
   }
 }
+
+export { CreateAddressUseCase };
