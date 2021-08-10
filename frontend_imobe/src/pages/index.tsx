@@ -63,7 +63,7 @@ export default function Home(props) {
             <Input name="Email" placeholder="Digite seu melhor e-mail">
               <img src="/icons/email.svg" alt="" />
             </Input>
-            <Input name="Telefone" placeholder="Digite sua senha">
+            <Input name="Senha" placeholder="Digite sua senha">
               <img src="/icons/password.svg" alt="" />
             </Input>
           </form>
