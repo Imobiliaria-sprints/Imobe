@@ -7,6 +7,7 @@ export interface ICreateAddressUseCase {
     city,
     state,
     street,
+    number,
     zip_code,
     block,
     complement,

@@ -5,6 +5,8 @@ export interface IAddressDTO {
 
   city: string;
 
+  number: string;
+
   block?: string;
 
   complement?: string;
