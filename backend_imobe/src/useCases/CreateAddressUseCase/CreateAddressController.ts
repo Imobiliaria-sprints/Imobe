@@ -23,7 +23,7 @@ class CreateAddressController {
       block,
       complement,
     });
-    console.log(address);
+
     return response.json(address);
   }
 }
