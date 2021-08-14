@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import api from "../services/api";
-import { setCookie } from "nookies";
+import { setCookie, parseCookies } from "nookies";
 import Router from "next/router";
 
 type AuthContextProviderProps = {
@@ -31,6 +31,19 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   const isAutheticated = !!user;
 
+  useEffect(() => {
+    const { "imobeflex.token": token } = parseCookies();
+
+    if (token) {
+      api
+        .get("/verify/user", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => response.data)
+        .then((data) => setUser(data.user));
+    }
+  }, []);
+
   async function signIn({ email, password }: SignInData) {
     const {
       data: { token, user },
@@ -39,6 +52,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     setCookie(undefined, "imobeflex.token", token, {
       maxAge: 60 * 60 * 1, // 1 hour
     });
+
+    api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
     setUser(user);
 

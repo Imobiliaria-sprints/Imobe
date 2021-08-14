@@ -7,6 +7,8 @@ import Modal from "react-modal";
 import { useModal } from "../hooks/useModal";
 import { useForm } from "react-hook-form";
 import { FormEvent } from "react";
+import { useAuth } from "../hooks/useAuth";
+import toast, { Toaster } from "react-hot-toast";
 
 if (typeof window !== "undefined") {
   Modal.setAppElement("body");
@@ -15,14 +17,21 @@ if (typeof window !== "undefined") {
 export default function Home(props) {
   const { modalCustomStyles, isActive, handleModalOpen } = useModal();
 
+  const { signIn } = useAuth();
   const { register, handleSubmit } = useForm();
 
-  function handleSignIn(data) {
-    console.log(data);
+  async function handleSignIn(data) {
+    try {
+      await signIn(data);
+    } catch (error) {
+      console.log(error);
+      toast.error(`Ops 😬, E-mail ou senha inválidos`);
+    }
   }
 
   return (
     <div id={styles.home}>
+      <Toaster />
       <Header>
         <a>Entre em contato</a>
         <a onClick={handleModalOpen}>Entre em sua conta</a>
