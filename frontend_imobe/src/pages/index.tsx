@@ -6,6 +6,8 @@ import styles from "../styles/pages/home.module.scss";
 import Modal from "react-modal";
 import { useModal } from "../hooks/useModal";
 import { Input } from "../components/Input";
+import { useForm } from "react-hook-form";
+import { FormEvent } from "react";
 
 if (typeof window !== "undefined") {
   Modal.setAppElement("body");
@@ -14,12 +16,18 @@ if (typeof window !== "undefined") {
 export default function Home(props) {
   const { modalCustomStyles, isActive, handleModalOpen } = useModal();
 
+  const { register, handleSubmit } = useForm();
+
+  function handleSignIn(data) {
+    console.log(data);
+  }
+
   return (
     <div id={styles.home}>
       <Header>
         <a>Entre em contato</a>
-        <a>Entre em sua conta</a>
-        <button onClick={handleModalOpen}>Faça sua conta</button>
+        <a onClick={handleModalOpen}>Entre em sua conta</a>
+        <button>Faça sua conta</button>
       </Header>
 
       <section className={styles.section_apresentation}>
@@ -52,20 +60,42 @@ export default function Home(props) {
         contentLabel="Login Modal"
       >
         <div className={styles.form_container}>
-          <h1>Crie uma conta</h1>
-          <form>
-            <Input name="Nome" placeholder="Digite seu nome">
-              <img src="/icons/user.svg" alt="Full name" />
-            </Input>
-            <Input name="Telefone" placeholder="Digite seu número">
-              <img src="/icons/phone.svg" alt="" />
-            </Input>
-            <Input name="Email" placeholder="Digite seu melhor e-mail">
-              <img src="/icons/email.svg" alt="" />
-            </Input>
-            <Input name="Senha" placeholder="Digite sua senha">
-              <img src="/icons/password.svg" alt="" />
-            </Input>
+          <h1>Entre na sua conta</h1>
+          <form onSubmit={handleSubmit(handleSignIn)}>
+            <div className={styles.input_block}>
+              <label>Email</label>
+              <div>
+                <input
+                  {...register("email")}
+                  id="email"
+                  name="email"
+                  placeholder="Digite seu melhor e-mail"
+                  autoComplete="email"
+                  required
+                  type="email"
+                />
+
+                <img src="/icons/email.svg" alt="email-icon" />
+              </div>
+            </div>
+            <div className={styles.input_block}>
+              <label>Email</label>
+              <div>
+                <input
+                  {...register("password")}
+                  id="password"
+                  name="password"
+                  placeholder="Digite sua senha"
+                  autoComplete="current-password"
+                  required
+                  type="password"
+                />
+
+                <img src="/icons/password.svg" alt="password-icon" />
+              </div>
+            </div>
+
+            <button type="submit">Acessar</button>
           </form>
         </div>
       </Modal>

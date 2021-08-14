@@ -23,6 +23,7 @@ export function ModalContextProvider({ children }: ModalContextProviderProps) {
     content: {
       top: "50%",
       left: "50%",
+      width: "30rem",
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
