@@ -5,7 +5,6 @@ import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
 import Modal from "react-modal";
 import { useModal } from "../hooks/useModal";
-import { Input } from "../components/Input";
 import { useForm } from "react-hook-form";
 import { FormEvent } from "react";
 
