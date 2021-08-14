@@ -8,12 +8,12 @@ class CreateUserAuthenticateController {
     const createUserAuthenticationUseCase = new CreateUserAuthenticateUseCase();
 
     try {
-      const token = await createUserAuthenticationUseCase.execute(
+      const { token, user } = await createUserAuthenticationUseCase.execute(
         email,
         password
       );
 
-      return response.json({ token: token });
+      return response.json({ token, user });
     } catch (error) {
       return response.status(401).json({ message: error });
     }

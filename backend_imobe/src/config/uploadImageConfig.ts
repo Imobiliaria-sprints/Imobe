@@ -1,4 +1,4 @@
-import { Request, Express } from "express";
+import { Request } from "express";
 import multer, { FileFilterCallback } from "multer";
 import path from "path";
 

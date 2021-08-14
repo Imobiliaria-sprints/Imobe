@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import request from "supertest";
-import { app } from "../app";
+import { app } from "../../app";
 import { Connection, createConnection } from "typeorm";
 import { Server } from "http";
 

@@ -3,18 +3,22 @@ import { getCustomRepository } from "typeorm";
 import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
 import { UserRepository } from "../../repositories/factory/UserRepository";
 import { ICreateUserAuthenticateUseCase } from "../../interfaces/ICreateUserAuthenticateUseCase";
+import { classToPlain } from "class-transformer";
 
 class CreateUserAuthenticateUseCase implements ICreateUserAuthenticateUseCase {
-  async execute(email: string, password: string): Promise<string> {
+  async execute(
+    email: string,
+    password: string
+  ): Promise<{ token: string; user: Record<string, any> }> {
     const userRepository = getCustomRepository(UserRepository);
 
-    const user = await userRepository.findOne({ email });
+    const userAlreadyExists = await userRepository.findOne({ email });
 
-    if (!user) {
+    if (!userAlreadyExists) {
       throw new Error("Email or password invalid");
     }
 
-    const matchPassword = await compare(password, user.password);
+    const matchPassword = await compare(password, userAlreadyExists.password);
 
     if (!matchPassword) {
       throw new Error("Email or password invalid");
@@ -22,9 +26,10 @@ class CreateUserAuthenticateUseCase implements ICreateUserAuthenticateUseCase {
 
     const generateTokenProvider = new GenerateTokenProvider();
 
-    const token = await generateTokenProvider.execute(user.id);
+    const token = await generateTokenProvider.execute(userAlreadyExists.id);
+    const user = classToPlain(userAlreadyExists);
 
-    return token;
+    return { token, user };
   }
 }
 
