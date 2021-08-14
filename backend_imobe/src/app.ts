@@ -4,10 +4,8 @@ import connection from "./database";
 import express from "express";
 import { router } from "./router";
 import { errorResponse } from "./errors/errorResponse";
-import cors from "cors";
 import { createClient } from "redis";
-
-cors();
+import cors from "cors";
 
 connection();
 
@@ -16,6 +14,8 @@ connection();
 // );
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

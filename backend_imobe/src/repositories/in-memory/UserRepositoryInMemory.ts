@@ -22,10 +22,10 @@ class UserRepositoryInMemory implements IUserRepository {
 
     return user;
   }
-  async findOneUserById(id: string): Promise<boolean> {
-    const user = this.users.filter((user) => user.id === id);
+  async findOneUserById(id: string): Promise<User> {
+    const user = this.users.find((user) => user.id === id);
 
-    return !!user;
+    return user;
   }
 }
 

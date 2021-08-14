@@ -27,10 +27,10 @@ class UserRepository extends Repository<User> implements IUserRepository {
 
     return !!user;
   }
-  async findOneUserById(id: string): Promise<boolean> {
+  async findOneUserById(id: string): Promise<User> {
     const user = await this.findOne({ where: { id } });
 
-    return !!user;
+    return user;
   }
 }
 
