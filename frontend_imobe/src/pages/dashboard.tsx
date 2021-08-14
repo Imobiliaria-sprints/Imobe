@@ -2,7 +2,8 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
-import api from "../services/api";
+import { api } from "../services/api";
+import { getApiClient } from "../services/axios";
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -15,6 +16,8 @@ export default function Dashboard() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const apiClient = getApiClient(ctx);
+
   const { ["imobeflex.token"]: token } = parseCookies(ctx);
 
   if (!token) {
