@@ -5,6 +5,7 @@ import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { getApiClient } from "../services/axios";
 import Image from "next/image";
+import { FormatCurrency } from "../utils/FormatCurrency";
 
 type PostData = {
   id: string;
@@ -65,12 +66,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { data } = await apiClient.get("/dashboard");
 
-  const posts: PostData[] = data.map((post) => {
+  const posts = data.map((post) => {
     return {
       id: post?.id,
       title: post?.title,
       rooms: post?.rooms,
-      price: post?.price,
+      price: FormatCurrency(Number(post?.price)),
       square_meters: `${post?.square_meters}m²`,
       created_at: format(parseISO(post?.created_at), "d MMM yyyy", {
         locale: ptBR,
