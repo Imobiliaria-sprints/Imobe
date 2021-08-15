@@ -4,12 +4,9 @@ import { useAuth } from "../hooks/useAuth";
 import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { getApiClient } from "../services/axios";
+import Image from "next/image";
 
-type DashboardProps = {
-  posts: PostProps[];
-};
-
-type PostProps = {
+type PostData = {
   id: string;
   title: string;
   rooms: number;
@@ -25,7 +22,38 @@ export default function Dashboard({
 
   return (
     <div>
-      <aside></aside>
+      <aside>
+        <Image
+          width={50}
+          height={50}
+          src="/icons/miniLogo.svg"
+          alt="Mini logo"
+        />
+        <nav></nav>
+      </aside>
+      <div>
+        <div>
+          <h1>Olá {user?.name}</h1>
+        </div>
+
+        <section>
+          <h1>Suas divulgações</h1>
+
+          {posts.map((post: PostData) => {
+            return (
+              <div key={post.id}>
+                <h3>{post.title}</h3>
+                <span>No valor de {post.price}</span>
+                <div>
+                  <span>Quartos: {post.rooms}</span>
+                  <span>Metros: {post.square_meters}</span>
+                </div>
+                <span>Anúncio criado em {post.created_at}</span>
+              </div>
+            );
+          })}
+        </section>
+      </div>
     </div>
   );
 }
@@ -37,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { data } = await apiClient.get("/dashboard");
 
-  const posts = data.map((post) => {
+  const posts: PostData[] = data.map((post) => {
     return {
       id: post?.id,
       title: post?.title,

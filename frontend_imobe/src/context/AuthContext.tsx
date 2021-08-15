@@ -50,7 +50,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     } = await api.post("/login", { email, password });
 
     setCookie(undefined, "imobeflex.token", token, {
-      maxAge: 60 * 60 * 1, // 1 hour
+      maxAge: 60 * 60 * 24 * 1, // 1 day
     });
 
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
