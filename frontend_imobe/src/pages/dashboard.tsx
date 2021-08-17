@@ -7,6 +7,7 @@ import styles from "../styles/pages/dashboard.module.scss";
 import { getApiClient } from "../services/axios";
 import { FormatCurrency } from "../utils/FormatCurrency";
 import { Sidebar } from "../components/Sidebar";
+import Image from "next/image";
 
 type PostData = {
   id: string;
@@ -25,10 +26,13 @@ export default function Dashboard({
   return (
     <div className={styles.dashboard}>
       <Sidebar />
-      <div>
-        <div>
-          <h1>Olá {user?.name}</h1>
-        </div>
+      <div className={styles.dashboardContainer}>
+        <header>
+          <h1>Olá, {user?.name}</h1>
+          <div>
+            <div>LD</div>
+          </div>
+        </header>
 
         <section>
           <h1>Suas divulgações</h1>
