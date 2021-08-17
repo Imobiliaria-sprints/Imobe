@@ -3,9 +3,10 @@ import { parseCookies } from "nookies";
 import { useAuth } from "../hooks/useAuth";
 import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import styles from "../styles/pages/dashboard.module.scss";
 import { getApiClient } from "../services/axios";
-import Image from "next/image";
 import { FormatCurrency } from "../utils/FormatCurrency";
+import { Sidebar } from "../components/Sidebar";
 
 type PostData = {
   id: string;
@@ -22,16 +23,8 @@ export default function Dashboard({
   const { user } = useAuth();
 
   return (
-    <div>
-      <aside>
-        <Image
-          width={50}
-          height={50}
-          src="/icons/miniLogo.svg"
-          alt="Mini logo"
-        />
-        <nav></nav>
-      </aside>
+    <div className={styles.dashboard}>
+      <Sidebar />
       <div>
         <div>
           <h1>Olá {user?.name}</h1>
