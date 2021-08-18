@@ -35,3 +35,70 @@
     }
   }
 }
+
+.postList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  > h1 {
+    margin: 1rem 0;
+    grid-column: 1 / 4;
+  }
+
+  > div {
+    background: var(--white);
+    border-radius: 0.4rem;
+    object-fit: cover;
+
+    transition: filter 0.3s;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
+
+.post {
+  padding: 1rem 0.8rem;
+
+  > span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2;
+    font-family: Lato, sans-serif;
+    color: var(--green-700);
+  }
+
+  > div {
+    display: flex;
+    margin: 0.3rem 0;
+
+    > span {
+      position: relative;
+      font-family: Poppins, sans-serif;
+      color: var(--gray-900);
+    }
+    > span + span {
+      margin-left: 0.9rem;
+    }
+
+    > span + span::before {
+      content: "";
+
+      height: 4px;
+      width: 4px;
+      border-radius: 50%;
+
+      background: var(--gray-700);
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  > p {
+    color: var(--gray-300);
+    margin-top: 0.8rem;
+  }
+}

@@ -34,19 +34,29 @@ export default function Dashboard({
           </div>
         </header>
 
-        <section>
+        <section className={styles.postList}>
           <h1>Suas divulgações</h1>
 
           {posts.map((post: PostData) => {
             return (
               <div key={post.id}>
-                <h3>{post.title}</h3>
-                <span>No valor de {post.price}</span>
-                <div>
-                  <span>Quartos: {post.rooms}</span>
-                  <span>Metros: {post.square_meters}</span>
-                </div>
-                <span>Anúncio criado em {post.created_at}</span>
+                <Image
+                  src="https://images.unsplash.com/photo-1594540992254-0e2239661647?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                  alt="Image"
+                  width="700"
+                  objectFit="cover"
+                  height="200"
+                  layout="responsive"
+                />
+                <section className={styles.post}>
+                  <h3>{post.title}</h3>
+                  <span>No valor de {post.price}</span>
+                  <div>
+                    <span>Quartos: {post.rooms}</span>
+                    <span>Metros: {post.square_meters}</span>
+                  </div>
+                  <p>Anúncio criado em {post.created_at}</p>
+                </section>
               </div>
             );
           })}
