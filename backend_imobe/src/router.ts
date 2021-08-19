@@ -9,28 +9,15 @@ import { validationAds } from "./useCases/CreateAdsUseCase/validationAds";
 import CreateAddressController from "./useCases/CreateAddressUseCase/CreateAddressController";
 import { validationAddress } from "./useCases/CreateAddressUseCase/validationAddress";
 import ReturnUserAuthenticatedController from "./useCases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedController";
+import RefreshTokenController from "./useCases/RefreshTokenUserUseCase/RefreshTokenController";
+import { userRoutes } from "./routes/userRoutes";
+import { postRouter } from "./routes/postRoutes";
 
 const router = Router();
 
-router.post("/users", validationUser, CreateUserController.handle);
-router.post("/login", CreateUserAuthenticateController.handle);
-router.post(
-  "/ads",
-  ensureAuthenticated,
-  validationAds,
-  CreateAdsController.handle
-);
-router.post(
-  "/ads/address/:ads_id",
-  validationAddress,
-  CreateAddressController.handle
-);
+router.use(userRoutes);
 
-router.get(
-  "/verify/user",
-  ensureAuthenticated,
-  ReturnUserAuthenticatedController.handle
-);
+router.use(postRouter);
 
 router.get("/dashboard", ensureAuthenticated, ListAdsController.handle);
 
