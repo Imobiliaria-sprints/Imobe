@@ -1,24 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
+
 import { Divisor } from "../components/Divisor";
 import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
 import Modal from "react-modal";
-import { useModal } from "../hooks/useModal";
 import { useForm } from "react-hook-form";
-import { FormEvent } from "react";
+import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
+import { modalCustomStyles } from "../utils/ModalStyleConf";
 
-if (typeof window !== "undefined") {
-  Modal.setAppElement("body");
-}
-
-export default function Home(props) {
-  const { modalCustomStyles, isActive, handleModalOpen } = useModal();
-
+export default function Home() {
   const { signIn } = useAuth();
   const { register, handleSubmit } = useForm();
+
+  const [isActive, setIsActive] = useState(false);
 
   async function handleSignIn(data) {
     try {
@@ -27,6 +24,10 @@ export default function Home(props) {
       console.log(error);
       toast.error(`Ops 😬, E-mail ou senha inválidos`);
     }
+  }
+
+  function handleModalOpen(): void {
+    return setIsActive(!isActive);
   }
 
   return (

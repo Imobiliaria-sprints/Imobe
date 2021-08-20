@@ -1,13 +1,16 @@
 import { AuthContextProvider } from "../context/AuthContext";
-import { ModalContextProvider } from "../context/ModalContext";
+import Modal from "react-modal";
+
 import "../styles/global.scss";
+
+if (typeof window !== "undefined") {
+  Modal.setAppElement("body");
+}
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
-      <ModalContextProvider>
-        <Component {...pageProps} />
-      </ModalContextProvider>
+      <Component {...pageProps} />
     </AuthContextProvider>
   );
 }
