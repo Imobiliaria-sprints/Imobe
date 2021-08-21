@@ -1,4 +1,6 @@
 export interface ICreateUserDTO {
+  avatar?: string;
+
   name: string;
 
   phone: string;

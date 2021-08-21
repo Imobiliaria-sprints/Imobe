@@ -10,13 +10,17 @@ class CreateUserController {
     const createUserUseCase = new CreateUserUseCase(userRepository);
 
     const { name, phone, email, password } = request.body;
+    const requestFile = request.file as Express.Multer.File;
+
+    const avatar = requestFile.filename;
 
     try {
       const user = await createUserUseCase.execute(
         name,
         phone,
         email,
-        password
+        password,
+        avatar
       );
 
       return response.json(user);

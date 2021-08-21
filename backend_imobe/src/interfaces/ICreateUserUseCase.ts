@@ -3,6 +3,7 @@ export interface ICreateUserUseCase {
     name: string,
     phone: string,
     email: string,
-    password: string
+    password: string,
+    avatar?: string
   ): Promise<Record<string, any>>;
 }

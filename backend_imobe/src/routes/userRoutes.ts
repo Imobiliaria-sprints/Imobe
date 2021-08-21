@@ -5,10 +5,19 @@ import CreateUserController from "../useCases/CreateUserUseCase/CreateUserContro
 import { validationUser } from "../useCases/CreateUserUseCase/validationUser";
 import RefreshTokenController from "../useCases/RefreshTokenUserUseCase/RefreshTokenController";
 import ReturnUserAuthenticatedController from "../useCases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedController";
+import uploadImageConfig from "../config/uploadImageConfig";
+import multer from "multer";
 
 const userRoutes = Router();
 
-userRoutes.post("/users", validationUser, CreateUserController.handle);
+const uploadImage = multer(uploadImageConfig);
+
+userRoutes.post(
+  "/users",
+  validationUser,
+  uploadImage.single("avatar"),
+  CreateUserController.handle
+);
 userRoutes.post("/login", CreateUserAuthenticateController.handle);
 
 userRoutes.get(

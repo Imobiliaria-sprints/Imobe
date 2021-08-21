@@ -14,7 +14,8 @@ class CreateUserUseCase implements ICreateUserUseCase {
     name: string,
     phone: string,
     email: string,
-    password: string
+    password: string,
+    avatar?: string
   ): Promise<Record<string, any>> {
     const userAlreadyExists = await this.userRepository.findOneUserByEmail(
       email
@@ -28,6 +29,7 @@ class CreateUserUseCase implements ICreateUserUseCase {
 
     const user = this.userRepository.createUser({
       name,
+      avatar,
       phone,
       email,
       password: passwordHash,
