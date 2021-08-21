@@ -9,6 +9,15 @@ class CreateAdsUseCase implements ICreateAdsUseCase {
     private userRepository: IUserRepository
   ) {}
 
+  /**
+   *
+   * @param {string} title
+   * @param {number} price
+   * @param {number} rooms
+   * @param {number} square_meters
+   * @param {string} user_id
+   * @returns {Promise<Ads>} Return promise
+   */
   async execute(
     title: string,
     price: number,

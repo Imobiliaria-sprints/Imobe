@@ -2,6 +2,14 @@ import { Request, Response } from "express";
 import { RefreshTokenUserUseCase } from "./RefreshTokenUserUseCase";
 
 class RefreshTokenController {
+  /**
+   *
+   * @Lucas-Duarte-dev
+   *
+   * @param request
+   * @param response
+   * @returns Response
+   */
   async handle(request: Request, response: Response): Promise<Response> {
     const { refresh_token } = request.body;
 

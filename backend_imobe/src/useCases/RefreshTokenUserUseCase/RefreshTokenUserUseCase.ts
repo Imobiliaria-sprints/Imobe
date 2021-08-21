@@ -3,9 +3,18 @@ import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
 import { RefreshTokenRepository } from "../../repositories/factory/RefreshTokenRepository";
 import dayjs from "dayjs";
 import { GenerateRefreshToken } from "../../provider/GenerateRefreshToken";
+import { RefreshToken } from "../../entities/RefreshToken";
 
 class RefreshTokenUserUseCase {
-  async execute(refresh_token: string) {
+  /**
+   * @Lucas-Duarte-dev
+   *
+   * @param refresh_token
+   * @returns {string} token or a string and refresh token entity
+   */
+  async execute(
+    refresh_token: string
+  ): Promise<string | { token: string; refreshToken: RefreshToken }> {
     const refreshTokenRepository = getCustomRepository(RefreshTokenRepository);
 
     const refreshTokenExists = await refreshTokenRepository.findOne(

@@ -3,6 +3,13 @@ import { getCustomRepository } from "typeorm";
 import { RefreshTokenRepository } from "../repositories/factory/RefreshTokenRepository";
 
 class GenerateRefreshToken {
+  /**
+   * @Lucas-Duarte-dev
+   *
+   * Get user id for the refresh token.
+   * @param user_id
+   * @returns RefreshToken
+   */
   async execute(user_id: string) {
     const refreshToken = getCustomRepository(RefreshTokenRepository);
     const expires_in = dayjs().add(1, "day").unix();

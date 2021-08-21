@@ -8,6 +8,7 @@ import { ISendMailDTO } from "../dtos/ISendMailDTO";
 class SendMailProvider implements ISendMailProvider {
   private client: Transporter;
   key = "SendMail";
+
   constructor() {
     const transporter = nodemailer.createTransport({
       host: process.env.MAILTRAP_HOST,
@@ -20,6 +21,16 @@ class SendMailProvider implements ISendMailProvider {
 
     this.client = transporter;
   }
+
+  /**
+   * @Lucas-Duarte-dev
+   *
+   * @param {Object} ISendMailDTO - Interface with all the params necessaty for send a new e-mail
+   * @param {string} to
+   * @param {string} subject
+   * @param {Object} variables
+   * @param {path} string
+   */
   async execute({ to, subject, variables, path }: ISendMailDTO): Promise<void> {
     const templateFileContent = fs.readFileSync(path).toString("utf-8");
     const mailTemplateParse = handlebars.compile(templateFileContent);
