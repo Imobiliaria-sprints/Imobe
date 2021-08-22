@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts",
+    "start": "cross-env NODE_ENV=production node dist/src/server.ts",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "cross-env NODE_ENV=dev ts-node-dev node_modules/typeorm/cli.js",
-    "test": "cross-env NODE_ENV=test jest -i --detectOpenHandles"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
