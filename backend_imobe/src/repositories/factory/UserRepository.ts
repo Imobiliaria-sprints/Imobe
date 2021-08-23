@@ -8,12 +8,14 @@ class UserRepository extends Repository<User> implements IUserRepository {
   async createUser({
     name,
     phone,
+    avatar,
     email,
     password,
   }: ICreateUserDTO): Promise<User> {
     const user = this.create({
       name,
       phone,
+      avatar,
       email,
       password,
     });
