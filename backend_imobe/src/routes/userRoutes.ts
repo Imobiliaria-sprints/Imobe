@@ -14,7 +14,6 @@ const uploadImage = multer(uploadImageConfig);
 
 userRoutes.post(
   "/users",
-  validationUser,
   uploadImage.single("avatar"),
   CreateUserController.handle
 );

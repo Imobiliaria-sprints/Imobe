@@ -13,7 +13,7 @@ import { Length, IsEmail } from "class-validator";
 
 @Entity("users")
 class User {
-  @PrimaryColumn("uuid")
+  @PrimaryColumn()
   id: string;
 
   @Column()

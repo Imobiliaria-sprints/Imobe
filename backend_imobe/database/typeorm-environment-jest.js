@@ -3,12 +3,13 @@ const { resolve } = require("path");
 const { execSync } = require("child_process");
 const { createConnection } = require("typeorm");
 
-const typeormCli = "./node_modules/.bin/typeorm";
-
 require("dotenv").config({
   path: resolve(__dirname, "..", ".env.test"),
 });
 
+/**
+ * @Lucas-Duarte-dev
+ */
 class CustomEnvironment extends NodeEnvironment {
   constructor(config) {
     super(config);
