@@ -19,8 +19,6 @@ class ListAdsUserUseCase {
       take: limit,
     });
 
-    allAds.map((ads) => `http://localhost:3333/uploads/${ads.userId.avatar}`);
-
     return classToPlain(allAds);
   }
 }

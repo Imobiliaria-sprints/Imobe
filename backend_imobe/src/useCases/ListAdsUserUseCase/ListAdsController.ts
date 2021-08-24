@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ListAdsUserUseCase } from "./ListAdsUserUseCase";
+import AdsView from "../../views/view/renderAds";
 
 interface QueryRequest {
   limit?: number;
@@ -18,7 +19,7 @@ class ListAdsController {
       Number(skip)
     );
 
-    return response.json(ads);
+    return response.json(AdsView.renderMany(ads));
   }
 }
 
