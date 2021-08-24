@@ -1,6 +1,6 @@
 import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
-import { Ads } from "../../entities/Ads";
+import image from "../../views/view/imageView";
 import { AdsRepository } from "../../repositories/factory/AdsRepository";
 
 class ListAdsUserUseCase {
@@ -18,6 +18,8 @@ class ListAdsUserUseCase {
       skip: skip,
       take: limit,
     });
+
+    allAds.map((ads) => `http://localhost:3333/uploads/${ads.userId.avatar}`);
 
     return classToPlain(allAds);
   }
