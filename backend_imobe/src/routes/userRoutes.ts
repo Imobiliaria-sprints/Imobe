@@ -7,6 +7,8 @@ import RefreshTokenController from "../useCases/RefreshTokenUserUseCase/RefreshT
 import ReturnUserAuthenticatedController from "../useCases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedController";
 import uploadImageConfig from "../config/uploadImageConfig";
 import multer from "multer";
+import ForgotPasswordController from "../useCases/ForgotPasswordUseCase/ForgotPasswordController";
+import ResetPasswordController from "../useCases/ResetPasswordUseCase/ResetPasswordController";
 
 const userRoutes = Router();
 
@@ -18,6 +20,10 @@ userRoutes.post(
   CreateUserController.handle
 );
 userRoutes.post("/login", CreateUserAuthenticateController.handle);
+
+userRoutes.post("/auth/forgot_password", ForgotPasswordController.handle);
+
+userRoutes.post("/auth/reset_password", ResetPasswordController.handle);
 
 userRoutes.get(
   "/verify/user",

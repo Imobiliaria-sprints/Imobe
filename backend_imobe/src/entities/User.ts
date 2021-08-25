@@ -36,6 +36,9 @@ class User {
   @Length(8, 40)
   password: string;
 
+  @Column()
+  password_reset_token?: string;
+
   @CreateDateColumn()
   created_at: Date;
 

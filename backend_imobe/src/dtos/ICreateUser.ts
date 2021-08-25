@@ -8,4 +8,6 @@ export interface ICreateUserDTO {
   email: string;
 
   password: string;
+
+  password_reset_token?: string;
 }
