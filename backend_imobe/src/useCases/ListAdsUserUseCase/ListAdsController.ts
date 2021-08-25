@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ListAdsUserUseCase } from "./ListAdsUserUseCase";
-import AdsView from "../../views/view/renderAds";
+import AdsView from "../../utils/renderAds";
 
 interface QueryRequest {
   limit?: number;

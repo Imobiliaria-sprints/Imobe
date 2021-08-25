@@ -1,6 +1,6 @@
 import { classToPlain } from "class-transformer";
 import { getCustomRepository } from "typeorm";
-import image from "../../views/view/imageView";
+import image from "../../utils/imageView";
 import { AdsRepository } from "../../repositories/factory/AdsRepository";
 
 class ListAdsUserUseCase {
