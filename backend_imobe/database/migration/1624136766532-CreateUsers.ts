@@ -12,6 +12,11 @@ export class CreateUsers1624136766532 implements MigrationInterface {
             isPrimary: true,
           },
           {
+            name: "admin",
+            type: "boolean",
+            default: false,
+          },
+          {
             name: "avatar",
             type: "varchar",
             isNullable: true,
@@ -19,10 +24,12 @@ export class CreateUsers1624136766532 implements MigrationInterface {
           {
             name: "name",
             type: "varchar",
+            length: "100",
           },
           {
             name: "phone",
             type: "varchar",
+            length: "20",
           },
           {
             name: "email",
@@ -32,6 +39,11 @@ export class CreateUsers1624136766532 implements MigrationInterface {
           {
             name: "password",
             type: "varchar",
+          },
+          {
+            name: "password_reset_token",
+            type: "varchar",
+            isNullable: true,
           },
           {
             name: "created_at",

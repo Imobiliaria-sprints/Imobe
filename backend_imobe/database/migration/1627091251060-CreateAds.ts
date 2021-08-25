@@ -18,14 +18,17 @@ export class CreateAds1627091251060 implements MigrationInterface {
           {
             name: "rooms",
             type: "int",
+            unsigned: true,
           },
           {
             name: "price",
             type: "float",
+            unsigned: true,
           },
           {
             name: "square_meters",
             type: "float",
+            unsigned: true,
           },
           {
             name: "user_id",

@@ -40,10 +40,12 @@ export class CreateAddressAds1628389802848 implements MigrationInterface {
           {
             name: "number",
             type: "varchar",
+            length: "50",
           },
           {
             name: "zip_code",
             type: "varchar",
+            length: "25",
           },
           {
             name: "created_at",
