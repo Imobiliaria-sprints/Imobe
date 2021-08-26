@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import CreateAddressController from "../useCases/CreateAddressUseCase/CreateAddressController";
-import { validationAddress } from "../useCases/CreateAddressUseCase/validationAddress";
-import CreateAdsController from "../useCases/CreateAdsUseCase/CreateAdsController";
-import { validationAds } from "../useCases/CreateAdsUseCase/validationAds";
+import { ensureAuthenticated } from "@middle/ensureAuthenticated";
+import CreateAddressController from "@cases/CreateAddressUseCase/CreateAddressController";
+import { validationAddress } from "@cases/CreateAddressUseCase/validationAddress";
+import CreateAdsController from "@cases/CreateAdsUseCase/CreateAdsController";
+import { validationAds } from "@cases/CreateAdsUseCase/validationAds";
 
 const postRouter = Router();
 

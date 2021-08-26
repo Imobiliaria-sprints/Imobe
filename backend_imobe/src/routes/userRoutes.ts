@@ -1,14 +1,14 @@
 import { Router } from "express";
-import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import CreateUserAuthenticateController from "../useCases/CreateUserAuthenticated/CreateUserAuthenticateController";
-import CreateUserController from "../useCases/CreateUserUseCase/CreateUserController";
-import { validationUser } from "../useCases/CreateUserUseCase/validationUser";
-import RefreshTokenController from "../useCases/RefreshTokenUserUseCase/RefreshTokenController";
-import ReturnUserAuthenticatedController from "../useCases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedController";
-import uploadImageConfig from "../config/uploadImageConfig";
+import { ensureAuthenticated } from "@middle/ensureAuthenticated";
+import CreateUserAuthenticateController from "@cases/CreateUserAuthenticated/CreateUserAuthenticateController";
+import CreateUserController from "@cases/CreateUserUseCase/CreateUserController";
+import { validationUser } from "@cases/CreateUserUseCase/validationUser";
+import RefreshTokenController from "@cases/RefreshTokenUserUseCase/RefreshTokenController";
+import ReturnUserAuthenticatedController from "@cases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedController";
+import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
-import ForgotPasswordController from "../useCases/ForgotPasswordUseCase/ForgotPasswordController";
-import ResetPasswordController from "../useCases/ResetPasswordUseCase/ResetPasswordController";
+import ForgotPasswordController from "@cases/ForgotPasswordUseCase/ForgotPasswordController";
+import ResetPasswordController from "@cases/ResetPasswordUseCase/ResetPasswordController";
 
 const userRoutes = Router();
 

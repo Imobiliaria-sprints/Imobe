@@ -1,5 +1,5 @@
 /**
- * @jest-environment ./database/typeorm-environment-jest
+ * @jest-environment ./typeorm-environment-jest
  */
 
 import "reflect-metadata";

@@ -1,5 +1,5 @@
 import { Ads } from "../entities/Ads";
-import { ICreateAdsDTO } from "../useCases/CreateAdsUseCase/ICreateAdsDTO";
+import { ICreateAdsDTO } from ".@cases/CreateAdsUseCase/ICreateAdsDTO";
 
 export interface ICreateAdsUseCase {
   execute(

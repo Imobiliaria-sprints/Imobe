@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from "typeorm";
-import { ICreateAdsDTO } from "../../useCases/CreateAdsUseCase/ICreateAdsDTO";
+import { ICreateAdsDTO } from "../.@cases/CreateAdsUseCase/ICreateAdsDTO";
 import { IAdsRepository } from "../IAdsRepository";
 import { Ads } from "../../entities/Ads";
 

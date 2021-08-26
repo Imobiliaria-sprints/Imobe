@@ -1,6 +1,6 @@
-import { UserRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
-import { IUserRepository } from "../../repositories/IUserRepository";
-import { CreateUserUseCase } from "./CreateUserUseCase";
+import { UserRepositoryInMemory } from "../../../../repositories/in-memory/UserRepositoryInMemory";
+import { IUserRepository } from "../../../../repositories/IUserRepository";
+import { CreateUserUseCase } from "../../../.@cases/CreateUserUseCase/CreateUserUseCase";
 
 describe("Create user", () => {
   let userRepository: IUserRepository;
