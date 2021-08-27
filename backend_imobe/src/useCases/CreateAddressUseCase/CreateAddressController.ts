@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { AdsRepository } from "../../repositories/factory/AdsRepository";
+import { AdsRepository } from "@repos/factory/AdsRepository";
 import { CreateAddressUseCase } from "./CreateAddressUseCase";
 
 class CreateAddressController {

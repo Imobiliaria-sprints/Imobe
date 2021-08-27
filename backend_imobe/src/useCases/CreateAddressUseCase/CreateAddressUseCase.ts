@@ -2,8 +2,8 @@ import { getCustomRepository } from "typeorm";
 import { IAddressDTO } from "../../dtos/IAddressDTO";
 import { Address } from "../../entities/Address";
 import { ICreateAddressUseCase } from "../../interfaces/ICreateAddressUseCase";
-import { AddressRepository } from "../../repositories/factory/AddressRepository";
-import { IAdsRepository } from "../../repositories/IAdsRepository";
+import { AddressRepository } from "@repos/factory/AddressRepository";
+import { IAdsRepository } from "@repos/IAdsRepository";
 
 class CreateAddressUseCase implements ICreateAddressUseCase {
   constructor(private adsRepository: IAdsRepository) {}

@@ -1,7 +1,7 @@
 import path from "path";
 import { ISendMailProvider } from "../../interfaces/ISendMailProvider";
 import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IUserRepository } from "@repos/IUserRepository";
 
 class ForgotPasswordUseCase {
   /**

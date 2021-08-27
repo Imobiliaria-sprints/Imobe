@@ -1,9 +1,9 @@
-import { IAdsRepository } from "../../../../repositories/IAdsRepository";
-import { AdsRepositoryInMemory } from "../../../../repositories/in-memory/AdsRepositoryInMemory";
-import { UserRepositoryInMemory } from "../../../../repositories/in-memory/UserRepositoryInMemory";
-import { IUserRepository } from "../../../../repositories/IUserRepository";
-import { CreateUserUseCase } from "../../../.@cases/CreateUserUseCase/CreateUserUseCase";
-import { CreateAdsUseCase } from "../../../.@cases/CreateAdsUseCase/CreateAdsUseCase";
+import { IAdsRepository } from "@repos/IAdsRepository";
+import { AdsRepositoryInMemory } from "@repos/in-memory/AdsRepositoryInMemory";
+import { UserRepositoryInMemory } from "@repos/in-memory/UserRepositoryInMemory";
+import { IUserRepository } from "@repos/IUserRepository";
+import { CreateUserUseCase } from "@cases/CreateUserUseCase/CreateUserUseCase";
+import { CreateAdsUseCase } from "@cases/CreateAdsUseCase/CreateAdsUseCase";
 
 let adsRepository: IAdsRepository;
 let userRepository: IUserRepository;

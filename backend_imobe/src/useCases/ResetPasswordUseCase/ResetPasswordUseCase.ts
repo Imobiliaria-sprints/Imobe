@@ -1,4 +1,4 @@
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IUserRepository } from "@repos/IUserRepository";
 
 class ResetPasswordUseCase {
   constructor(private userRepository: IUserRepository) {}

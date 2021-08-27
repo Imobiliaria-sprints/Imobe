@@ -1,5 +1,5 @@
 import { classToPlain } from "class-transformer";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IUserRepository } from "@repos/IUserRepository";
 
 class ReturnUserAuthenticatedUseCase {
   constructor(private userRepository: IUserRepository) {}

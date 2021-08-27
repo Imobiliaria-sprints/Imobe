@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { AdsRepository } from "../../repositories/factory/AdsRepository";
-import { UserRepository } from "../../repositories/factory/UserRepository";
+import { AdsRepository } from "@repos/factory/AdsRepository";
+import { UserRepository } from "@repos/factory/UserRepository";
 import { CreateAdsUseCase } from "./CreateAdsUseCase";
-import { validate } from "class-validator";
 
 class CreateAdsController {
   /**

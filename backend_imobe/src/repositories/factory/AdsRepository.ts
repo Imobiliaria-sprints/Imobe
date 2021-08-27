@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from "typeorm";
-import { ICreateAdsDTO } from "../.@cases/CreateAdsUseCase/ICreateAdsDTO";
+import { ICreateAdsDTO } from "@cases/CreateAdsUseCase/ICreateAdsDTO";
 import { IAdsRepository } from "../IAdsRepository";
-import { Ads } from "../../entities/Ads";
+import { Ads } from "@entity/Ads";
 
 @EntityRepository(Ads)
 class AdsRepository extends Repository<Ads> implements IAdsRepository {

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { UserRepository } from "../../repositories/factory/UserRepository";
+import { UserRepository } from "@repos/factory/UserRepository";
 import { ResetPasswordUseCase } from "./ResetPasswordUseCase";
 
 class ResetPasswordController {

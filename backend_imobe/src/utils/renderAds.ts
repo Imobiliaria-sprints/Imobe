@@ -1,4 +1,4 @@
-import { Ads } from "../../entities/Ads";
+import { Ads } from "@entity/Ads";
 
 import ImageView from "./imageView";
 

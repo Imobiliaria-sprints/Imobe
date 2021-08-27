@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
+import { ensureAuthenticated } from "@middle/ensureAuthenticated";
 import ListAdsController from "@cases/ListAdsUserUseCase/ListAdsController";
 import { userRoutes } from "./routes/userRoutes";
 import { postRouter } from "./routes/postRoutes";

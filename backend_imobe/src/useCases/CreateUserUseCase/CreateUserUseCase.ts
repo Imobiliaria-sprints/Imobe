@@ -1,11 +1,9 @@
 import { hash } from "bcryptjs";
 import { classToPlain } from "class-transformer";
-import { getCustomRepository, Repository } from "typeorm";
-import { UserRepository } from "../../repositories/factory/UserRepository";
+
 import { ICreateUserUseCase } from "../../interfaces/ICreateUserUseCase";
-import { resolve } from "path";
-import { sendNewEmail } from "../../queue/sendMailQueue";
-import { IUserRepository } from "../../repositories/IUserRepository";
+
+import { IUserRepository } from "@repos/IUserRepository";
 
 class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private userRepository: IUserRepository) {}

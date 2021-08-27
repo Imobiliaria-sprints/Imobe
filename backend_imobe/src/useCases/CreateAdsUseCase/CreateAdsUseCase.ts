@@ -1,7 +1,7 @@
-import { Ads } from "../../entities/Ads";
+import { Ads } from "@entity/Ads";
 import { ICreateAdsUseCase } from "../../interfaces/ICreateAdsUseCase";
-import { IAdsRepository } from "../../repositories/IAdsRepository";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IAdsRepository } from "@repos/IAdsRepository";
+import { IUserRepository } from "@repos/IUserRepository";
 
 class CreateAdsUseCase implements ICreateAdsUseCase {
   constructor(
