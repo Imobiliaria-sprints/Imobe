@@ -1,8 +1,3 @@
-/*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
- */
-
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -81,8 +76,16 @@ export default {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
-
+  moduleNameMapper: {
+    "@App/(.*)": "<rootDir>/src/$1",
+    "@Shared/(.*)": "<rootDir>/src/Shared/$1",
+    "@cases/(.*)": "<rootDir>/src/useCases/$1",
+    "@config/(.*)": "<rootDir>/src/config/$1",
+    "@entity/(.*)": "<rootDir>/src/entities/$1",
+    "@repos/(.*)": "<rootDir>/src/repositories/$1",
+    "@views/(.*)": "<rootDir>/src/views/$1",
+    "@middle/(.*)": "<rootDir>/src/middlewares/$1",
+  },
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
 
@@ -137,7 +140,7 @@ export default {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -181,7 +184,7 @@ export default {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  // verbose: undefined,
+  verbose: true,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
