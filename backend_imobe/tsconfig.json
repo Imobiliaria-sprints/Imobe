@@ -24,5 +24,6 @@
       "@views/*": ["./src/repositories/*"],
       "@middle/*": ["./src/middlewares/*"]
     }
-  }
+  },
+  "include": ["src/**/*"]
 }

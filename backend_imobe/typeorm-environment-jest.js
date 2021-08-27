@@ -7,6 +7,8 @@ require("dotenv").config({
   path: resolve(__dirname, ".env.test"),
 });
 
+const typeormCli = "./node_modules/typeorm/cli.js";
+
 /**
  * @Lucas-Duarte-dev
  */
@@ -26,7 +28,7 @@ class CustomEnvironment extends NodeEnvironment {
       url: this.connectionString,
     });
 
-    await client.runMigrations();
+    execSync(`${typeormCli} migration:run`);
   }
 
   async teardown() {
