@@ -22,6 +22,9 @@ export default {
     "@repos/(.*)": "<rootDir>/src/repositories/$1",
     "@views/(.*)": "<rootDir>/src/views/$1",
     "@middle/(.*)": "<rootDir>/src/middlewares/$1",
+    "@provider/(.*)": "<rootDir>/src/provider/$1",
+    "@dtos/(.*)": "<rootDir>/src/dtos/$1",
+    "@app/(.*)": "<rootDir>/src/$1",
   },
 
   preset: "ts-jest",

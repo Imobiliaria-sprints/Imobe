@@ -22,7 +22,10 @@
       "@entity/*": ["./src/entities/*"],
       "@repos/*": ["./src/repositories/*"],
       "@views/*": ["./src/repositories/*"],
-      "@middle/*": ["./src/middlewares/*"]
+      "@middle/*": ["./src/middlewares/*"],
+      "@provider/*": ["./src/provider/*"],
+      "@dtos/*": ["./src/dtos/*"],
+      "@app/*": ["./src/*"]
     }
   },
   "include": ["src/**/*", "__tests__"]
