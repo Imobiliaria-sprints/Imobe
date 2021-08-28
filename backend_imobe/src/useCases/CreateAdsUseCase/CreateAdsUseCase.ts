@@ -31,14 +31,6 @@ class CreateAdsUseCase implements ICreateAdsUseCase {
       throw new Error("User not found");
     }
 
-    const data = {
-      title,
-      price,
-      rooms,
-      square_meters,
-      user_id,
-    };
-
     const ads = await this.adsRepository.createAds({
       title,
       price,

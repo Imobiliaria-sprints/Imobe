@@ -7,6 +7,9 @@ node_modules/
 .env.production
 .env.test
 
+dist/
+
+__tests__/coverage/
 
 .docker/
 

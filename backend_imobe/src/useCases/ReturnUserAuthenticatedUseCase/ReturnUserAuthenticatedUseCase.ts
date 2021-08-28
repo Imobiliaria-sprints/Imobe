@@ -12,7 +12,7 @@ class ReturnUserAuthenticatedUseCase {
    * @param {string} user_id
    * @returns Record<string, any>
    */
-  async execute(user_id: string) {
+  async execute(user_id: string): Promise<Record<string, any>> {
     const user = await this.userRepository.findOneUserById(user_id);
 
     if (!user) {

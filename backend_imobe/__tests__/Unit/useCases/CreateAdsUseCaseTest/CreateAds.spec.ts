@@ -24,6 +24,7 @@ describe("Create ads", () => {
       "test@gmail.com",
       "12345"
     );
+
     const ads = await createAdsUseCase.execute(
       "Casa de teste",
       5000.45,
@@ -33,5 +34,17 @@ describe("Create ads", () => {
     );
 
     expect(ads).toHaveProperty("id");
+  });
+
+  it("Should be not able to create a new ads with invalid user", async () => {
+    await expect(
+      createAdsUseCase.execute(
+        "Casa de teste",
+        5000.45,
+        2,
+        53,
+        "1d856sa4684test#54616445%"
+      )
+    ).rejects.toEqual(new Error("User not found"));
   });
 });

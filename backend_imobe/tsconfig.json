@@ -25,5 +25,5 @@
       "@middle/*": ["./src/middlewares/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "__tests__"]
 }

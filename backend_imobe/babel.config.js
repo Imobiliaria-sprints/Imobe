@@ -11,7 +11,17 @@ module.exports = {
     "@babel/preset-typescript",
   ],
   plugins: [
+    "@babel/plugin-transform-async-to-generator",
+    "babel-plugin-transform-typescript-metadata",
     ["@babel/plugin-proposal-decorators", { legacy: true }],
+    ["@babel/plugin-proposal-class-properties", { loose: true }],
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        helpers: true,
+        regenerator: true,
+      },
+    ],
     [
       "module-resolver",
       {
