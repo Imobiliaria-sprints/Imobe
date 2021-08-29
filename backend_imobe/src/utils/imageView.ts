@@ -1,7 +1,7 @@
 import { User } from "@entity/User";
 
 export default {
-  render(image: User) {
+  render(image: User | Record<string, any>) {
     return {
       id: image.id,
       url: `http://localhost:3333/uploads/${image.avatar}`,

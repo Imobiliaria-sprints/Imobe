@@ -6,34 +6,32 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
-
 import { Exclude } from "class-transformer";
-
-import { Length, IsEmail } from "class-validator";
+import { IsEmail } from "class-validator";
+import { Trim } from "class-sanitizer";
+import { BaseEntity } from "./BaseEntity";
 
 @Entity("users")
-class User {
+class User extends BaseEntity {
   @PrimaryColumn()
   id: string;
 
   @Column()
-  @Length(10, 70)
   name: string;
 
   @Column()
   avatar?: string;
 
   @Column()
-  @Length(5, 15)
   phone: string;
 
+  @Trim()
   @Column()
   @IsEmail()
   email: string;
 
   @Exclude()
   @Column()
-  @Length(8, 40)
   password: string;
 
   @Column()
@@ -46,6 +44,7 @@ class User {
   updated_at: Date;
 
   constructor() {
+    super();
     if (!this.id) {
       this.id = uuid();
     }

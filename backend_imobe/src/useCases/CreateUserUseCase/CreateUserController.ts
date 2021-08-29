@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { UserRepository } from "@repos/factory/UserRepository";
 import { CreateUserUseCase } from "./CreateUserUseCase";
-
+import renderUser from "../../utils/renderUser";
 class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const userRepository = getCustomRepository(UserRepository);
@@ -10,7 +10,7 @@ class CreateUserController {
     const createUserUseCase = new CreateUserUseCase(userRepository);
 
     const { name, phone, email, password } = request.body;
-    const requestFile = request.file as Express.Multer.File;
+    const requestFile = request?.file as Express.Multer.File;
 
     const avatar = requestFile.filename;
 
@@ -23,7 +23,7 @@ class CreateUserController {
         avatar
       );
 
-      return response.json(user);
+      return response.json(renderUser.render(user));
     } catch (error) {
       return response.status(400).json({ message: error.message });
     }
