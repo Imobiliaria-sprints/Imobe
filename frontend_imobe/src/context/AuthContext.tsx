@@ -37,14 +37,13 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   useEffect(() => {
     const { "imobeflex.token": token } = parseCookies();
-
+    console.log(token);
     if (token) {
       api
         .get("/verify/user", {
           headers: { Authorization: `Bearer ${token}` },
         })
-        .then((response) => response.data)
-        .then((data) => setUser(data.user));
+        .then((response) => setUser(response.data));
     }
   }, []);
 

@@ -19,9 +19,7 @@ type PostData = {
   created_at: string;
 };
 
-export default function Dashboard({
-  posts,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Dashboard({ posts }) {
   const { user } = useAuth();
 
   console.log(user);
@@ -74,7 +72,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { ["imobeflex.token"]: token } = parseCookies(ctx);
 
-  const { data } = await apiClient.get("/dashboard");
+  const { data } = await apiClient.get("/dashboard", {
+    headers: {
+      Authorization: `Barear ${token}`,
+    },
+  });
 
   const posts = data.map((post) => {
     return {

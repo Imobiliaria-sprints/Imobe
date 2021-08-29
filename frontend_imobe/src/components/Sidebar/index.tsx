@@ -9,7 +9,7 @@ import cx from "classnames";
 import { modalCustomStyles } from "../../utils/ModalStyleConf";
 
 export function Sidebar() {
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
+  const [isSidebarActive, setIsSidebarActive] = useState(true);
   const [isActive, setIsActive] = useState(false);
 
   function handleModalOpen(): void {
