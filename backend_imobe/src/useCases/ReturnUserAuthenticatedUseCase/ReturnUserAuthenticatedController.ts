@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { UserRepository } from "@repos/factory/UserRepository";
 import { ReturnUserAuthenticatedUseCase } from "./ReturnUserAuthenticatedUseCase";
+import renderUser from "../../utils/renderUser";
 
 class ReturnUserAuthenticatedController {
   /**
@@ -22,7 +23,7 @@ class ReturnUserAuthenticatedController {
 
     const user = await returnUserAuthenticatedUseCase.execute(user_id);
 
-    return response.json({ user });
+    return response.json(renderUser.render(user));
   }
 }
 

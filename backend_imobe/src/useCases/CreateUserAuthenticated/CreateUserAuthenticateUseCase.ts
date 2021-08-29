@@ -13,7 +13,7 @@ class CreateUserAuthenticateUseCase implements ICreateUserAuthenticateUseCase {
     password: string
   ): Promise<{
     token: string;
-    user: Record<string, any>;
+    authuser: Record<string, any>;
     refreshToken: RefreshToken;
   }> {
     const userRepository = getCustomRepository(UserRepository);
@@ -40,9 +40,9 @@ class CreateUserAuthenticateUseCase implements ICreateUserAuthenticateUseCase {
       userAlreadyExists.id
     );
 
-    const user = classToPlain(userAlreadyExists);
+    const authuser = classToPlain(userAlreadyExists);
 
-    return { token, user, refreshToken };
+    return { token, authuser, refreshToken };
   }
 }
 

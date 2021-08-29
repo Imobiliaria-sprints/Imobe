@@ -13,7 +13,7 @@ describe("Create user", () => {
     createUserUseCase = new CreateUserUseCase(userRepository);
   });
 
-  it("Should be able to a new user", async () => {
+  it("Should be able to create a new user", async () => {
     const user = await createUserUseCase.execute(
       "Test Create User",
       "123456789",

@@ -10,6 +10,7 @@ export default {
       rooms: ads.rooms,
       square_meters: ads.square_meters,
       price: ads.price,
+      created_at: ads.created_at,
       user: {
         name: ads.userId.name,
         avatar: ImageView.render(ads.userId),
