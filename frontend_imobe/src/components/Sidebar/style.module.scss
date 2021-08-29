@@ -1,19 +1,20 @@
-.sidebarContainer {
+.menuIsActive {
   display: flex;
+  transition: all 0.03s ease-in-out;
   flex-direction: column;
-  transition: height 0.3s;
+  width: 18rem;
   padding: 0.5rem 1rem;
   background-color: #fff;
   height: 100vh;
   border-radius: 0 0.6rem 0.6rem 0;
   justify-content: space-between;
+
   > section {
     margin-bottom: 0.9rem;
 
     > button {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       background: var(--blue-300);
       border: none;
       border-radius: 1rem;
@@ -27,12 +28,23 @@
       > span {
         width: 7rem;
         text-overflow: ellipsis;
+        white-space: nowrap;
         font-weight: bold;
+        margin-left: 2rem;
         text-align: left;
         font-family: Poppins, sans-serif;
         color: #fff;
       }
     }
+  }
+}
+
+.notActive {
+  width: 5rem;
+  transition: width 0.2s ease-in-out;
+
+  > * span {
+    display: none;
   }
 }
 
@@ -44,18 +56,19 @@
 
   > div {
     display: flex;
-    justify-content: space-between;
     padding: 0.6rem;
+    width: 100%;
     align-items: center;
     transition: background 0.2s;
     border-radius: 1rem;
     cursor: pointer;
 
     > span {
-      width: 7rem;
-      margin-left: 3rem;
       text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 7rem;
       font-weight: bold;
+      margin-left: 2rem;
       text-align: left;
       font-family: Poppins, sans-serif;
       color: #3b4a5b;
@@ -93,7 +106,8 @@
     height: 2.5rem;
     border: none;
     border-radius: 0.4rem;
-
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 1.075rem;
     transition: filter 0.2s;
   }

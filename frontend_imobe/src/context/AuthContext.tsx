@@ -16,6 +16,10 @@ type User = {
   name: string;
   phone: string;
   email: string;
+  image: {
+    id: string;
+    url: string;
+  };
 };
 
 type AuthContextData = {
@@ -48,6 +52,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const {
       data: { token, user },
     } = await api.post("/login", { email, password });
+
+    console.log({ token, user });
 
     setCookie(undefined, "imobeflex.token", token, {
       maxAge: 60 * 60 * 24 * 1, // 1 day

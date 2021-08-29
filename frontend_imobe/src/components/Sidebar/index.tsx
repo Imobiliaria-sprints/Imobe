@@ -26,18 +26,23 @@ export function Sidebar() {
   }
 
   return (
-    <aside className={styles.sidebarContainer}>
-      <div className={cx(styles.menuIsActive, { active: isSidebarActive })}>
+    <aside
+      className={cx(styles.menuIsActive, {
+        [styles.notActive]: isSidebarActive,
+      })}
+    >
+      <div>
         <div onClick={handleSidebarOpen}>
-          <Image width={170} height={50} src="/icons/logo.svg" alt="logo" />
-          <span>
+          {isSidebarActive ? (
             <Image
               width={50}
               height={50}
               src="/icons/miniLogo.svg"
               alt="Mini logo"
             />
-          </span>
+          ) : (
+            <Image width={170} height={50} src="/icons/logo.svg" alt="logo" />
+          )}
         </div>
         <nav className={styles.menu}>
           <div>

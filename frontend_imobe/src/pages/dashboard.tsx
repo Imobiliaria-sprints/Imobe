@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { parseCookies } from "nookies";
 import { useAuth } from "../hooks/useAuth";
@@ -19,9 +20,11 @@ type PostData = {
 };
 
 export default function Dashboard({
-      posts,
-    }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  posts,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { user } = useAuth();
+
+  console.log(user);
 
   return (
     <div className={styles.dashboard}>
@@ -30,7 +33,7 @@ export default function Dashboard({
         <header>
           <h1>Olá, {user?.name}</h1>
           <div>
-            <div>LD</div>
+            <img src={user?.image.url} alt={user?.name} />
           </div>
         </header>
 
