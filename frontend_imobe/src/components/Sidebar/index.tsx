@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { MdHome, MdFavorite, MdExitToApp, MdAdd } from "react-icons/md";
 import styles from "./style.module.scss";
@@ -7,10 +9,13 @@ import Router from "next/router";
 import { useState } from "react";
 import cx from "classnames";
 import { modalCustomStyles } from "../../utils/ModalStyleConf";
+import { useAuth } from "../../hooks/useAuth";
 
 export function Sidebar() {
   const [isSidebarActive, setIsSidebarActive] = useState(true);
   const [isActive, setIsActive] = useState(false);
+
+  const { user } = useAuth();
 
   function handleModalOpen(): void {
     return setIsActive(!isActive);
@@ -53,16 +58,22 @@ export function Sidebar() {
             <MdFavorite color="#3B4A5B" style={{ width: 30, height: 30 }} />
             <span>Favoritos</span>
           </div>
-          <div onClick={handleModalOpen}>
-            <MdExitToApp color="#ff4365" style={{ width: 30, height: 30 }} />
-            <span>Sair</span>
-          </div>
         </nav>
       </div>
-      <section>
-        <button>
-          <MdAdd color="#ffff" style={{ width: 30, height: 30 }} />{" "}
-          <span>Criar anúncio</span>
+      <section
+        className={cx(styles.user_info_active, {
+          [styles.user_info_not_active]: isSidebarActive,
+        })}
+      >
+        <div>
+          <img src={user.image.url} alt={user.name} />
+          <div>
+            <span>{user.name}</span>
+            <p>Bem vindo</p>
+          </div>
+        </div>
+        <button onClick={handleModalOpen}>
+          <MdExitToApp color="#7a7878" style={{ width: 25, height: 25 }} />
         </button>
       </section>
       <Modal

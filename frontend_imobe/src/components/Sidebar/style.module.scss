@@ -1,6 +1,6 @@
 .menuIsActive {
   display: flex;
-  transition: all 0.03s ease-in-out;
+  transition: all 0.2s ease-in-out;
   flex-direction: column;
   width: 18rem;
   padding: 0.5rem 1rem;
@@ -8,40 +8,14 @@
   height: 100vh;
   border-radius: 0 0.6rem 0.6rem 0;
   justify-content: space-between;
-
-  > section {
-    margin-bottom: 0.9rem;
-
-    > button {
-      display: flex;
-      align-items: center;
-      background: var(--blue-300);
-      border: none;
-      border-radius: 1rem;
-      padding: 0.6rem;
-      transition: filter 0.2s;
-      width: 100%;
-
-      &:hover {
-        filter: brightness(0.85);
-      }
-      > span {
-        width: 7rem;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-weight: bold;
-        margin-left: 2rem;
-        text-align: left;
-        font-family: Poppins, sans-serif;
-        color: #fff;
-      }
-    }
-  }
+  overflow: hidden;
 }
 
 .notActive {
-  width: 5rem;
+  width: 6rem;
   transition: width 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
 
   > * span {
     display: none;
@@ -80,12 +54,6 @@
   > div + div {
     margin-top: 1.4rem;
   }
-
-  div:last-child {
-    &:hover {
-      background: #ed396054;
-    }
-  }
 }
 
 .exitToApp {
@@ -123,5 +91,76 @@
 
   > button:hover {
     filter: brightness(0.9);
+  }
+}
+
+.user_info_active {
+  margin-bottom: 0.9rem;
+  display: flex;
+  background: rgba(73, 238, 224, 0.116);
+  align-items: center;
+  border-radius: 1rem;
+  padding: 1.2rem 0.6rem;
+  > div {
+    display: flex;
+    align-items: center;
+    border: none;
+    transition: filter 0.2s;
+    width: 100%;
+
+    > img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      filter: brightness(0.85);
+    }
+
+    > div {
+      margin-left: 1rem;
+      > span {
+        width: 7rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: left;
+        font-family: Poppins, sans-serif;
+        color: var(--black);
+      }
+
+      p {
+        color: var(--gray-900);
+      }
+    }
+  }
+  > button {
+    border: none;
+    background: transparent;
+    font-size: 0;
+    padding: 0.5rem;
+    transition: filter 0.2s ease-in;
+
+    &:hover {
+      filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(1370deg)
+        brightness(95%) contrast(80%);
+    }
+  }
+}
+
+.user_info_not_active {
+  flex-direction: column;
+
+  > div {
+    > div {
+      display: none;
+    }
+  }
+
+  > button {
+    background: #e1e1e170;
+    border-radius: 50%;
+    margin-top: 1.2rem;
   }
 }

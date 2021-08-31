@@ -11,7 +11,7 @@ import { useAuth } from "../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 import { modalCustomStyles } from "../utils/ModalStyleConf";
 
-export default function Home() {
+export default function Home(props) {
   const { signIn } = useAuth();
   const { register, handleSubmit } = useForm();
 
@@ -21,7 +21,6 @@ export default function Home() {
     try {
       await signIn(data);
     } catch (error) {
-      console.log(error);
       toast.error(`Ops 😬, E-mail ou senha inválidos`);
     }
   }
