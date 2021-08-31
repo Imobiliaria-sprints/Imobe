@@ -11,14 +11,34 @@
   overflow: hidden;
 }
 
+.burger {
+  padding: 0.4rem;
+  background: rgba(119, 224, 228, 0.5);
+  width: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
 .notActive {
   width: 6rem;
   transition: width 0.2s ease-in-out;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   > * span {
     display: none;
+  }
+
+  .menu {
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
@@ -144,7 +164,7 @@
 
     &:hover {
       filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(1370deg)
-        brightness(95%) contrast(80%);
+        brightness(95%) contrast(80%); // Red
     }
   }
 }

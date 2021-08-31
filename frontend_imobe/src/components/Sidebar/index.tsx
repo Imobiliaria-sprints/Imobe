@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import { MdHome, MdFavorite, MdExitToApp, MdAdd } from "react-icons/md";
+import { MdHome, MdFavorite, MdExitToApp, MdAdd, MdSort } from "react-icons/md";
 import styles from "./style.module.scss";
 import Modal from "react-modal";
 import { destroyCookie } from "nookies";
@@ -37,7 +37,10 @@ export function Sidebar() {
       })}
     >
       <div>
-        <div onClick={handleSidebarOpen}>
+        <button className={styles.burger} onClick={handleSidebarOpen}>
+          <MdSort color="#3B4A5B" style={{ width: 30, height: 30 }} />
+        </button>
+        <div>
           {isSidebarActive ? (
             <Image
               width={50}
