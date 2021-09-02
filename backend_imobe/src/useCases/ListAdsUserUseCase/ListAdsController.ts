@@ -3,23 +3,25 @@ import { ListAdsUserUseCase } from "./ListAdsUserUseCase";
 import AdsView from "../../utils/renderAds";
 
 interface QueryRequest {
-  limit?: number;
-  skip?: number;
+  page?: number;
+  per_page?: number;
 }
 
 class ListAdsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { user_id } = request;
-    const { limit, skip }: QueryRequest = request.query;
+    const { page = 1, per_page = 10 }: QueryRequest = request.query;
     const listAdsUserUseCase = new ListAdsUserUseCase();
 
-    const ads = await listAdsUserUseCase.execute(
+    const { ads, total } = await listAdsUserUseCase.execute(
       user_id,
-      Number(limit),
-      Number(skip)
+      Number(page),
+      Number(per_page)
     );
 
-    return response.json(AdsView.renderMany(ads));
+    return response
+      .setHeader("x-total-count", String(total))
+      .json(AdsView.renderMany(ads));
   }
 }
 

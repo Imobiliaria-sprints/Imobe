@@ -6,20 +6,22 @@ import { AdsRepository } from "../../repositories/factory/AdsRepository";
 class ListAdsUserUseCase {
   async execute(
     user_id: string,
-    limit?: number,
-    skip = 0
-  ): Promise<Record<string, any>> {
+    page = 1,
+    per_page = 10
+  ): Promise<{ ads: Record<string, any>; total: number }> {
     const adsRepository = getCustomRepository(AdsRepository);
 
-    const allAds = await adsRepository.find({
+    const pageStart = (Number(page) - 1) * Number(per_page);
+
+    const [ads, total] = await adsRepository.findAndCount({
       where: { user_id },
       order: { created_at: "DESC" },
       relations: ["userId"],
-      skip: skip,
-      take: limit,
+      take: per_page,
+      skip: pageStart,
     });
 
-    return classToPlain(allAds);
+    return { ads, total };
   }
 }
 
