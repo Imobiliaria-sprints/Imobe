@@ -30,6 +30,9 @@ type AuthContextData = {
 
 export const AuthContext = createContext({} as AuthContextData);
 
+/**
+ * @Lucas-Duarte-dev
+ */
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
@@ -47,6 +50,14 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }, []);
 
+  /**
+   *
+   *
+   * @param SignInData
+   *
+   * @param {string} email
+   * @param {string} password
+   */
   async function signIn({ email, password }: SignInData) {
     const {
       data: { token, user },
