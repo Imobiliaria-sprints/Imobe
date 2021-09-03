@@ -2,17 +2,30 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
+import Image from "next/image";
 import styles from "../styles/pages/signIn.module.scss";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Input } from "../components/Input";
+
+const signInForm = yup.object().shape({
+  email: yup.string().required("E-mail é obrigatório").email("E-mail inválido"),
+  password: yup.string().required("Password é obrigatório"),
+});
 
 export default function SingIn(props) {
   const { signIn } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(signInForm),
+  });
+
+  const { errors } = formState;
 
   async function handleSignIn(data) {
     try {
       await signIn(data);
     } catch (error) {
-      toast.error(`Ops 😬, E-mail ou senha inválidos`);
+      toast.error(`E-mail ou senha inválidos`);
     }
   }
 
@@ -27,45 +40,40 @@ export default function SingIn(props) {
           onSubmit={handleSubmit(handleSignIn)}
           className={styles.form_container}
         >
-          <div className={styles.input_block}>
-            <label>Email</label>
-            <div>
-              <input
-                {...register("email")}
-                id="email"
-                name="email"
-                placeholder="Digite seu melhor e-mail"
-                autoComplete="email"
-                required
-                type="email"
-              />
+          <Input
+            label="email"
+            type="email"
+            name="email"
+            error={errors.email}
+            {...register("email")}
+          />
 
-              <img src="/icons/email.svg" alt="email-icon" />
-            </div>
-          </div>
-          <div className={styles.input_block}>
-            <label>Senha</label>
-            <div>
-              <input
-                {...register("password")}
-                id="password"
-                name="password"
-                placeholder="Digite sua senha"
-                autoComplete="current-password"
-                required
-                type="password"
-              />
+          <Input
+            label="password"
+            type="password"
+            name="password"
+            error={errors.password}
+            {...register("password")}
+          />
 
-              <img src="/icons/password.svg" alt="password-icon" />
-            </div>
-          </div>
           <div className={styles.input_block}>
             <span>
               Esqueceu sua senha? <a>Clique aqui</a>
             </span>
           </div>
 
-          <button type="submit">Acessar</button>
+          <button type="submit">
+            {formState.isSubmitting ? (
+              <Image
+                height="20"
+                width="20"
+                src="/icons/loading.svg"
+                alt="loading"
+              />
+            ) : (
+              "Acessar"
+            )}
+          </button>
         </form>
       </section>
     </div>
