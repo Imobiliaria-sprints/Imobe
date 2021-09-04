@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "@middle/ensureAuthenticated";
-import ListAdsController from "@cases/ListAdsUserUseCase/ListAdsController";
+import ListAnnouncementController from "@cases/ListAnnouncementUserUseCase/ListAnnouncementController";
 import { userRoutes } from "./routes/userRoutes";
 import { postRouter } from "./routes/postRoutes";
 
@@ -10,6 +10,10 @@ router.use(userRoutes);
 
 router.use(postRouter);
 
-router.get("/dashboard", ensureAuthenticated, ListAdsController.handle);
+router.get(
+  "/dashboard",
+  ensureAuthenticated,
+  ListAnnouncementController.handle
+);
 
 export { router };

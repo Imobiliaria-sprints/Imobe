@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -12,15 +13,19 @@ import { v4 as uuid } from "uuid";
 import { User } from "./User";
 
 import { Length, IsInt, Min } from "class-validator";
+import { AnnouncementImage } from "./AnnouncementImage";
 
-@Entity("ads")
-export class Ads {
+@Entity("announcement")
+export class Announcement {
   @PrimaryColumn()
   id: string;
 
   @Column()
   @Length(10, 90)
   title: string;
+
+  @Column()
+  slug_title: string;
 
   @Column()
   @IsInt()
@@ -40,6 +45,10 @@ export class Ads {
   @JoinColumn({ name: "user_id" })
   @ManyToOne(() => User)
   userId: User;
+
+  @OneToMany(() => AnnouncementImage, (image) => image.announcement)
+  @JoinColumn({ name: "announcement_id" })
+  images: AnnouncementImage[];
 
   @CreateDateColumn()
   created_at: Date;

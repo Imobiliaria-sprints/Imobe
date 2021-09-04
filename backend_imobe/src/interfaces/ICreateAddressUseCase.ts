@@ -3,7 +3,7 @@ import { Address } from "../entities/Address";
 
 export interface ICreateAddressUseCase {
   execute({
-    ads_id,
+    announcement_id,
     city,
     state,
     street,

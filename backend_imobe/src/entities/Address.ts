@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 
 import { v4 as uuid } from "uuid";
-import { Ads } from "./Ads";
+import { Announcement } from "./Announcement";
 
 @Entity("address")
 export class Address {
@@ -17,11 +17,11 @@ export class Address {
   id: string;
 
   @Column()
-  ads_id: string;
+  announcement_id: string;
 
   @JoinColumn({ name: "ads_id" })
-  @OneToOne(() => Ads)
-  ads: Ads;
+  @OneToOne(() => Announcement)
+  announcement: Announcement;
 
   @Column()
   street: string;

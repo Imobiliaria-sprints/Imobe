@@ -2,19 +2,24 @@ import { Router } from "express";
 import { ensureAuthenticated } from "@middle/ensureAuthenticated";
 import CreateAddressController from "@cases/CreateAddressUseCase/CreateAddressController";
 import { validationAddress } from "@cases/CreateAddressUseCase/validationAddress";
-import CreateAdsController from "@cases/CreateAdsUseCase/CreateAdsController";
-import { validationAds } from "@cases/CreateAdsUseCase/validationAds";
+import CreateAnnouncementController from "@cases/CreateAnnouncementUseCase/CreateAnnouncementController";
+import { validationAnnouncement } from "@cases/CreateAnnouncementUseCase/validationAnnouncement";
+import uploadImageConfig from "@config/uploadImageConfig";
+import multer from "multer";
+
+const upload = multer(uploadImageConfig);
 
 const postRouter = Router();
 
 postRouter.post(
-  "/ads",
+  "/announcement",
   ensureAuthenticated,
-  validationAds,
-  CreateAdsController.handle
+  // validationAnnouncement,
+  upload.array("images", 5),
+  CreateAnnouncementController.handle
 );
 postRouter.post(
-  "/ads/address/:ads_id",
+  "/announcement/address/:announcement_id",
   validationAddress,
   CreateAddressController.handle
 );

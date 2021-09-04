@@ -25,6 +25,7 @@ class CreateUserController {
 
       return response.json(renderUser.render(user));
     } catch (error) {
+      console.log(error);
       return response.status(400).json({ message: error.message });
     }
   }

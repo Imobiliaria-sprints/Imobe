@@ -1,5 +1,5 @@
 export interface IAddressDTO {
-  ads_id: string;
+  announcement_id: string;
 
   street: string;
 

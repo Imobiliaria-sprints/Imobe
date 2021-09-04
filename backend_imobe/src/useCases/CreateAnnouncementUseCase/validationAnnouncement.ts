@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import yup from "@config/yup";
 
-export const validationAds = async (
+export const validationAnnouncement = async (
   request: Request,
   _: Response,
   next: NextFunction

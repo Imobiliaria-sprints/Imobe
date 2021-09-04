@@ -3,13 +3,13 @@ import { IAddressDTO } from "../../dtos/IAddressDTO";
 import { Address } from "../../entities/Address";
 import { ICreateAddressUseCase } from "../../interfaces/ICreateAddressUseCase";
 import { AddressRepository } from "@repos/factory/AddressRepository";
-import { IAdsRepository } from "@repos/IAdsRepository";
+import { IAnnouncementRepository } from "@repos/IAnnouncementRepository";
 
 class CreateAddressUseCase implements ICreateAddressUseCase {
-  constructor(private adsRepository: IAdsRepository) {}
+  constructor(private adsRepository: IAnnouncementRepository) {}
 
   async execute({
-    ads_id,
+    announcement_id,
     city,
     state,
     street,
@@ -18,7 +18,9 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
     block,
     complement,
   }: IAddressDTO): Promise<Address> {
-    const ads = await this.adsRepository.findOneAdsById(ads_id);
+    const ads = await this.adsRepository.findOneAnnouncementById(
+      announcement_id
+    );
 
     if (!ads) {
       throw new Error("Cannot found ads");
@@ -27,7 +29,7 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
     const addressRepository = getCustomRepository(AddressRepository);
 
     const address = addressRepository.create({
-      ads_id,
+      announcement_id,
       city,
       state,
       street,

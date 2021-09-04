@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { AdsRepository } from "@repos/factory/AdsRepository";
+import { AnnouncementRepository } from "@repos/factory/AnnouncementRepository";
 import { CreateAddressUseCase } from "./CreateAddressUseCase";
 
 class CreateAddressController {
@@ -8,13 +8,15 @@ class CreateAddressController {
     const { street, city, block, complement, state, zip_code, number } =
       request.body;
 
-    const { ads_id } = request.params;
+    const { announcement_id } = request.params;
 
-    const adsRepository = getCustomRepository(AdsRepository);
-    const createAddressUseCase = new CreateAddressUseCase(adsRepository);
+    const announcementRepository = getCustomRepository(AnnouncementRepository);
+    const createAddressUseCase = new CreateAddressUseCase(
+      announcementRepository
+    );
 
     const address = await createAddressUseCase.execute({
-      ads_id,
+      announcement_id,
       city,
       state,
       street,

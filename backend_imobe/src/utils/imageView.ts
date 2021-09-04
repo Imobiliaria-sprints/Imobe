@@ -1,14 +1,14 @@
-import { User } from "@entity/User";
+import { AnnouncementImage } from "@entity/AnnouncementImage";
 
 export default {
-  render(image: User | Record<string, any>) {
+  render(image: AnnouncementImage) {
     return {
       id: image.id,
-      url: `http://localhost:3333/uploads/${image.avatar}`,
+      url: `http://localhost:3333/uploads/${image.path}`,
     };
   },
 
-  renderMany(images: User[]) {
+  renderMany(images: AnnouncementImage[]) {
     return images.map((image) => this.render(image));
   },
 };

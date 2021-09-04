@@ -1,5 +1,5 @@
 import { User } from "@entity/User";
-import imageView from "./imageView";
+
 export default {
   render(user: User | Record<string, any>) {
     return {
@@ -7,7 +7,7 @@ export default {
       name: user.name,
       phone: user.phone,
       email: user.email,
-      image: imageView.render(user),
+      image: `http://localhost:3333/uploads/${user.avatar}`,
       created_at: user.created_at,
     };
   },
