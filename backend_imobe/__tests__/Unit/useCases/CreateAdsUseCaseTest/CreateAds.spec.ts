@@ -1,31 +1,34 @@
-import { IAdsRepository } from "@repos/IAdsRepository";
-import { AdsRepositoryInMemory } from "@repos/in-memory/AdsRepositoryInMemory";
+import { IAnnouncementRepository } from "@repos/IAnnouncementRepository";
+import { AnnouncementRepositoryInMemory } from "@repos/in-memory/AnnouncementRepositoryInMemory";
 import { UserRepositoryInMemory } from "@repos/in-memory/UserRepositoryInMemory";
 import { IUserRepository } from "@repos/IUserRepository";
 import { CreateUserUseCase } from "@cases/CreateUserUseCase/CreateUserUseCase";
-import { CreateAdsUseCase } from "@cases/CreateAdsUseCase/CreateAdsUseCase";
+import { CreateAnnouncementUseCase } from "@cases/CreateAnnouncementUseCase/CreateAnnouncementUseCase";
 
-let adsRepository: IAdsRepository;
+let announcementRepository: IAnnouncementRepository;
 let userRepository: IUserRepository;
-let createAdsUseCase: CreateAdsUseCase;
+let createAnnouncementUseCase: CreateAnnouncementUseCase;
 let createUserUseCase: CreateUserUseCase;
 beforeAll(() => {
-  adsRepository = new AdsRepositoryInMemory();
+  announcementRepository = new AnnouncementRepositoryInMemory();
   userRepository = new UserRepositoryInMemory();
-  createAdsUseCase = new CreateAdsUseCase(adsRepository, userRepository);
+  createAnnouncementUseCase = new CreateAnnouncementUseCase(
+    announcementRepository,
+    userRepository
+  );
   createUserUseCase = new CreateUserUseCase(userRepository);
 });
 
-describe("Create ads", () => {
-  it("Should be able create a new ads", async () => {
+describe("Create Announcement", () => {
+  it("Should be able create a new Announcement", async () => {
     const user = await createUserUseCase.execute(
-      "Test create ads",
+      "Test create Announcement",
       "135215",
       "test@gmail.com",
       "12345"
     );
 
-    const ads = await createAdsUseCase.execute(
+    const announcement = await createAnnouncementUseCase.execute(
       "Casa de teste",
       5000.45,
       2,
@@ -33,12 +36,12 @@ describe("Create ads", () => {
       user.id
     );
 
-    expect(ads).toHaveProperty("id");
+    expect(announcement).toHaveProperty("id");
   });
 
-  it("Should be not able to create a new ads with invalid user", async () => {
+  it("Should be not able to create a new Announcement with invalid user", async () => {
     await expect(
-      createAdsUseCase.execute(
+      createAnnouncementUseCase.execute(
         "Casa de teste",
         5000.45,
         2,

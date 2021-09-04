@@ -7,7 +7,7 @@
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=dev ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/server.ts",
-    "typeorm": "cross-env NODE_ENV=dev ts-node-dev node_modules/typeorm/cli.js",
+    "typeorm": "cross-env NODE_ENV=dev ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "@types/node": "^15.12.4",
     "@types/nodemailer": "^6.4.4",
     "@types/redis": "^2.8.31",
+    "@types/slug": "^5.0.2",
     "@types/supertest": "^2.0.11",
     "@types/uuid": "^8.3.0",
     "@types/yup": "^0.29.13",
@@ -69,7 +70,7 @@
     "reflect-metadata": "^0.1.13",
     "slug": "^5.1.0",
     "tslib": "^2.3.0",
-    "typeorm": "^0.2.34",
+    "typeorm": "^0.2.37",
     "uuid": "^8.3.2",
     "yup": "^0.32.9"
   }
