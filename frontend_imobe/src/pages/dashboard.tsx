@@ -9,6 +9,8 @@ import { getApiClient } from "../services/axios";
 import { FormatCurrency } from "../utils/FormatCurrency";
 import { Sidebar } from "../components/Sidebar";
 import Image from "next/image";
+import { Pagination } from "../components/Pagination";
+import { useState } from "react";
 
 type PostData = {
   id: string;
@@ -22,7 +24,7 @@ type PostData = {
 export default function Dashboard({ posts }) {
   const { user } = useAuth();
 
-  console.log(user);
+  const [page, setPage] = useState(1);
 
   return (
     <div className={styles.dashboard}>
@@ -37,31 +39,37 @@ export default function Dashboard({ posts }) {
 
         <section className={styles.postList}>
           <h1>Suas divulgações</h1>
+          <div className={styles.list}>
+            <section>
+              <span>Titulo</span>
+              <span>Preço</span>
+              <span>Quartos</span>
+              <span>Metros</span>
+              <span>Criado</span>
+            </section>
+            {posts.map((post: PostData) => {
+              return (
+                <div key={post.id} className={styles.post}>
+                  <section>
+                    <span>{post.title}</span>
+                    <span>{post.price}</span>
 
-          {posts.map((post: PostData) => {
-            return (
-              <div key={post.id}>
-                <Image
-                  src="https://images.unsplash.com/photo-1594540992254-0e2239661647?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                  alt="Image"
-                  width="700"
-                  objectFit="cover"
-                  height="200"
-                  layout="responsive"
-                />
-                <section className={styles.post}>
-                  <h3>{post.title}</h3>
-                  <span>No valor de {post.price}</span>
-                  <div>
-                    <span>Quartos: {post.rooms}</span>
-                    <span>Metros: {post.square_meters}</span>
-                  </div>
-                  <p>Anúncio criado em {post.created_at}</p>
-                </section>
-              </div>
-            );
-          })}
+                    <span> {post.rooms}</span>
+                    <span> {post.square_meters}</span>
+
+                    <span> {post.created_at}</span>
+                  </section>
+                </div>
+              );
+            })}
+          </div>
         </section>
+        <Pagination
+          totalCountRegisters={100}
+          registersPerPage={10}
+          currentPage={1}
+          onPageChange={setPage}
+        />
       </div>
     </div>
   );
