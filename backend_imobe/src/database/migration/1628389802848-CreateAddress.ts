@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateAddressAds1628389802848 implements MigrationInterface {
+export class CreateAddress1628389802848 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -12,7 +12,7 @@ export class CreateAddressAds1628389802848 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: "ads_id",
+            name: "announcement_id",
             type: "uuid",
           },
           {
@@ -48,6 +48,14 @@ export class CreateAddressAds1628389802848 implements MigrationInterface {
             length: "25",
           },
           {
+            name: "latitude",
+            type: "int",
+          },
+          {
+            name: "longitude",
+            type: "int",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -60,10 +68,10 @@ export class CreateAddressAds1628389802848 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: "FKAddressAds",
-            referencedTableName: "ads",
+            name: "FKAddressAnnuncement",
+            referencedTableName: "announcement",
             referencedColumnNames: ["id"],
-            columnNames: ["ads_id"],
+            columnNames: ["announcement_id"],
             onUpdate: "CASCADE",
             onDelete: "CASCADE",
           },
@@ -73,6 +81,6 @@ export class CreateAddressAds1628389802848 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("address_ads");
+    await queryRunner.dropTable("address");
   }
 }
