@@ -4,11 +4,10 @@
 
 .dashboardContainer {
   flex: 1;
-  padding: 0 1rem;
+  padding: 0 0 0 1rem;
   > header {
     padding: 0.8rem 1rem;
     display: flex;
-    padding: 0.8rem 0;
     align-items: center;
     justify-content: space-between;
 
@@ -39,66 +38,47 @@
 .postList {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 4rem 1fr 1rem;
   gap: 15px;
+  height: calc(100vh - 10rem);
+
   > h1 {
     margin: 1rem 0;
     grid-column: 1 / 4;
   }
 
   > div {
-    background: var(--white);
-    border-radius: 0.4rem;
-    object-fit: cover;
+    grid-column: 1 / 4;
+    overflow-y: auto;
 
-    transition: filter 0.3s;
-    cursor: pointer;
-    &:hover {
-      filter: brightness(0.9);
+    > section {
+      display: grid;
+      grid-template-columns: 1fr 17rem 10rem 10rem 18rem;
+      font-family: Poppins, sans-serif;
+      padding: 0.4rem 0.8rem;
+      transition: filter 0.3s;
+      border-bottom: 1px solid var(--gray-300);
     }
   }
 }
 
 .post {
-  padding: 1rem 0.8rem;
+  margin-top: 2rem;
 
-  > span {
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 2;
-    font-family: Lato, sans-serif;
-    color: var(--green-700);
-  }
-
-  > div {
-    display: flex;
-    margin: 0.3rem 0;
+  > section {
+    display: grid;
+    grid-template-columns: 1fr 17rem 10rem 10rem 18rem;
+    font-family: Poppins, sans-serif;
+    padding: 0.4rem 0.8rem;
+    transition: filter 0.3s;
+    border-bottom: 1px solid var(--gray-200);
 
     > span {
-      position: relative;
-      font-family: Poppins, sans-serif;
-      color: var(--gray-900);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--black-smooth);
+      line-height: 2;
+      font-family: Lato, sans-serif;
     }
-    > span + span {
-      margin-left: 0.9rem;
-    }
-
-    > span + span::before {
-      content: "";
-
-      height: 4px;
-      width: 4px;
-      border-radius: 50%;
-
-      background: var(--gray-700);
-      position: absolute;
-      left: -8px;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  > p {
-    color: var(--gray-300);
-    margin-top: 0.8rem;
   }
 }
