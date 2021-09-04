@@ -1,0 +1,46 @@
+.paginationButton {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 0.3rem;
+  font-size: 1.1rem;
+  border: none;
+  color: var(--black-smooth);
+  cursor: pointer;
+  background: var(--blue-700);
+  transition: background 0.2s;
+  color: var(--white);
+
+  &:not(:disabled):hover {
+    background: var(--blue-800);
+  }
+
+  &:disabled {
+    background: var(--blue-400);
+    cursor: default;
+  }
+}
+
+.pageList {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 0;
+
+  > section {
+    margin-bottom: 0.5rem;
+    font-family: Poppins, sans-serif;
+    color: var(--gray-700);
+  }
+  > div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    > span {
+      font-size: 1.2rem;
+    }
+  }
+}
