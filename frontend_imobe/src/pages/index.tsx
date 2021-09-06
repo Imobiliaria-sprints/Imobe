@@ -5,15 +5,14 @@ import { Divisor } from "../components/Divisor";
 import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
 import Modal from "react-modal";
+import { useRouter } from "next/router";
 
 export default function Home(props) {
+  const router = useRouter();
+
   return (
     <div id={styles.home}>
-      <Header>
-        <a>Entre em contato</a>
-        <a href="sign-in">Entre em sua conta</a>
-        <button>Faça sua conta</button>
-      </Header>
+      <Header />
 
       <section className={styles.section_apresentation}>
         <div>
@@ -24,7 +23,7 @@ export default function Home(props) {
             <li>Divulgue seu imóvel</li>
             <li>Torne seu sonho realidade</li>
           </ul>
-          <button>
+          <button onClick={() => router.push("/announcements")}>
             <img src="/icons/house.svg" alt="house icons" />
             Ver imóveis
           </button>
