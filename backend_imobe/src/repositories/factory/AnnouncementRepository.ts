@@ -38,10 +38,15 @@ class AnnouncementRepository
     return !!announcement;
   }
 
-  async findAllAnnoucement(): Promise<Announcement[]> {
-    const annoucement = await this.find({ relations: ["userId", "images"] });
+  async findAllAnnoucement(): Promise<{
+    announcements: Announcement[];
+    total: number;
+  }> {
+    const [announcements, total] = await this.findAndCount({
+      relations: ["userId", "images"],
+    });
 
-    return annoucement;
+    return { announcements, total };
   }
 }
 

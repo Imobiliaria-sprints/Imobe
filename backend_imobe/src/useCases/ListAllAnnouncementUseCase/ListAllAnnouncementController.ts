@@ -12,9 +12,11 @@ class ListAllAnnouncementController {
       announcementRepository
     );
 
-    const announcement = await listAllAnouncementUseCase.execute();
+    const { announcement, total } = await listAllAnouncementUseCase.execute();
 
-    return response.json(renderAnnouncement.renderMany(announcement));
+    return response
+      .setHeader("x-total-count", String(total))
+      .json(renderAnnouncement.renderMany(announcement));
   }
 }
 

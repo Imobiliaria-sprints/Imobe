@@ -23,8 +23,13 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
     return !!announcements;
   }
 
-  async findAllAnnoucement(): Promise<Announcement[]> {
-    return this.announcement;
+  async findAllAnnoucement(): Promise<{
+    announcements: Announcement[];
+    total: number;
+  }> {
+    const announcements = this.announcement;
+    const total = announcements.length;
+    return { announcements, total };
   }
 }
 

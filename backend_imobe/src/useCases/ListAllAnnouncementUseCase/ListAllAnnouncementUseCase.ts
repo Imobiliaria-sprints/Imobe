@@ -5,9 +5,12 @@ class ListAllAnnouncementUseCase {
   constructor(private announcementRepository: IAnnouncementRepository) {}
 
   async execute() {
-    const allAnnouncement = this.announcementRepository.findAllAnnoucement();
+    const { announcements, total } =
+      await this.announcementRepository.findAllAnnoucement();
 
-    return classToPlain(allAnnouncement);
+    const announcement = classToPlain(announcements);
+
+    return { announcement, total };
   }
 }
 
