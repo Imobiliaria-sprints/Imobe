@@ -4,44 +4,78 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1300px;
+  padding: 0 1rem;
   margin: 0 auto;
 
-  nav {
+  > div {
+    cursor: pointer;
+  }
+}
+
+.navContainer {
+  position: relative;
+  > .userInfo {
     display: flex;
     align-items: center;
     font-family: Lato, sans-serif;
     font-size: 1.2rem;
+    background: var(--background-imobe);
+    border-radius: 1.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--black-smooth);
 
-    a,
-    button {
-      font-size: 1.2rem;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
     }
 
-    & > a {
-      transition: color 0.2s;
-    }
-
-    & > a:not(:first-child) {
-      margin-left: 1.2rem;
-    }
-
-    & > a:hover {
+    > section {
+      display: flex;
+      align-items: center;
+      padding: 0 0.3rem;
       color: var(--blue-700);
-    }
+      > img {
+        width: 25px;
+        height: 25px;
+      }
 
-    & > button {
-      padding: 0.7rem 1.2rem;
-      border-radius: 2rem;
-      background: var(--green-400);
-      color: var(--white);
-      border: none;
-      margin-left: 1.2rem;
-      transition: background 0.2s;
-    }
-
-    & > button:hover {
-      background: var(--green-500);
+      span {
+        margin-left: 0.5rem;
+      }
     }
   }
 }
+
+// a,
+//     button {
+//       font-size: 1.2rem;
+//     }
+
+//     & > a {
+//       transition: color 0.2s;
+//     }
+
+//     & > a:not(:first-child) {
+//       margin-left: 1.2rem;
+//     }
+
+//     & > a:hover {
+//       color: var(--blue-700);
+//     }
+
+//     & > button {
+//       padding: 0.7rem 1.2rem;
+//       border-radius: 2rem;
+//       background: var(--green-400);
+//       color: var(--white);
+//       border: none;
+//       margin-left: 1.2rem;
+//       transition: background 0.2s;
+//     }
+
+//     & > button:hover {
+//       background: var(--green-500);
+//     }
+//   }
