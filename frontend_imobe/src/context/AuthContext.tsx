@@ -16,10 +16,7 @@ type User = {
   name: string;
   phone: string;
   email: string;
-  image: {
-    id: string;
-    url: string;
-  };
+  avatar: string;
 };
 
 type AuthContextData = {

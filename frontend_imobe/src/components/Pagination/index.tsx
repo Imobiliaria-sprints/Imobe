@@ -17,7 +17,6 @@ export function generatePageArray(from: number, to: number) {
     })
     .filter((page) => page > 0);
 }
-console.log(generatePageArray(2, 10));
 
 export function Pagination({
   totalCountRegisters,

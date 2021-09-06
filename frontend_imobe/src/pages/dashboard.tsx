@@ -33,7 +33,7 @@ export default function Dashboard({ posts }) {
         <header>
           <h1>Olá, {user?.name}</h1>
           <div>
-            <img src={user?.image.url} alt={user?.name} />
+            <img src={user?.avatar} alt={user?.name} />
           </div>
         </header>
 

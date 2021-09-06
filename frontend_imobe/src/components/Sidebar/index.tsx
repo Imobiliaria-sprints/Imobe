@@ -69,7 +69,7 @@ export function Sidebar() {
         })}
       >
         <div>
-          <img src={user?.image.url} alt={user?.name} />
+          <img src={user?.avatar} alt={user?.name} />
           <div>
             <span>{user?.name}</span>
             <p>Bem vindo</p>
