@@ -37,6 +37,12 @@ class AnnouncementRepository
 
     return !!announcement;
   }
+
+  async findAllAnnoucement(): Promise<Announcement[]> {
+    const annoucement = await this.find({ relations: ["userId", "images"] });
+
+    return annoucement;
+  }
 }
 
 export { AnnouncementRepository };

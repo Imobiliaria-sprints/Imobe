@@ -22,6 +22,10 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
 
     return !!announcements;
   }
+
+  async findAllAnnoucement(): Promise<Announcement[]> {
+    return this.announcement;
+  }
 }
 
 export { AnnouncementRepositoryInMemory };

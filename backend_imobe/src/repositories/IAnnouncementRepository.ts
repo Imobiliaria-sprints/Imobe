@@ -13,4 +13,6 @@ export interface IAnnouncementRepository {
   }: ICreateAnnouncementDTO): Promise<Announcement>;
 
   findOneAnnouncementById(id: string): Promise<boolean>;
+
+  findAllAnnoucement(): Promise<Announcement[]>;
 }

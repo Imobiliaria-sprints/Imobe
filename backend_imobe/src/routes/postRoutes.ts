@@ -6,6 +6,7 @@ import CreateAnnouncementController from "@cases/CreateAnnouncementUseCase/Creat
 import { validationAnnouncement } from "@cases/CreateAnnouncementUseCase/validationAnnouncement";
 import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
+import ListAllAnnouncementController from "@cases/ListAllAnnouncementUseCase/ListAllAnnouncementController";
 
 const upload = multer(uploadImageConfig);
 
@@ -18,10 +19,13 @@ postRouter.post(
   upload.array("images", 5),
   CreateAnnouncementController.handle
 );
+
 postRouter.post(
   "/announcement/address/:announcement_id",
   validationAddress,
   CreateAddressController.handle
 );
+
+postRouter.get("/announcement", ListAllAnnouncementController.handle);
 
 export { postRouter };
