@@ -7,7 +7,7 @@ export default {
       name: user.name,
       phone: user.phone,
       email: user.email,
-      image: `http://localhost:3333/uploads/${user.avatar}`,
+      avatar: `http://localhost:3333/uploads/${user.avatar}`,
       created_at: user.created_at,
     };
   },

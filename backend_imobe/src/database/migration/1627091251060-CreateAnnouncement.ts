@@ -21,7 +21,7 @@ export class CreateAnnouncement1627091251060 implements MigrationInterface {
           },
           {
             name: "rooms",
-            type: "int",
+            type: "integer",
             unsigned: true,
           },
           {

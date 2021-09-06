@@ -3,18 +3,18 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class CreateAnnouncementImage1630786936503
   implements MigrationInterface
 {
-  protected announcement_image_name = "announcement_image";
-
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: this.announcement_image_name,
+        name: "announcement_image",
         columns: [
           {
             name: "id",
-            type: "int",
-            isPrimary: true,
+            type: "integer",
             unsigned: true,
+            isPrimary: true,
+            isGenerated: true,
             generationStrategy: "increment",
           },
           {
@@ -41,6 +41,7 @@ export class CreateAnnouncementImage1630786936503
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable(this.announcement_image_name);
+    await queryRunner.dropTable("announcement_image");
+    await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }

@@ -46,7 +46,9 @@ export class Announcement {
   @ManyToOne(() => User)
   userId: User;
 
-  @OneToMany(() => AnnouncementImage, (image) => image.announcement)
+  @OneToMany(() => AnnouncementImage, (image) => image.announcement, {
+    cascade: ["insert", "update"],
+  })
   @JoinColumn({ name: "announcement_id" })
   images: AnnouncementImage[];
 

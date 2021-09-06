@@ -6,20 +6,22 @@ import { AnnouncementRepository } from "../../repositories/factory/AnnouncementR
 class ListAnnouncementUserUseCase {
   async execute(
     user_id: string,
-    page = 1,
-    per_page = 10
+    page: number,
+    per_page: number
   ): Promise<{ announcement: Record<string, any>; total: number }> {
     const announcementRepository = getCustomRepository(AnnouncementRepository);
 
     const pageStart = (Number(page) - 1) * Number(per_page);
 
-    const [announcement, total] = await announcementRepository.findAndCount({
+    const [announcements, total] = await announcementRepository.findAndCount({
       where: { user_id },
       order: { created_at: "DESC" },
-      relations: ["userId"],
+      relations: ["userId", "images"],
       take: per_page,
       skip: pageStart,
     });
+
+    const announcement = classToPlain(announcements);
 
     return { announcement, total };
   }

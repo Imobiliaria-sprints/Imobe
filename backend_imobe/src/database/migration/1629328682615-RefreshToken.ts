@@ -15,7 +15,7 @@ export class RefreshToken1629328682615 implements MigrationInterface {
           },
           {
             name: "expires_in",
-            type: "int",
+            type: "integer",
           },
           {
             name: "user_id",

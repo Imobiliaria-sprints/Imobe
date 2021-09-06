@@ -3,7 +3,7 @@ import { Announcement } from "@entity/Announcement";
 import ImageView from "./imageView";
 
 export default {
-  render(announcement: Announcement) {
+  render(announcement: Record<string, any>) {
     return {
       id: announcement.id,
       title: announcement.title,
@@ -11,8 +11,8 @@ export default {
       rooms: announcement.rooms,
       square_meters: announcement.square_meters,
       price: announcement.price,
-      created_at: announcement.created_at,
       images: ImageView.renderMany(announcement.images),
+      created_at: announcement.created_at,
       user: {
         name: announcement.userId.name,
         avatar: `http://localhost:3333/uploads/${announcement.userId.avatar}`,
