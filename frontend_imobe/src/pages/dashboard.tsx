@@ -64,12 +64,6 @@ export default function Dashboard({ posts }) {
             })}
           </div>
         </section>
-        <Pagination
-          totalCountRegisters={100}
-          registersPerPage={10}
-          currentPage={1}
-          onPageChange={setPage}
-        />
       </div>
     </div>
   );
