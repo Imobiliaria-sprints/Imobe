@@ -20,7 +20,7 @@ class ListAnnouncementController {
     );
 
     return response
-      .setHeader("x-total-count", String(total))
+      .setHeader("X-Total-Count", String(total))
       .json(announcementView.renderMany(announcement));
   }
 }

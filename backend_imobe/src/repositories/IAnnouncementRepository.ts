@@ -14,7 +14,10 @@ export interface IAnnouncementRepository {
 
   findOneAnnouncementById(id: string): Promise<boolean>;
 
-  findAllAnnoucement(): Promise<{
+  findAllAnnoucement(
+    page: number,
+    per_page: number
+  ): Promise<{
     announcements: Announcement[];
     total: number;
   }>;

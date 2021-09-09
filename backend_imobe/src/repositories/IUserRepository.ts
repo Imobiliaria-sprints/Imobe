@@ -3,7 +3,14 @@ import { ICreateUserDTO } from "../dtos/ICreateUser";
 import { User } from "@entity/User";
 
 export interface IUserRepository {
-  createUser({ name, phone, email, password }: ICreateUserDTO): Promise<User>;
+  createUser({
+    name,
+    phone,
+    email,
+    password,
+    admin,
+    avatar,
+  }: ICreateUserDTO): Promise<User>;
   findOneUserByEmail(email: string): Promise<User>;
   findOneUserById(id: string): Promise<User>;
   updatedPasswordToken(id: string, token: string): Promise<UpdateResult | User>;

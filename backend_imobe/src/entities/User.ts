@@ -25,6 +25,9 @@ class User extends BaseEntity {
   @Column()
   phone: string;
 
+  @Column()
+  admin?: boolean;
+
   @Trim()
   @Column()
   @IsEmail()

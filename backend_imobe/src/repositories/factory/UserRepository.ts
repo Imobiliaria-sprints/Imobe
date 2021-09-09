@@ -10,6 +10,7 @@ class UserRepository extends Repository<User> implements IUserRepository {
     phone,
     avatar,
     email,
+    admin,
     password,
     password_reset_token,
   }: ICreateUserDTO): Promise<User> {
@@ -19,6 +20,7 @@ class UserRepository extends Repository<User> implements IUserRepository {
       avatar,
       email,
       password,
+      admin,
       password_reset_token,
     });
 

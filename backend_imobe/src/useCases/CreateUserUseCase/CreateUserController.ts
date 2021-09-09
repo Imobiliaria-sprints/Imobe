@@ -9,7 +9,7 @@ class CreateUserController {
 
     const createUserUseCase = new CreateUserUseCase(userRepository);
 
-    const { name, phone, email, password } = request.body;
+    const { name, phone, email, password, admin = false } = request.body;
     const requestFile = request?.file as Express.Multer.File;
 
     const avatar = requestFile.filename;
@@ -20,6 +20,7 @@ class CreateUserController {
         phone,
         email,
         password,
+        admin,
         avatar
       );
 

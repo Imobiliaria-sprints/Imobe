@@ -26,6 +26,6 @@ postRouter.post(
   CreateAddressController.handle
 );
 
-postRouter.get("/announcement", ListAllAnnouncementController.handle);
+postRouter.get("/announcement/:page", ListAllAnnouncementController.handle);
 
 export { postRouter };

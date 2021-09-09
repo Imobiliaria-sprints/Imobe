@@ -38,12 +38,19 @@ class AnnouncementRepository
     return !!announcement;
   }
 
-  async findAllAnnoucement(): Promise<{
+  async findAllAnnoucement(
+    page: number,
+    per_page: number
+  ): Promise<{
     announcements: Announcement[];
     total: number;
   }> {
+    const pageStart = (Number(page) - 1) * Number(per_page);
+
     const [announcements, total] = await this.findAndCount({
       relations: ["userId", "images"],
+      take: per_page,
+      skip: pageStart,
     });
 
     return { announcements, total };

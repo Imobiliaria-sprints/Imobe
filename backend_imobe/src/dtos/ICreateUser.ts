@@ -9,5 +9,7 @@ export interface ICreateUserDTO {
 
   password: string;
 
+  admin?: boolean;
+
   password_reset_token?: string;
 }

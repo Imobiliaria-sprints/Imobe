@@ -4,6 +4,7 @@ export interface ICreateUserUseCase {
     phone: string,
     email: string,
     password: string,
+    admin?: boolean,
     avatar?: string,
     password_reset_token?: string
   ): Promise<Record<string, any>>;
