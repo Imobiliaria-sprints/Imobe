@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "@middle/ensureAuthenticated";
-import ListAnnouncementController from "@cases/ListAnnouncementUserUseCase/ListAnnouncementController";
+import { ListAnnouncementController } from "@cases/ListAnnouncementUserUseCase/ListAnnouncementController";
 import { userRoutes } from "./routes/userRoutes";
 import { postRouter } from "./routes/postRoutes";
 
@@ -10,10 +10,12 @@ router.use(userRoutes);
 
 router.use(postRouter);
 
+const listAnnouncementController = new ListAnnouncementController();
+
 router.get(
   "/dashboard",
   ensureAuthenticated,
-  ListAnnouncementController.handle
+  listAnnouncementController.handle
 );
 
 export { router };
