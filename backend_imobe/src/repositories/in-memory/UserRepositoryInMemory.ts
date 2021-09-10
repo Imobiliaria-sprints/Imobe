@@ -54,6 +54,12 @@ class UserRepositoryInMemory implements IUserRepository {
 
     return user;
   }
+
+  async findAllUser(): Promise<User[]> {
+    const user = this.users;
+
+    return user;
+  }
 }
 
 export { UserRepositoryInMemory };

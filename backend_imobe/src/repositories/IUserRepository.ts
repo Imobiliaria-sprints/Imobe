@@ -15,4 +15,5 @@ export interface IUserRepository {
   findOneUserById(id: string): Promise<User>;
   updatedPasswordToken(id: string, token: string): Promise<UpdateResult | User>;
   updatePassword(id: string, password: string): Promise<UpdateResult | User>;
+  findAllUser(): Promise<User[]>;
 }

@@ -9,6 +9,8 @@ import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
 import { ForgotPasswordController } from "@cases/ForgotPasswordUseCase/ForgotPasswordController";
 import { ResetPasswordController } from "@cases/ResetPasswordUseCase/ResetPasswordController";
+import { ListAllUserController } from "@cases/ListAllUserUseCase/ListAllUserController";
+import { ensureAdmin } from "@middle/ensureAdmin";
 
 const userRoutes = Router();
 
@@ -21,6 +23,7 @@ const returnUserAuthenticatedController =
   new ReturnUserAuthenticatedController();
 const forgotPasswordController = new ForgotPasswordController();
 const resetPasswordController = new ResetPasswordController();
+const listAllUserController = new ListAllUserController();
 
 userRoutes.post(
   "/users",
@@ -40,5 +43,12 @@ userRoutes.get(
 );
 
 userRoutes.post("/refresh_token", refreshTokenController.handle);
+
+userRoutes.get(
+  "/users",
+  ensureAuthenticated,
+  ensureAdmin,
+  listAllUserController.handle
+);
 
 export { userRoutes };

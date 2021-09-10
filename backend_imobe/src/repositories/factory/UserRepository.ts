@@ -58,6 +58,12 @@ class UserRepository extends Repository<User> implements IUserRepository {
 
     return user;
   }
+
+  async findAllUser(): Promise<User[]> {
+    const user = await this.find();
+
+    return user;
+  }
 }
 
 export { UserRepository };
