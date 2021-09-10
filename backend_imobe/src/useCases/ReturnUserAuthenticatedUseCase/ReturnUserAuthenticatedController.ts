@@ -27,4 +27,4 @@ class ReturnUserAuthenticatedController {
   }
 }
 
-export default new ReturnUserAuthenticatedController();
+export { ReturnUserAuthenticatedController };

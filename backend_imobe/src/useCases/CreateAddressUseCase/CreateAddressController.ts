@@ -30,4 +30,4 @@ class CreateAddressController {
   }
 }
 
-export default new CreateAddressController();
+export { CreateAddressController };

@@ -26,4 +26,4 @@ class ListAllAnnouncementController {
   }
 }
 
-export default new ListAllAnnouncementController();
+export { ListAllAnnouncementController };

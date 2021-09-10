@@ -19,4 +19,4 @@ class CreateUserAuthenticateController {
   }
 }
 
-export default new CreateUserAuthenticateController();
+export { CreateUserAuthenticateController };

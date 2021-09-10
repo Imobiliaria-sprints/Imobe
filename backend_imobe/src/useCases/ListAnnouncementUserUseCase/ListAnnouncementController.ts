@@ -25,4 +25,4 @@ class ListAnnouncementController {
   }
 }
 
-export default new ListAnnouncementController();
+export { ListAnnouncementController };

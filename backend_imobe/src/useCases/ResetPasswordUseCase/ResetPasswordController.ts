@@ -17,4 +17,4 @@ class ResetPasswordController {
   }
 }
 
-export default new ResetPasswordController();
+export { ResetPasswordController };

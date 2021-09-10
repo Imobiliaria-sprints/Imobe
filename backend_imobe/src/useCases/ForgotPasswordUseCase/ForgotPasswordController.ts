@@ -22,4 +22,4 @@ class ForgotPasswordController {
   }
 }
 
-export default new ForgotPasswordController();
+export { ForgotPasswordController };

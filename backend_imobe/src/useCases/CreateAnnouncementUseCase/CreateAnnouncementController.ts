@@ -50,4 +50,4 @@ class CreateAnnouncementController {
   }
 }
 
-export default new CreateAnnouncementController();
+export { CreateAnnouncementController };
