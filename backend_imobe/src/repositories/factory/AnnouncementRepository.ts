@@ -49,6 +49,7 @@ class AnnouncementRepository
 
     const [announcements, total] = await this.findAndCount({
       relations: ["userId", "images"],
+      order: { created_at: "DESC" },
       take: per_page,
       skip: pageStart,
     });
