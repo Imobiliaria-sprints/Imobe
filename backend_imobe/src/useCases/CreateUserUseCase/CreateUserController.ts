@@ -9,7 +9,8 @@ class CreateUserController {
 
     const createUserUseCase = new CreateUserUseCase(userRepository);
 
-    const { name, phone, email, password, admin = false } = request.body;
+    const { name, phone, email, password, admin } = request.body;
+
     const requestFile = request?.file as Express.Multer.File;
 
     const avatar = requestFile.filename;
