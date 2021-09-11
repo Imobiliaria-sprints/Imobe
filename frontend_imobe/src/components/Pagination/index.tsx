@@ -24,7 +24,7 @@ export function Pagination({
   currentPage = 1,
   onPageChange,
 }: PaginationProps) {
-  const lastPage = Math.floor(totalCountRegisters / registersPerPage);
+  const lastPage = Math.round(totalCountRegisters / registersPerPage);
 
   const previousPage =
     currentPage > 1
@@ -42,7 +42,8 @@ export function Pagination({
   return (
     <div className={styles.pageList}>
       <section>
-        <strong>0</strong> - <strong>10</strong> de <strong>100</strong>
+        <strong>0</strong> - <strong>10</strong> de
+        <strong>{totalCountRegisters}</strong>
       </section>
       <div>
         {currentPage > 1 + siblingsCount && (
@@ -53,7 +54,7 @@ export function Pagination({
         )}
 
         {previousPage.length > 0 &&
-          nextPage.map((page) => {
+          previousPage.map((page) => {
             return (
               <PaginationItem
                 onPageChange={onPageChange}

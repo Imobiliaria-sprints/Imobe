@@ -20,7 +20,10 @@ export default function PaginationItem({
   }
 
   return (
-    <button className={styles.paginationButton} onClick={() => onPageChange}>
+    <button
+      className={styles.paginationButton}
+      onClick={() => onPageChange(number)}
+    >
       {number}
     </button>
   );

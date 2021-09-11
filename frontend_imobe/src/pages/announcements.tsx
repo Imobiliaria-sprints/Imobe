@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Header } from "../components/Header";
 import { Pagination } from "../components/Pagination";
 import { useAnnouncement } from "../hooks/useAnnouncement";
+import { queryClient } from "../services/queryClient";
 
 import styles from "../styles/pages/announcements.module.scss";
 
@@ -11,6 +12,7 @@ export default function Announcements() {
   const [page, setPage] = useState(1);
 
   const { data, isLoading, isFetching, error } = useAnnouncement(page);
+  console.log(data);
   return (
     <div>
       <Header />
@@ -59,7 +61,6 @@ export default function Announcements() {
           )}
           <Pagination
             totalCountRegisters={data?.totalCount}
-            registersPerPage={10}
             currentPage={page}
             onPageChange={setPage}
           />
