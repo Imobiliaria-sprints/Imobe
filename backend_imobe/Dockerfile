@@ -1,11 +1,12 @@
 FROM node:alpine
 
-COPY package*.json ./
+WORKDIR /usr/app
 
-RUN apk add --no-cache bash
+COPY package*json ./
+RUN yarn install
 
-RUN npm install
+COPY . .
 
-USER node
+EXPOSE 3333
 
-WORKDIR /home/node/app
+CMD ["yarn", "start"]
