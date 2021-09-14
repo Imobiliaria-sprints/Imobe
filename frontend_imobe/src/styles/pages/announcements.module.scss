@@ -1,6 +1,6 @@
 .postContainer {
   display: grid;
-  grid-template-columns: 75rem 1fr;
+
   gap: 10px;
 
   > div {
@@ -48,16 +48,31 @@
 }
 
 .announcementList {
+  position: relative;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 400px);
   align-items: center;
   overflow-y: auto;
-  height: calc(100vh - 12rem);
+  height: calc(100vh - 6rem);
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
   gap: 35px;
+
+  .pagination {
+    padding: 0.5rem 0;
+    background-color: var(--background-imobe);
+    grid-column: 1 / 4;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;

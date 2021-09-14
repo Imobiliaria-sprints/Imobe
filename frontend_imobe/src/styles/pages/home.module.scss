@@ -1,5 +1,5 @@
 #home {
-  max-width: 1300px;
+  max-width: 1430px;
   margin: 0 auto;
 }
 
@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 35rem 1fr;
 
-  margin: 1rem 0;
+  margin: 0.5rem 0 0 0;
 
   > div:nth-child(1) {
     height: 100%;
@@ -51,17 +51,20 @@
       width: 18rem;
       padding: 1rem 0;
 
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      text-align: center;
       font-weight: bold;
 
-      background: var(--green-300);
+      background: var(--green-900);
 
       display: flex;
       align-items: center;
       justify-content: center;
       transition: filter 0.2s;
       border-radius: 1.8rem;
+
       > img {
+        width: 20px;
         margin-right: 0.4rem;
       }
 
@@ -81,6 +84,46 @@
     > img {
       width: 30rem;
       object-fit: cover;
+    }
+  }
+}
+
+.alert_info {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    width: 40rem;
+    height: 3rem;
+    text-align: center;
+    line-height: 2.8rem;
+    border-radius: 0.8rem;
+
+    background: var(--orange-300-alpha);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > span {
+      color: #333;
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-family: Nunito, sans-serif;
+      margin-left: 0.4rem;
+
+      > a {
+        color: var(--orange-400);
+        margin-left: 0.4rem;
+        font-weight: 500;
+        transition: text-decoration 0.2s;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

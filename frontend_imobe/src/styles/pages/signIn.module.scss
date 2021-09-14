@@ -49,11 +49,11 @@
     font-size: 1.175rem;
     font-weight: 600;
     color: var(--white);
-    background: var(--blue-500);
-    transition: background 0.2s;
+    background: var(--green-900);
+    transition: filter 0.2s;
 
     &:hover {
-      background: var(--blue-400);
+      filter: brightness(0.9);
     }
   }
   > .input_block + .input_block {
