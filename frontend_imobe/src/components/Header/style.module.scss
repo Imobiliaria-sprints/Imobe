@@ -14,21 +14,22 @@
 
 .navContainer {
   position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
   > .userInfo {
     display: flex;
+    border-radius: 0.4rem;
     align-items: center;
     font-family: Lato, sans-serif;
     font-size: 1.2rem;
     background: var(--background-imobe);
-    border-radius: 1.75rem;
     padding: 0.5rem 1rem;
-    border: 1px solid var(--black-smooth);
-
     cursor: pointer;
-    transition: filter 0.2s;
+    transition: background 0.2s;
 
     &:hover {
-      filter: brightness(0.9);
+      background: rgba(202, 201, 201, 0.342);
     }
 
     > section {

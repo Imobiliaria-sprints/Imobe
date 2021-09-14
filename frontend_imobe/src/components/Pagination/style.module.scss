@@ -12,11 +12,11 @@
   color: var(--white);
 
   &:not(:disabled):hover {
-    background: var(--blue-800);
+    background: var(--green-hover);
   }
 
   &:disabled {
-    background: var(--blue-400);
+    background: var(--green-300);
     cursor: default;
   }
 }
