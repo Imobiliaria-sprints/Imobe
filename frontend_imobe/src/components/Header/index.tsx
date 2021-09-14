@@ -13,35 +13,37 @@ export function Header() {
 
   return (
     <div className={styles.headerContainer}>
-      <div onClick={() => router.push("/")}>
-        <img src="/icons/logo.svg" alt="Logomarca" draggable="false" />
-      </div>
-      <nav
-        className={styles.navContainer}
-        onMouseEnter={() => setDropdownIsActive(true)}
-        onMouseLeave={() => setDropdownIsActive(false)}
-      >
-        <div className={styles.userInfo}>
-          <section>
-            <UserIcon size="15" color="#474747" />
-            <span>Conta</span>
-          </section>
-          <ArrowDown size="18" color="#474747" />
+      <header>
+        <div onClick={() => router.push("/")}>
+          <img src="/icons/logo.svg" alt="Logomarca" draggable="false" />
         </div>
-        {dropdownIsActive && (
-          <Dropdown>
-            <button onClick={() => router.push("/sign-in")}>Entrar</button>
-            <div>
-              <MdHome size="25" color="#294461" />
-              <span>Ver meu anúncios</span>
-            </div>
-            <div>
-              <MdFavorite size="25" color="#294461" />
-              <span>Minhas curtidas</span>
-            </div>
-          </Dropdown>
-        )}
-      </nav>
+        <nav
+          className={styles.navContainer}
+          onMouseEnter={() => setDropdownIsActive(true)}
+          onMouseLeave={() => setDropdownIsActive(false)}
+        >
+          <div className={styles.userInfo}>
+            <section>
+              <UserIcon size="15" color="#474747" />
+              <span>Conta</span>
+            </section>
+            <ArrowDown size="18" color="#474747" />
+          </div>
+          {dropdownIsActive && (
+            <Dropdown>
+              <button onClick={() => router.push("/sign-in")}>Entrar</button>
+              <div>
+                <MdHome size="25" color="#294461" />
+                <span>Ver meu anúncios</span>
+              </div>
+              <div>
+                <MdFavorite size="25" color="#294461" />
+                <span>Minhas curtidas</span>
+              </div>
+            </Dropdown>
+          )}
+        </nav>
+      </header>
     </div>
   );
 }
