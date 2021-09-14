@@ -4,8 +4,6 @@ import { useState } from "react";
 import { Header } from "../components/Header";
 import { Pagination } from "../components/Pagination";
 import { useAnnouncement } from "../hooks/useAnnouncement";
-import { queryClient } from "../services/queryClient";
-
 import styles from "../styles/pages/announcements.module.scss";
 
 export default function Announcements() {
@@ -57,20 +55,16 @@ export default function Announcements() {
                   </div>
                 );
               })}
+              <div className={styles.pagination}>
+                <Pagination
+                  totalCountRegisters={data?.totalCount}
+                  currentPage={page}
+                  onPageChange={setPage}
+                />
+              </div>
             </div>
           )}
-          <Pagination
-            totalCountRegisters={data?.totalCount}
-            currentPage={page}
-            onPageChange={setPage}
-          />
         </main>
-        <div>
-          <img
-            src="https://img-21.ccm2.net/vPBRurYXdU0_8Ga88fqesd1kvMg=/1179x/38f2435af3064dfa832864692c33a5a6/ccm-faq/maps1.JPG"
-            alt="Google Maps"
-          />
-        </div>
       </div>
     </div>
   );

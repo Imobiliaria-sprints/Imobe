@@ -6,6 +6,8 @@ import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
 import Modal from "react-modal";
 import { useRouter } from "next/router";
+import React from "react";
+import { MdHome } from "react-icons/md";
 
 export default function Home(props) {
   const router = useRouter();
@@ -24,7 +26,6 @@ export default function Home(props) {
             <li>Torne seu sonho realidade</li>
           </ul>
           <button onClick={() => router.push("/announcements")}>
-            <img src="/icons/house.svg" alt="house icons" />
             Ver imóveis
           </button>
           <Divisor />
@@ -36,6 +37,20 @@ export default function Home(props) {
             draggable="false"
           />
         </div>
+      </section>
+      <section className={styles.alert_info}>
+        <div>
+          <MdHome size="28" color="#eb5b1d" />
+          <span>
+            Quer vender sua casa?
+            <a>Clique aqui!</a>
+          </span>
+        </div>
+      </section>
+
+      <section>
+        <div></div>
+        <div></div>
       </section>
     </div>
   );
