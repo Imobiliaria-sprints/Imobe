@@ -1,7 +1,9 @@
 .postContainer {
   display: grid;
-
+  height: 100vh;
   gap: 10px;
+  max-width: 1400px;
+  margin: 0 auto;
 
   > div {
     > img {
@@ -15,6 +17,7 @@
 
 .containAnnouncement {
   width: 100%;
+  margin-top: 5rem;
 
   display: flex;
   align-items: center;
@@ -51,23 +54,18 @@
   position: relative;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 400px);
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   overflow-y: auto;
-  height: calc(100vh - 6rem);
+
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
   gap: 35px;
 
   .pagination {
-    padding: 0.5rem 0;
     background-color: var(--background-imobe);
     grid-column: 1 / 4;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+
     width: 100%;
     display: flex;
     align-items: center;
@@ -149,7 +147,7 @@
       padding: 0.2rem 0.8rem;
       border-radius: 0.8rem;
       color: var(--white);
-      background: var(--blue-400);
+      background: var(--green-300);
       font-family: Poppins, sans-serif;
     }
 

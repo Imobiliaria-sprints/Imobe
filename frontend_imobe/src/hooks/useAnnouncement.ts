@@ -34,7 +34,7 @@ type GetResponse = {
 };
 
 export async function getAnnouncement(page: number): Promise<GetResponse> {
-  const { data, headers } = await api.get(`announcement/${page}`);
+  const { data, headers } = await api.get(`announcement/${page}?per_page=9`);
 
   const totalCount = Number(headers["x-total-count"]);
 

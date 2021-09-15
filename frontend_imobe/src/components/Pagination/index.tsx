@@ -20,7 +20,7 @@ export function generatePageArray(from: number, to: number) {
 
 export function Pagination({
   totalCountRegisters,
-  registersPerPage = 10,
+  registersPerPage = 9,
   currentPage = 1,
   onPageChange,
 }: PaginationProps) {
