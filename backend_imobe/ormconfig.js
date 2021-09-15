@@ -17,8 +17,8 @@ module.exports = {
   port: 5432,
   username: "postgres",
   password: "postgres",
-  entities: [process.env.TYPEORM_MIGRATION],
-  migrations: [process.env.TYPEORM_ENTITY],
+  entities: [process.env.TYPEORM_ENTITY],
+  migrations: [process.env.TYPEORM_MIGRATION],
   cli: {
     entitiesDir: "src/entities",
     migrationsDir: process.env.TYPEORM_MIGRATION_DIR,

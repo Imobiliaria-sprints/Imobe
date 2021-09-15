@@ -1,4 +1,4 @@
-import { createConnection, Connection } from "typeorm";
+import { createConnection } from "typeorm";
 
 createConnection().then(() => {
   console.log(
