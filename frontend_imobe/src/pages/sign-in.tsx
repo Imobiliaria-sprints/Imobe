@@ -76,6 +76,11 @@ export default function SingIn(props) {
           </button>
         </form>
       </section>
+      <section className={styles.createAccount}>
+        <span>
+          Não tem uma conta ainda? <a>Crie sua conta!</a>
+        </span>
+      </section>
     </div>
   );
 }

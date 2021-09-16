@@ -62,6 +62,10 @@
   margin-bottom: 1rem;
   gap: 35px;
 
+  > .searchResults {
+    grid-column: 1 / 4;
+  }
+
   .pagination {
     background-color: var(--background-imobe);
     grid-column: 1 / 4;

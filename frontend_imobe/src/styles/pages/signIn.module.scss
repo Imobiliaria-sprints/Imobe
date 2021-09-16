@@ -2,7 +2,8 @@
   height: 100vh;
 
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   > section {
     margin-top: 4rem;
@@ -79,6 +80,25 @@
         color: var(--orange-400);
         text-decoration: underline;
       }
+    }
+  }
+}
+
+.createAccount {
+  padding: 0.8rem 0;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.3rem;
+
+  > span {
+    font: 500 0.9rem Poppins, sans-serif;
+
+    > a {
+      color: var(--orange-400);
+      transition: filter 0.2s;
+    }
+
+    > a:hover {
+      filter: brightness(0.8);
     }
   }
 }
