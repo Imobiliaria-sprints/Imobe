@@ -19,7 +19,7 @@ export default function Home(props) {
       <section className={styles.section_apresentation}>
         <div>
           <h1>Encontre o lugar perfeito para você!</h1>
-          <span>lorem ipsum dolar amet lorem ipsum dolar amet </span>
+          <span>Temos a casa perfeita para realizar seus sonhos</span>
           <ul>
             <li>Agende sua visita ao seu imóvel favorito</li>
             <li>Divulgue seu imóvel</li>
@@ -48,9 +48,21 @@ export default function Home(props) {
         </div>
       </section>
 
-      <section>
-        <div></div>
-        <div></div>
+      <section className={styles.blocks}>
+        <div>
+          <div>
+            <span>Para vendedores</span>
+            <p>Venda seu apartamento conosco</p>
+            <button>Anunciar minha casa</button>
+          </div>
+        </div>
+        <div>
+          <div>
+            <span>Melhor preço</span>
+            <p>Encontre as melhores casas com o melhor preço para você</p>
+            <button>Saiba mais</button>
+          </div>
+        </div>
       </section>
     </div>
   );
