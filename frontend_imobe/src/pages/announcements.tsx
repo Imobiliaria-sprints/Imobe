@@ -6,7 +6,7 @@ import { Pagination } from "../components/Pagination";
 import { useAnnouncement } from "../hooks/useAnnouncement";
 import styles from "../styles/pages/announcements.module.scss";
 
-export default function Announcements() {
+export default function Announcements(props) {
   const [page, setPage] = useState(1);
 
   const { data, isLoading, isFetching, error } = useAnnouncement(page);
@@ -27,6 +27,9 @@ export default function Announcements() {
             </section>
           ) : (
             <div className={styles.announcementList}>
+              <div className={styles.searchResults}>
+                <h1>{data?.totalCount} imóveis para você escolher</h1>
+              </div>
               {data.announcements.map((announcement) => {
                 return (
                   <div key={announcement.id} className={styles.announcement}>
