@@ -42,7 +42,7 @@ export function Pagination({
   return (
     <div className={styles.pageList}>
       <section>
-        <strong>0</strong> - <strong>10</strong> de
+        <strong>0</strong> - <strong>9</strong> de
         <strong>{totalCountRegisters}</strong>
       </section>
       <div>
