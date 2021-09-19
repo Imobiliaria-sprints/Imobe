@@ -1,0 +1,24 @@
+.topic {
+  width: 100%;
+  padding: 0 0.5rem;
+  > ul {
+    margin-top: 0.5rem;
+    list-style: none;
+    color: var(--gray-900);
+    font: 400 1rem Poppins, sans-serif;
+
+    > * {
+      transition: color 0.2s ease-in;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    > *:hover {
+      color: var(--green-500);
+    }
+
+    > *:not(:first-child) {
+      margin-top: 0.4rem;
+    }
+  }
+}

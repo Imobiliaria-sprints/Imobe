@@ -8,6 +8,7 @@ import Modal from "react-modal";
 import { useRouter } from "next/router";
 import React from "react";
 import { MdHome } from "react-icons/md";
+import { Footer } from "../components/Footer";
 
 export default function Home(props) {
   const router = useRouter();
@@ -64,6 +65,8 @@ export default function Home(props) {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

@@ -14,7 +14,7 @@ export function Header() {
   return (
     <div className={styles.headerContainer}>
       <header>
-        <div onClick={() => router.push("/")}>
+        <div onClick={() => router.push("/")} className={styles.contain_logo}>
           <img src="/icons/logo.svg" alt="Logomarca" draggable="false" />
         </div>
         <nav
