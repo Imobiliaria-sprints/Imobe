@@ -8,23 +8,10 @@ import styles from "../styles/pages/dashboard.module.scss";
 import { getApiClient } from "../services/axios";
 import { FormatCurrency } from "../utils/FormatCurrency";
 import { Sidebar } from "../components/Sidebar";
-import Image from "next/image";
-import { Pagination } from "../components/Pagination";
 import { useState } from "react";
-
-type PostData = {
-  id: string;
-  title: string;
-  rooms: number;
-  price: number;
-  square_meters: string;
-  created_at: string;
-};
 
 export default function Dashboard({ posts }) {
   const { user } = useAuth();
-
-  const [page, setPage] = useState(1);
 
   return (
     <div className={styles.dashboard}>
@@ -38,31 +25,7 @@ export default function Dashboard({ posts }) {
         </header>
 
         <section className={styles.postList}>
-          <h1>Suas divulgações</h1>
-          <div className={styles.list}>
-            <section>
-              <span>Titulo</span>
-              <span>Preço</span>
-              <span>Quartos</span>
-              <span>Metros</span>
-              <span>Criado</span>
-            </section>
-            {posts.map((post: PostData) => {
-              return (
-                <div key={post.id} className={styles.post}>
-                  <section>
-                    <span>{post.title}</span>
-                    <span>{post.price}</span>
-
-                    <span> {post.rooms}</span>
-                    <span> {post.square_meters}</span>
-
-                    <span> {post.created_at}</span>
-                  </section>
-                </div>
-              );
-            })}
-          </div>
+          <div className={styles.list}></div>
         </section>
       </div>
     </div>

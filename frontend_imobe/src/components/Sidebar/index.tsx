@@ -10,6 +10,7 @@ import { useState } from "react";
 import cx from "classnames";
 import { modalCustomStyles } from "../../utils/ModalStyleConf";
 import { useAuth } from "../../hooks/useAuth";
+import { Option } from "./option";
 
 export function Sidebar() {
   const [isSidebarActive, setIsSidebarActive] = useState(true);
@@ -53,14 +54,18 @@ export function Sidebar() {
           )}
         </div>
         <nav className={styles.menu}>
-          <div>
-            <MdHome color="#3B4A5B" style={{ width: 30, height: 30 }} />
-            <span>Início</span>
-          </div>
-          <div>
-            <MdFavorite color="#3B4A5B" style={{ width: 30, height: 30 }} />
-            <span>Favoritos</span>
-          </div>
+          <Option
+            icon={<MdHome color="#3B4A5B" style={{ width: 30, height: 30 }} />}
+            sidebarIsActive={isSidebarActive}
+            name="Início"
+          />
+          <Option
+            icon={
+              <MdFavorite color="#3B4A5B" style={{ width: 30, height: 30 }} />
+            }
+            name="Favoritos"
+            sidebarIsActive={isSidebarActive}
+          />
         </nav>
       </div>
       <section

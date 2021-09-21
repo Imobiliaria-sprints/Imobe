@@ -8,7 +8,6 @@
   height: 100vh;
   border-radius: 0 0.6rem 0.6rem 0;
   justify-content: space-between;
-  overflow: hidden;
 }
 
 .burger {
@@ -47,33 +46,6 @@
   flex-direction: column;
   align-items: center;
   margin-top: 0.7rem;
-
-  > div {
-    display: flex;
-    padding: 0.6rem;
-    width: 100%;
-    align-items: center;
-    transition: background 0.2s;
-    border-radius: 1rem;
-    cursor: pointer;
-
-    > span {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 7rem;
-      font-weight: bold;
-      margin-left: 2rem;
-      text-align: left;
-      font-family: Poppins, sans-serif;
-      color: #3b4a5b;
-    }
-  }
-  > div:hover {
-    background: #0ea49a57;
-  }
-  > div + div {
-    margin-top: 1.4rem;
-  }
 }
 
 .exitToApp {
@@ -121,6 +93,8 @@
   align-items: center;
   border-radius: 1rem;
   padding: 1.2rem 0.6rem;
+  overflow: hidden;
+
   > div {
     display: flex;
     align-items: center;
