@@ -1,7 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import { MdHome, MdFavorite, MdExitToApp, MdAdd, MdSort } from "react-icons/md";
+import {
+  MdHome,
+  MdFavorite,
+  MdExitToApp,
+  MdSort,
+  MdDashboard,
+} from "react-icons/md";
 import styles from "./style.module.scss";
 import Modal from "react-modal";
 import { destroyCookie } from "nookies";
@@ -55,9 +61,11 @@ export function Sidebar() {
         </div>
         <nav className={styles.menu}>
           <Option
-            icon={<MdHome color="#3B4A5B" style={{ width: 30, height: 30 }} />}
+            icon={
+              <MdDashboard color="#3B4A5B" style={{ width: 30, height: 30 }} />
+            }
             sidebarIsActive={isSidebarActive}
-            name="Início"
+            name="Dashboard"
           />
           <Option
             icon={
