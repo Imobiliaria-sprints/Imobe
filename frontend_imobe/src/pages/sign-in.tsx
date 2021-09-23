@@ -7,6 +7,7 @@ import styles from "../styles/pages/signIn.module.scss";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../components/Input";
+import { useRouter } from "next/router";
 
 const signInForm = yup.object().shape({
   email: yup.string().required("E-mail é obrigatório").email("E-mail inválido"),
@@ -14,6 +15,8 @@ const signInForm = yup.object().shape({
 });
 
 export default function SingIn(props) {
+  const route = useRouter();
+
   const { signIn } = useAuth();
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signInForm),
@@ -78,7 +81,8 @@ export default function SingIn(props) {
       </section>
       <section className={styles.createAccount}>
         <span>
-          Não tem uma conta ainda? <a>Crie sua conta!</a>
+          Não tem uma conta ainda?{" "}
+          <a onClick={() => route.push("/sign-up")}>Crie sua conta!</a>
         </span>
       </section>
     </div>
