@@ -45,7 +45,7 @@
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
-
+    justify-content: space-between;
     border-radius: 0.6rem;
 
     > img {
@@ -55,31 +55,13 @@
       object-fit: cover;
     }
 
-    > section {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      margin-left: 1.2rem;
-      > span {
-        font: 400 0.85rem Poppins, sans-serif;
-        position: relative;
-      }
-
-      > span + span {
-        margin-left: 1rem;
-      }
-
-      > span + span::before {
-        content: "";
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: var(--blue-700);
-        position: absolute;
-        top: 50%;
-        left: -12px;
-        transform: translate(50%, -50%);
-      }
+    > span {
+      font: 400 0.85rem Poppins, sans-serif;
+      max-width: 18rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--gray-700);
     }
   }
 }
