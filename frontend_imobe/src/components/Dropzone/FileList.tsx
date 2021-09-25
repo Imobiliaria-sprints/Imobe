@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { MdDelete } from "react-icons/md";
+import { useSignUp } from "../../hooks/useSignUp";
 import styles from "./style.module.scss";
 
 type FileListProps = {
@@ -11,14 +13,21 @@ interface Files extends File {
 }
 
 export function FileList({ files }: FileListProps) {
+  const { handleDeleteFile } = useSignUp();
+
   return (
     <section className={styles.file_list}>
       {files.map((file) => {
         return (
           <div key={file.id}>
             <img src={file.preview} alt={file.name} />
-            <span>{file.name}</span>
-            <span>{}</span>
+            <section>
+              <span>{file.name}</span>
+              <span>{file.size}</span>
+            </section>
+            <div onClick={() => handleDeleteFile(file.id)}>
+              <MdDelete size="20" color="#eb264a" />
+            </div>
           </div>
         );
       })}

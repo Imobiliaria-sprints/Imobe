@@ -4,46 +4,20 @@ import styles from "./style.module.scss";
 import cx from "classnames";
 import { MdFileUpload } from "react-icons/md";
 import { FileList } from "./FileList";
-import { v4 as uuid } from "uuid";
-
-interface Files extends File {
-  id: string;
-  preview: string;
-}
+import { useSignUp } from "../../hooks/useSignUp";
 
 const Dropzone = () => {
-  const [files, setFiles] = useState<Files[]>([]);
+  const { handleFiles, files } = useSignUp();
 
-  function handleFiles(files_accept: File[]) {
-    const uploadedFiles = files_accept.map((file) =>
-      Object.assign(file, {
-        id: uuid(),
-        preview: URL.createObjectURL(file),
-      })
-    );
-    if (files.length >= 5) {
-      return;
-    }
-    setFiles(files.concat(uploadedFiles));
-  }
+  const { getInputProps, getRootProps, isDragAccept, isDragReject } =
+    useDropzone({
+      accept: ["image/jpeg", "image/png", "image/jpg", "image/pjpeg"],
+      noKeyboard: false,
+      onDrop: (acceptedFiles) => handleFiles(acceptedFiles),
+      maxFiles: 5,
+    });
 
   console.log(files);
-
-  const {
-    getInputProps,
-    getRootProps,
-    isDragAccept,
-    isDragReject,
-    acceptedFiles,
-  } = useDropzone({
-    accept: ["image/jpeg", "image/png", "image/jpg", "image/pjpeg"],
-    noKeyboard: false,
-    onDrop: (acceptedFiles) => handleFiles(acceptedFiles),
-    maxFiles: 5,
-  });
-
-  useEffect(() => {});
-
   return (
     <div className={styles.dropzone_container}>
       <div

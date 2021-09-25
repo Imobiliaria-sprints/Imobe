@@ -5,6 +5,7 @@ import "../styles/global.scss";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "../services/queryClient";
 import { SlideContextProvider } from "../context/SlideContext";
+import { SignUpContextProvider } from "../context/SignUpContext";
 
 if (typeof window !== "undefined") {
   Modal.setAppElement("body");
@@ -13,11 +14,13 @@ if (typeof window !== "undefined") {
 function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <SlideContextProvider>
-          <Component {...pageProps} />
-        </SlideContextProvider>
-      </AuthContextProvider>
+      <SignUpContextProvider>
+        <AuthContextProvider>
+          <SlideContextProvider>
+            <Component {...pageProps} />
+          </SlideContextProvider>
+        </AuthContextProvider>
+      </SignUpContextProvider>
     </QueryClientProvider>
   );
 }

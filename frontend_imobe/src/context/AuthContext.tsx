@@ -47,14 +47,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }, []);
 
-  /**
-   *
-   *
-   * @param SignInData
-   *
-   * @param {string} email
-   * @param {string} password
-   */
   async function signIn({ email, password }: SignInData) {
     const {
       data: { token, user },
