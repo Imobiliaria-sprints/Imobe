@@ -23,7 +23,7 @@ export function FileList({ files }: FileListProps) {
             <img src={file.preview} alt={file.name} />
             <section>
               <span>{file.name}</span>
-              <span>{file.size}</span>
+              <span>{file.size} Bytes</span>
             </section>
             <div onClick={() => handleDeleteFile(file.id)}>
               <MdDelete size="20" color="#eb264a" />
