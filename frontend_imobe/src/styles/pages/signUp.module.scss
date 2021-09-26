@@ -72,6 +72,11 @@
     .is_accept {
       border: none;
     }
+
+    > label {
+      font: 600 1rem Poppins, sans-serif;
+      color: var(--black-smooth);
+    }
   }
 
   > div {

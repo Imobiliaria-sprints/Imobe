@@ -52,9 +52,8 @@ export default function SignUp(props) {
   const {
     getInputProps,
     getRootProps,
-    isDragAccept,
+
     acceptedFiles,
-    isDragActive,
   } = useDropzone({
     accept: ["image/jpeg", "image/png", "image/jpg", "image/pjpeg"],
     noKeyboard: false,
@@ -77,6 +76,8 @@ export default function SignUp(props) {
       await api.post("users", data);
 
       toast.success(`Conta criada com sucesso`);
+
+      route.push("/sign-in");
     } catch (error) {
       toast.error(`E-mail ou senha inválidos`);
     }
@@ -114,6 +115,7 @@ export default function SignUp(props) {
                 <p key={file.id}>{file.name}</p>
               ))}
             </span>
+            <label>Escolha sua foto de perfil</label>
           </div>
           <Input
             label="name"
@@ -162,7 +164,7 @@ export default function SignUp(props) {
                 alt="loading"
               />
             ) : (
-              "Acessar"
+              "Próximo"
             )}
           </button>
         </form>

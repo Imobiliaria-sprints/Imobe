@@ -31,50 +31,61 @@ export default function Announcements(props) {
             </section>
           ) : (
             <div className={styles.announcementList}>
-              <div className={styles.searchResults}>
-                <h1>{data?.totalCount} imóveis para você escolher</h1>
-              </div>
-              {data.announcements.map((announcement, index) => {
-                return (
-                  <div key={announcement?.id} className={styles.announcement}>
-                    <header>
-                      <div>
-                        <img
-                          src={announcement?.user.avatar}
-                          alt={announcement?.user.name}
-                        />
-                        <span>{announcement?.user.name}</span>
-                      </div>
-                      <span>{announcement?.created_at}</span>
-                    </header>
-                    <figure className={styles.slide_image}>
-                      <div onClick={lastImage}>
-                        <MdKeyboardArrowLeft color="#fff" />
-                      </div>
-                      <img
-                        src={slideImages(announcement?.images).url}
-                        alt={announcement?.title}
-                      />
-                      <div onClick={nextImage}>
-                        <MdKeyboardArrowRight color="#fff" />
-                      </div>
-                    </figure>
-                    <span>{announcement?.title}</span>
-                    <ul>
-                      <li>{announcement?.rooms}</li>
-                      <li>{announcement?.square_meters}</li>
-                    </ul>
-                    <h2>{announcement?.price}</h2>
+              {data?.totalCount !== 0 ? (
+                <>
+                  <div className={styles.searchResults}>
+                    <h1>{data?.totalCount} imóveis para você escolher</h1>
                   </div>
-                );
-              })}
-              <div className={styles.pagination}>
-                <Pagination
-                  totalCountRegisters={data?.totalCount}
-                  currentPage={page}
-                  onPageChange={setPage}
-                />
-              </div>
+                  {data.announcements.map((announcement, index) => {
+                    return (
+                      <div
+                        key={announcement?.id}
+                        className={styles.announcement}
+                      >
+                        <header>
+                          <div>
+                            <img
+                              src={announcement?.user.avatar}
+                              alt={announcement?.user.name}
+                            />
+                            <span>{announcement?.user.name}</span>
+                          </div>
+                          <span>{announcement?.created_at}</span>
+                        </header>
+                        <figure className={styles.slide_image}>
+                          <div onClick={lastImage}>
+                            <MdKeyboardArrowLeft color="#fff" />
+                          </div>
+                          <img
+                            src={slideImages(announcement?.images).url}
+                            alt={announcement?.title}
+                          />
+                          <div onClick={nextImage}>
+                            <MdKeyboardArrowRight color="#fff" />
+                          </div>
+                        </figure>
+                        <span>{announcement?.title}</span>
+                        <ul>
+                          <li>{announcement?.rooms}</li>
+                          <li>{announcement?.square_meters}</li>
+                        </ul>
+                        <h2>{announcement?.price}</h2>
+                      </div>
+                    );
+                  })}
+                  <div className={styles.pagination}>
+                    <Pagination
+                      totalCountRegisters={data?.totalCount}
+                      currentPage={page}
+                      onPageChange={setPage}
+                    />
+                  </div>{" "}
+                </>
+              ) : (
+                <div className={styles.announcement_nullable}>
+                  <span>Nenhum imóvel foi publicado</span>
+                </div>
+              )}
             </div>
           )}
         </main>

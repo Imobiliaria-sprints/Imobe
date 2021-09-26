@@ -156,6 +156,18 @@
   }
 }
 
+.announcement_nullable {
+  grid-column: 1/5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > span {
+    color: var(--blue-700);
+    font: 600 2rem Poppins, sans-serif;
+  }
+}
+
 .slide_image {
   position: relative;
 

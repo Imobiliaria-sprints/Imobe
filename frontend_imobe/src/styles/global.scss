@@ -10,6 +10,7 @@
   --black: #000000;
   --black-smooth: #474747;
   --green-300: #49e299;
+  --green-300-alpha: #49e2985e;
   --green-400: #39e488;
   --green-500: #27ae60;
   --green-700: #0b8e5f;
@@ -34,6 +35,17 @@
   --red-400: #ed394f;
   --red-500: #eb264a;
   --pink-300: #ff4365;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
 }
 
 h1,
