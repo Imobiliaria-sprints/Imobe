@@ -1,21 +1,12 @@
 import { Router } from "express";
-import { ensureAuthenticated } from "@middle/ensureAuthenticated";
-import { ListAnnouncementController } from "@cases/ListAnnouncementUserUseCase/ListAnnouncementController";
-import { userRoutes } from "./routes/userRoutes";
-import { postRouter } from "./routes/postRoutes";
+import { user } from "./routes/user.routes";
+import { announcement } from "./routes/announcement.routes";
+import { dashboard } from "./routes/dashboard.routes";
 
 const router = Router();
 
-router.use(userRoutes);
-
-router.use(postRouter);
-
-const listAnnouncementController = new ListAnnouncementController();
-
-router.get(
-  "/dashboard",
-  ensureAuthenticated,
-  listAnnouncementController.handle
-);
+router.use("/users", user);
+router.use("/announcements", announcement);
+router.use("/dashboard", dashboard);
 
 export { router };

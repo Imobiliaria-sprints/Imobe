@@ -10,13 +10,13 @@ import { ListAllAnnouncementController } from "@cases/ListAllAnnouncementUseCase
 
 const upload = multer(uploadImageConfig);
 
-const postRouter = Router();
+const announcement = Router();
 
 const createAddressController = new CreateAddressController();
 const createAnnouncementController = new CreateAnnouncementController();
 const listAllAnnouncementController = new ListAllAnnouncementController();
 
-postRouter.post(
+announcement.post(
   "/announcement",
   ensureAuthenticated,
   // validationAnnouncement,
@@ -24,12 +24,12 @@ postRouter.post(
   createAnnouncementController.handle
 );
 
-postRouter.post(
+announcement.post(
   "/announcement/address/:announcement_id",
   validationAddress,
   createAddressController.handle
 );
 
-postRouter.get("/announcement/:page", listAllAnnouncementController.handle);
+announcement.get("/announcement/:page", listAllAnnouncementController.handle);
 
-export { postRouter };
+export { announcement };

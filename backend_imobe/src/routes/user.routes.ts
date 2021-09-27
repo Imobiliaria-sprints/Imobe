@@ -12,7 +12,7 @@ import { ResetPasswordController } from "@cases/ResetPasswordUseCase/ResetPasswo
 import { ListAllUserController } from "@cases/ListAllUserUseCase/ListAllUserController";
 import { ensureAdmin } from "@middle/ensureAdmin";
 
-const userRoutes = Router();
+const user = Router();
 
 const uploadImage = multer(uploadImageConfig);
 
@@ -25,30 +25,21 @@ const forgotPasswordController = new ForgotPasswordController();
 const resetPasswordController = new ResetPasswordController();
 const listAllUserController = new ListAllUserController();
 
-userRoutes.post(
-  "/users",
-  uploadImage.single("avatar"),
-  createUserController.handle
-);
-userRoutes.post("/login", createUserAuthenticateController.handle);
+user.post("/", uploadImage.single("avatar"), createUserController.handle);
+user.post("/login", createUserAuthenticateController.handle);
 
-userRoutes.post("/auth/forgot_password", forgotPasswordController.handle);
+user.post("/auth/forgot_password", forgotPasswordController.handle);
 
-userRoutes.post("/auth/reset_password", resetPasswordController.handle);
+user.post("/auth/reset_password", resetPasswordController.handle);
 
-userRoutes.get(
+user.get(
   "/verify/user",
   ensureAuthenticated,
   returnUserAuthenticatedController.handle
 );
 
-userRoutes.post("/refresh_token", refreshTokenController.handle);
+user.post("/refresh_token", refreshTokenController.handle);
 
-userRoutes.get(
-  "/users",
-  ensureAuthenticated,
-  ensureAdmin,
-  listAllUserController.handle
-);
+user.get("/", ensureAuthenticated, ensureAdmin, listAllUserController.handle);
 
-export { userRoutes };
+export { user };
