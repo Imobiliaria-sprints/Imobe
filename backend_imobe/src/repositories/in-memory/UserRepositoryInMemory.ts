@@ -1,7 +1,7 @@
 import { UpdateResult } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { User } from "../../entities/User";
-import { IUserRepository } from "../IUserRepository";
+import { IUserDTO, IUserRepository } from "../IUserRepository";
 
 class UserRepositoryInMemory implements IUserRepository {
   private users: User[] = [];

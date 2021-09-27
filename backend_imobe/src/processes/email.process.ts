@@ -1,5 +1,5 @@
 import { Job, DoneCallback } from "bull";
-import { SendMailProvider } from "../provider/SendMailProvider";
+import { SendMailProvider } from "@provider/SendMailProvider";
 
 const emailProcess = async (job: Job, done: DoneCallback) => {
   const sendMailProvider = new SendMailProvider();

@@ -1,4 +1,9 @@
-import { ISendMailDTO } from "../dtos/ISendMailDTO";
+export interface ISendMailDTO {
+  to: string;
+  subject: string;
+  variables: object;
+  path: string;
+}
 
 export interface ISendMailProvider {
   /**

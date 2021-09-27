@@ -1,7 +1,6 @@
 import { getCustomRepository } from "typeorm";
-import { IAddressDTO } from "../../dtos/IAddressDTO";
 import { Address } from "../../entities/Address";
-import { ICreateAddressUseCase } from "../../interfaces/ICreateAddressUseCase";
+import { IAddressDTO, ICreateAddressUseCase } from "./ICreateAddressUseCase";
 import { AddressRepository } from "@repos/factory/AddressRepository";
 import { IAnnouncementRepository } from "@repos/IAnnouncementRepository";
 

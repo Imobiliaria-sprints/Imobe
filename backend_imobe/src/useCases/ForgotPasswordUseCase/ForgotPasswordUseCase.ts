@@ -1,6 +1,6 @@
 import path from "path";
-import { ISendMailProvider } from "../../interfaces/ISendMailProvider";
-import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
+import { ISendMailProvider } from "../../infra/queue/ISendMailProvider";
+import { GenerateTokenProvider } from "@provider/GenerateTokenProvider";
 import { IUserRepository } from "@repos/IUserRepository";
 
 class ForgotPasswordUseCase {

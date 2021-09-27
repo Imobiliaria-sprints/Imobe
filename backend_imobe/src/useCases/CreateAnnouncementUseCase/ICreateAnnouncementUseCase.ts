@@ -1,5 +1,4 @@
 import { Announcement } from "@entity/Announcement";
-import { ICreateAnnouncementDTO } from "@cases/CreateAnnouncementUseCase/ICreateAnnouncementDTO";
 import { AnnouncementImage } from "@entity/AnnouncementImage";
 
 export interface ICreateAnnouncementUseCase {

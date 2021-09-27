@@ -3,7 +3,6 @@ import { ensureAuthenticated } from "@middle/ensureAuthenticated";
 import { CreateAddressController } from "@cases/CreateAddressUseCase/CreateAddressController";
 import { validationAddress } from "@cases/CreateAddressUseCase/validationAddress";
 import { CreateAnnouncementController } from "@cases/CreateAnnouncementUseCase/CreateAnnouncementController";
-import { validationAnnouncement } from "@cases/CreateAnnouncementUseCase/validationAnnouncement";
 import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
 import { ListAllAnnouncementController } from "@cases/ListAllAnnouncementUseCase/ListAllAnnouncementController";
@@ -17,7 +16,7 @@ const createAnnouncementController = new CreateAnnouncementController();
 const listAllAnnouncementController = new ListAllAnnouncementController();
 
 announcement.post(
-  "/announcement",
+  "/",
   ensureAuthenticated,
   // validationAnnouncement,
   upload.array("images", 5),
@@ -25,11 +24,12 @@ announcement.post(
 );
 
 announcement.post(
-  "/announcement/address/:announcement_id",
+  "/address/:announcement_id",
   validationAddress,
   createAddressController.handle
 );
 
-announcement.get("/announcement/:page", listAllAnnouncementController.handle);
+announcement.get("/:page", listAllAnnouncementController.handle);
 
 export { announcement };
+("");

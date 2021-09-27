@@ -1,5 +1,4 @@
 import { EntityRepository, Repository, UpdateResult } from "typeorm";
-import { ICreateUserDTO } from "../../dtos/ICreateUser";
 import { User } from "@entity/User";
 import { IUserRepository } from "../IUserRepository";
 
@@ -8,12 +7,12 @@ class UserRepository extends Repository<User> implements IUserRepository {
   async createUser({
     name,
     phone,
-    avatar,
     email,
-    admin,
     password,
+    admin,
+    avatar,
     password_reset_token,
-  }: ICreateUserDTO): Promise<User> {
+  }: Omit<User, "id" | "created_at" | "updated_at">): Promise<User> {
     const user = this.create({
       name,
       phone,
@@ -28,6 +27,7 @@ class UserRepository extends Repository<User> implements IUserRepository {
 
     return user;
   }
+
   async findOneUserByEmail(email: string): Promise<User> {
     const user = await this.findOne({ where: { email } });
 

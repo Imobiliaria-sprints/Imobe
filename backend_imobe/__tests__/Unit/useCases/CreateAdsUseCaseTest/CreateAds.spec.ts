@@ -28,6 +28,8 @@ describe("Create Announcement", () => {
       "12345"
     );
 
+    const file =
+
     const announcement = await createAnnouncementUseCase.execute(
       "Casa de teste",
       5000.45,

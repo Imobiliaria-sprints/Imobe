@@ -1,8 +1,8 @@
 import { getCustomRepository } from "typeorm";
-import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
+import { GenerateTokenProvider } from "@provider/GenerateTokenProvider";
 import { RefreshTokenRepository } from "@repos/factory/RefreshTokenRepository";
 import dayjs from "dayjs";
-import { GenerateRefreshToken } from "../../provider/GenerateRefreshToken";
+import { GenerateRefreshToken } from "@provider/GenerateRefreshToken";
 import { RefreshToken } from "@entity/RefreshToken";
 
 class RefreshTokenUserUseCase {

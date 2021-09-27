@@ -1,9 +1,8 @@
-import { ISendMailProvider } from "../interfaces/ISendMailProvider";
+import { ISendMailDTO, ISendMailProvider } from "../queue/ISendMailProvider";
 
 import nodemailer, { Transporter } from "nodemailer";
 import handlebars from "handlebars";
 import fs from "fs";
-import { ISendMailDTO } from "../dtos/ISendMailDTO";
 
 class SendMailProvider implements ISendMailProvider {
   private client: Transporter;

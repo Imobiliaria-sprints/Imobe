@@ -2,7 +2,7 @@ import { AnnouncementRepository } from "@repos/factory/AnnouncementRepository";
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { ListAllAnnouncementUseCase } from "./ListAllAnnouncementUseCase";
-import renderAnnouncement from "@app/utils/renderAnnouncement";
+import renderAnnouncement from "../../utils/renderAnnouncement";
 
 class ListAllAnnouncementController {
   async handle(request: Request, response: Response): Promise<Response> {

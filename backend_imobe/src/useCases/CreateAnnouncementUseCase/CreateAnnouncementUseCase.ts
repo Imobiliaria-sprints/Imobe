@@ -1,5 +1,5 @@
 import { Announcement } from "@entity/Announcement";
-import { ICreateAnnouncementUseCase } from "../../interfaces/ICreateAnnouncementUseCase";
+import { ICreateAnnouncementUseCase } from "./ICreateAnnouncementUseCase";
 import { IAnnouncementRepository } from "@repos/IAnnouncementRepository";
 import { IUserRepository } from "@repos/IUserRepository";
 import { AnnouncementImage } from "@entity/AnnouncementImage";

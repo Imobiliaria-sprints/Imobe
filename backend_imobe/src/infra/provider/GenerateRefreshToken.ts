@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { getCustomRepository } from "typeorm";
-import { RefreshTokenRepository } from "../repositories/factory/RefreshTokenRepository";
+import { RefreshTokenRepository } from "@repos/factory/RefreshTokenRepository";
 
 class GenerateRefreshToken {
   /**

@@ -1,11 +1,11 @@
 import { compare } from "bcryptjs";
 import { getCustomRepository } from "typeorm";
-import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
-import { UserRepository } from "../../repositories/factory/UserRepository";
-import { ICreateUserAuthenticateUseCase } from "../../interfaces/ICreateUserAuthenticateUseCase";
+import { GenerateTokenProvider } from "@provider/GenerateTokenProvider";
+import { UserRepository } from "@repos/factory/UserRepository";
+import { ICreateUserAuthenticateUseCase } from "./ICreateUserAuthenticateUseCase";
 import { classToPlain } from "class-transformer";
-import { GenerateRefreshToken } from "../../provider/GenerateRefreshToken";
-import { RefreshToken } from "../../entities/RefreshToken";
+import { GenerateRefreshToken } from "@provider/GenerateRefreshToken";
+import { RefreshToken } from "@entity/RefreshToken";
 
 class CreateUserAuthenticateUseCase implements ICreateUserAuthenticateUseCase {
   async execute(

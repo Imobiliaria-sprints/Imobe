@@ -1,6 +1,8 @@
 import { EntityRepository, Repository } from "typeorm";
-import { ICreateAnnouncementDTO } from "@cases/CreateAnnouncementUseCase/ICreateAnnouncementDTO";
-import { IAnnouncementRepository } from "../IAnnouncementRepository";
+import {
+  IAnnouncementDTO,
+  IAnnouncementRepository,
+} from "../IAnnouncementRepository";
 import { Announcement } from "@entity/Announcement";
 
 @EntityRepository(Announcement)
@@ -16,7 +18,7 @@ class AnnouncementRepository
     square_meters,
     images,
     user_id,
-  }: ICreateAnnouncementDTO): Promise<Announcement> {
+  }: IAnnouncementDTO): Promise<Announcement> {
     const announcement = this.create({
       title,
       slug_title,

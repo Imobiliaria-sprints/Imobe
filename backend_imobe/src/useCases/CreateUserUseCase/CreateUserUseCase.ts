@@ -1,7 +1,7 @@
 import { hash } from "bcryptjs";
 import { classToPlain } from "class-transformer";
 
-import { ICreateUserUseCase } from "../../interfaces/ICreateUserUseCase";
+import { ICreateUserUseCase } from "./ICreateUserUseCase";
 
 import { IUserRepository } from "@repos/IUserRepository";
 

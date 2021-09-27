@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { SendMailProvider } from "../../provider/SendMailProvider";
+import { SendMailProvider } from "@provider/SendMailProvider";
 import { UserRepository } from "@repos/factory/UserRepository";
 import { ForgotPasswordUseCase } from "./ForgotPasswordUseCase";
 

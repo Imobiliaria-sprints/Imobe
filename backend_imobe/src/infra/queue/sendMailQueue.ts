@@ -1,7 +1,7 @@
 import Queue from "bull";
-import { ISendMailDTO } from "../dtos/ISendMailDTO";
-import emailProcess from "../processes/email.process";
+import emailProcess from "../../processes/email.process";
 import { SendMailProvider } from "../provider/SendMailProvider";
+import { ISendMailDTO } from "./ISendMailProvider";
 
 const sendMailProvider = new SendMailProvider();
 
