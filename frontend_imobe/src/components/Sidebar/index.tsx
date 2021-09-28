@@ -84,7 +84,7 @@ export function Sidebar() {
         <div>
           <img src={user?.avatar} alt={user?.name} />
           <div>
-            <span>{user?.name}</span>
+            <h3>{user?.name}</h3>
             <p>Bem vindo</p>
           </div>
         </div>
