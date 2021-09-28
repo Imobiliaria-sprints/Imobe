@@ -2,16 +2,17 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
-import { Input } from "../components/Input";
+import { Input } from "../../components/Input";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { api } from "../services/api";
+import { api } from "../../services/api";
 import { v4 as uuid } from "uuid";
-import styles from "../styles/pages/signUp.module.scss";
+import styles from "../../styles/pages/signUp.module.scss";
 import { useDropzone } from "react-dropzone";
 import { MdAdd } from "react-icons/md";
 import cx from "classnames";
 import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 interface Files extends File {
   id: string;
@@ -28,6 +29,9 @@ const signUpForm = yup.object().shape({
 
 export default function SignUp(props) {
   const route = useRouter();
+
+  const { validatePassword, validate, signUp } = useAuth();
+
   const [files, setFiles] = useState<Files[]>([]);
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signUpForm),
@@ -61,25 +65,11 @@ export default function SignUp(props) {
     maxFiles: 1,
   });
 
-  async function handleSignUp(user) {
+  async function handleSignUp(data) {
     try {
-      const data = new FormData();
-
-      data.append("name", user.name);
-      data.append("phone", user.phone);
-      files.map((file) => {
-        data.append("avatar", file);
-      });
-      data.append("email", user.email);
-      data.append("password", user.password);
-
-      await api.post("users", data);
-
-      toast.success(`Conta criada com sucesso`);
-
-      route.push("/sign-in");
-    } catch (error) {
-      toast.error(`E-mail ou senha inválidos`);
+      await signUp(data, files);
+    } catch (err) {
+      toast.error("Houve um erro");
     }
   }
 
@@ -117,21 +107,23 @@ export default function SignUp(props) {
             </span>
             <label>Escolha sua foto de perfil</label>
           </div>
-          <Input
-            label="name"
-            type="name"
-            name="name"
-            error={errors.name}
-            {...register("name")}
-          />
+          <fieldset>
+            <Input
+              label="name"
+              type="name"
+              name="name"
+              error={errors.name}
+              {...register("name")}
+            />
 
-          <Input
-            label="phone"
-            type="phone"
-            name="phone"
-            error={errors.phone}
-            {...register("phone")}
-          />
+            <Input
+              label="phone"
+              type="phone"
+              name="phone"
+              error={errors.phone}
+              {...register("phone")}
+            />
+          </fieldset>
           <Input
             label="email"
             type="email"
@@ -146,16 +138,28 @@ export default function SignUp(props) {
             name="password"
             error={errors.password}
             {...register("password")}
+            onChange={(e) => validatePassword(e.target.value)}
           />
-
+          <div
+            className={cx(styles.verify_password, {
+              [styles.password_low]: validate === "low",
+              [styles.password_medium]: validate === "medium",
+              [styles.password_high]: validate === "high",
+            })}
+          >
+            <div>{validate !== "null" && validate}</div>
+          </div>
           <div className={styles.input_block}>
             <span>
-              Já tenho conta{" "}
-              <a onClick={() => route.push("/sign-in")}>Clique aqui</a>
+              Já tenho conta
+              <a onClick={() => route.push("/auth/sign-in")}>Clique aqui</a>
             </span>
           </div>
 
-          <button type="submit">
+          <button
+            type="submit"
+            disabled={validate === "low" || validate === "null"}
+          >
             {formState.isSubmitting ? (
               <Image
                 height="20"

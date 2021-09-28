@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { useForm } from "react-hook-form";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
-import styles from "../styles/pages/signIn.module.scss";
+import styles from "../../styles/pages/signIn.module.scss";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Input } from "../components/Input";
+import { Input } from "../../components/Input";
 import { useRouter } from "next/router";
 
 const signInForm = yup.object().shape({
@@ -82,7 +82,7 @@ export default function SingIn(props) {
       <section className={styles.createAccount}>
         <span>
           Não tem uma conta ainda?{" "}
-          <a onClick={() => route.push("/sign-up")}>Crie sua conta!</a>
+          <a onClick={() => route.push("/auth/sign-up")}>Crie sua conta!</a>
         </span>
       </section>
     </div>

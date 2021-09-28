@@ -31,7 +31,9 @@ export function Header() {
           </div>
           {dropdownIsActive && (
             <Dropdown>
-              <button onClick={() => router.push("/sign-in")}>Entrar</button>
+              <button onClick={() => router.push("/auth/sign-in")}>
+                Entrar
+              </button>
               <div>
                 <MdHome size="25" color="#294461" />
                 <span>Ver meu anúncios</span>

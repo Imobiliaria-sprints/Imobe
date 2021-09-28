@@ -4,7 +4,6 @@
 import { Divisor } from "../components/Divisor";
 import { Header } from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
-import Modal from "react-modal";
 import { useRouter } from "next/router";
 import React from "react";
 import { MdHome } from "react-icons/md";
