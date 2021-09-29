@@ -58,6 +58,18 @@ class AnnouncementRepository
 
     return { announcements, total };
   }
+
+  async searchAnnouncement(slug_title: string): Promise<Announcement[]> {
+    const announcement = await this.find({
+      relations: ["userId", "images"],
+      where: {
+        slug_title: slug_title,
+      },
+      order: { created_at: "DESC" },
+    });
+
+    return announcement;
+  }
 }
 
 export { AnnouncementRepository };

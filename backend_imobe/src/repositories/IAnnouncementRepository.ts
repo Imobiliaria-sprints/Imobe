@@ -31,4 +31,6 @@ export interface IAnnouncementRepository {
     announcements: Announcement[];
     total: number;
   }>;
+
+  searchAnnouncement(slug_title: string): Promise<Announcement[]>;
 }

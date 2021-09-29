@@ -31,6 +31,14 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
     const total = announcements.length;
     return { announcements, total };
   }
+
+  async searchAnnouncement(slug_title: string): Promise<Announcement[]> {
+    const announcement = this.announcement.filter(
+      (announce) => announce.slug_title === slug_title
+    );
+
+    return announcement;
+  }
 }
 
 export { AnnouncementRepositoryInMemory };
