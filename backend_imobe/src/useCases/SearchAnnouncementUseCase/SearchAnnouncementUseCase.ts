@@ -1,16 +1,17 @@
 import { Announcement } from "@entity/Announcement";
 import { IAnnouncementRepository } from "@repos/IAnnouncementRepository";
+import { classToPlain } from "class-transformer";
 import { ISearchAnnouncement } from "./ISearchAnnouncementUseCase";
 
 class SearchAnnouncementUseCase implements ISearchAnnouncement {
   constructor(private announcementRepository: IAnnouncementRepository) {}
 
-  async execute(slug_title: string): Promise<Announcement[]> {
+  async execute(title: string): Promise<Record<string, null>> {
     const announcement = await this.announcementRepository.searchAnnouncement(
-      slug_title
+      title
     );
 
-    return announcement;
+    return classToPlain(announcement);
   }
 }
 

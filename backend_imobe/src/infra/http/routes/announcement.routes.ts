@@ -33,6 +33,6 @@ announcement.post(
 
 announcement.get("/:page", listAllAnnouncementController.handle);
 
-announcement.get("/search/:slug_title", searchAnnouncementController.handle);
+announcement.post("/search", searchAnnouncementController.handle);
 
 export { announcement };

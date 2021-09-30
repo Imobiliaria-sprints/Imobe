@@ -32,9 +32,9 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
     return { announcements, total };
   }
 
-  async searchAnnouncement(slug_title: string): Promise<Announcement[]> {
+  async searchAnnouncement(title: string): Promise<Announcement[]> {
     const announcement = this.announcement.filter(
-      (announce) => announce.slug_title === slug_title
+      (announce) => announce.title === title
     );
 
     return announcement;

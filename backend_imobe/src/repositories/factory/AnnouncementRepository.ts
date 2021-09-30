@@ -1,4 +1,4 @@
-import { EntityRepository, Repository } from "typeorm";
+import { EntityRepository, Like, Repository } from "typeorm";
 import {
   IAnnouncementDTO,
   IAnnouncementRepository,
@@ -59,11 +59,11 @@ class AnnouncementRepository
     return { announcements, total };
   }
 
-  async searchAnnouncement(slug_title: string): Promise<Announcement[]> {
+  async searchAnnouncement(title: string): Promise<Announcement[]> {
     const announcement = await this.find({
       relations: ["userId", "images"],
       where: {
-        slug_title: slug_title,
+        title: Like(`%${title}%`),
       },
       order: { created_at: "DESC" },
     });
