@@ -47,7 +47,6 @@ export default function Home(props) {
           </span>
         </div>
       </section>
-
       <section className={styles.blocks}>
         <div>
           <div>
@@ -64,7 +63,6 @@ export default function Home(props) {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );

@@ -13,8 +13,6 @@ export function Search() {
     event.preventDefault();
 
     if (!search.trim()) {
-      setResults([]);
-
       return;
     }
 
@@ -38,13 +36,16 @@ export function Search() {
           type="text"
           placeholder="Qual tipo de imóvel você está procurando?"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            search.trim().length === 0 && setResults([]);
+          }}
         />
         <button type="submit">
-          <MdSearch size="25" color="#ffffff" />
+          <MdSearch size="20" color="#ffffff" />
         </button>
       </form>
-      {(results.length > 0 || search.trim()) && (
+      {results.length > 0 && search.trim() && (
         <AnnouncementItemList results={results} />
       )}
     </div>

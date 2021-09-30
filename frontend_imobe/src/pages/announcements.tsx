@@ -79,7 +79,7 @@ export default function Announcements(props) {
                       currentPage={page}
                       onPageChange={setPage}
                     />
-                  </div>{" "}
+                  </div>
                 </>
               ) : (
                 <div className={styles.announcement_nullable}>

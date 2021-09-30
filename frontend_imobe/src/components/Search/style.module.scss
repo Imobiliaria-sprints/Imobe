@@ -1,6 +1,7 @@
 .search_container {
   display: flex;
-  width: 50rem;
+  width: 100%;
+  max-width: 30rem;
   height: 100%;
   padding: 0.8rem 0rem;
   position: relative;
@@ -9,7 +10,7 @@
     width: 100%;
 
     > input {
-      padding: 0 0.4rem;
+      padding: 0 0.5rem;
       border: 1px solid var(--gray-300);
       border-radius: 0.4rem;
       width: 100%;
@@ -20,11 +21,11 @@
       position: absolute;
       right: 0;
       top: 50%;
-      transform: translate(-10%, -50%);
-      height: 2rem;
-      width: 2rem;
+      transform: translate(-20%, -50%);
+      height: 1.8rem;
+      width: 1.8rem;
       border: none;
-      background: var(--green-400);
+      background: var(--blue-300);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -35,13 +36,26 @@
 
 .announcement_list {
   position: absolute;
-  bottom: -68px;
   left: 0;
   right: 0;
-  transform: translate(0%, 84%);
+  top: 64px;
+  max-height: 15rem;
+  overflow-y: auto;
+  transform: translate(0%, 0%);
+  z-index: 20;
   padding: 0.5rem 1.2rem;
   background: var(--white);
   border-radius: 0 0 0.4rem 0.4rem;
+  box-shadow: 4px 9px 9px rgba(0, 0, 0, 0.2);
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--black-smooth);
+    border-radius: 2px;
+  }
 
   > div + div {
     margin-top: 0.5rem;
@@ -54,7 +68,12 @@
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   gap: 15px;
+  cursor: pointer;
+  transition: filter 0.2s ease-in-out;
 
+  &:hover {
+    filter: brightness(0.9);
+  }
   img {
     width: 35px;
     height: 35px;

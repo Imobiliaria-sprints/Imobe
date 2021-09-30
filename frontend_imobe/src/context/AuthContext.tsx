@@ -1,16 +1,9 @@
-import {
-  createContext,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { setCookie, parseCookies } from "nookies";
 import Router from "next/router";
-import { Dispatch } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/router";
+
 type AuthContextProviderProps = {
   children: ReactNode;
 };
@@ -36,7 +29,7 @@ type SignUpData = {
 };
 
 type AuthContextData = {
-  user: User;
+  user: User | null;
   isAutheticated: boolean;
   validate: "null" | "low" | "medium" | "high";
   signUp: (user: SignUpData, files: File[]) => Promise<void>;
@@ -51,11 +44,10 @@ export const AuthContext = createContext({} as AuthContextData);
  */
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<User | null>(null);
+
   const [validate, setValidate] = useState<"null" | "low" | "medium" | "high">(
     "null"
   );
-
-  const route = useRouter();
 
   const isAutheticated = !!user;
 
@@ -64,7 +56,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     console.log(token);
     if (token) {
       api
-        .get("/users/verify/user", {
+        .get("users/verify/user", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => setUser(response.data));
@@ -74,7 +66,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   async function signIn({ email, password }: SignInData) {
     const {
       data: { token, user },
-    } = await api.post("/auth/session", { email, password });
+    } = await api.post("auth/session", { email, password });
 
     console.log({ token, user });
 
@@ -105,7 +97,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     if (response.status === 200) {
       toast.success(`Conta criada com sucesso`);
 
-      route.push("/auth/sign-in");
+      Router.push("/auth/sign-in");
 
       setValidate("null");
     }

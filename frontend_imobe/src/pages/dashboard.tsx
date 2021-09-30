@@ -8,9 +8,10 @@ import styles from "../styles/pages/dashboard.module.scss";
 import { getApiClient } from "../services/axios";
 import { FormatCurrency } from "../utils/FormatCurrency";
 import { Sidebar } from "../components/Sidebar";
-import { useState } from "react";
 
-export default function Dashboard({ posts }) {
+export default function Dashboard({
+  posts,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { user } = useAuth();
 
   return (
@@ -24,37 +25,14 @@ export default function Dashboard({ posts }) {
           </div>
         </header>
 
-        <section className={styles.postList}>
-          <div className={styles.list}></div>
-        </section>
+        <section className={styles.postList}></section>
       </div>
     </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const apiClient = getApiClient(ctx);
-
   const { ["imobeflex.token"]: token } = parseCookies(ctx);
-
-  const { data } = await apiClient.get("/dashboard", {
-    headers: {
-      Authorization: `Barear ${token}`,
-    },
-  });
-
-  const posts = data.map((post) => {
-    return {
-      id: post?.id,
-      title: post?.title,
-      rooms: post?.rooms,
-      price: FormatCurrency(Number(post?.price)),
-      square_meters: `${post?.square_meters}m²`,
-      created_at: format(parseISO(post?.created_at), "d MMM yyyy", {
-        locale: ptBR,
-      }),
-    };
-  });
 
   if (!token) {
     return {
@@ -65,5 +43,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
 
-  return { props: { posts } };
+  return { props: {} };
 };

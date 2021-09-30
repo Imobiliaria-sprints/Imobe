@@ -1,6 +1,5 @@
 import { AuthContextProvider } from "../context/AuthContext";
 import Modal from "react-modal";
-
 import "../styles/global.scss";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "../services/queryClient";
