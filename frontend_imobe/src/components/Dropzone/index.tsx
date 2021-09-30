@@ -4,10 +4,10 @@ import styles from "./style.module.scss";
 import cx from "classnames";
 import { MdFileUpload } from "react-icons/md";
 import { FileList } from "./FileList";
-import { useSignUp } from "../../hooks/useSignUp";
+import { useDropzone as useDrop } from "../../hooks/useDropzone";
 
 const Dropzone = () => {
-  const { handleFiles, files } = useSignUp();
+  const { handleFiles, files } = useDrop();
 
   const { getInputProps, getRootProps, isDragAccept, isDragReject } =
     useDropzone({

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { MdDelete } from "react-icons/md";
-import { useSignUp } from "../../hooks/useSignUp";
+import { useDropzone } from "../../hooks/useDropzone";
 import styles from "./style.module.scss";
 
 type FileListProps = {
@@ -13,7 +13,7 @@ interface Files extends File {
 }
 
 export function FileList({ files }: FileListProps) {
-  const { handleDeleteFile } = useSignUp();
+  const { handleDeleteFile } = useDropzone();
 
   return (
     <section className={styles.file_list}>

@@ -5,6 +5,7 @@ import { MdExpandMore as ArrowDown, MdFavorite, MdHome } from "react-icons/md";
 import { FaUserAlt as UserIcon } from "react-icons/fa";
 import Dropdown from "../Dropdown";
 import { useRouter } from "next/router";
+import { Search } from "../Search";
 
 export function Header() {
   const [dropdownIsActive, setDropdownIsActive] = useState(false);
@@ -17,6 +18,7 @@ export function Header() {
         <div onClick={() => router.push("/")} className={styles.contain_logo}>
           <img src="/icons/logo.svg" alt="Logomarca" draggable="false" />
         </div>
+        <Search />
         <nav
           className={styles.navContainer}
           onMouseEnter={() => setDropdownIsActive(true)}

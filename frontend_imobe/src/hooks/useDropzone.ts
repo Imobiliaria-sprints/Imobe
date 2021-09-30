@@ -1,11 +1,7 @@
-import { createContext, ReactNode, useState } from "react";
+import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
-type SignUpContextProvider = {
-  children: ReactNode;
-};
-
-type SignUpContextData = {
+type DropzoneData = {
   files: Files[];
   handleFiles: (files_accept: File[]) => void;
   handleDeleteFile: (file_id: string) => void;
@@ -16,9 +12,7 @@ interface Files extends File {
   preview: string;
 }
 
-export const SignUpContext = createContext({} as SignUpContextData);
-
-export function SignUpContextProvider({ children }: SignUpContextProvider) {
+export const useDropzone = (): DropzoneData => {
   const [files, setFiles] = useState<Files[]>([]);
 
   function handleFiles(files_accept: File[]) {
@@ -38,9 +32,5 @@ export function SignUpContextProvider({ children }: SignUpContextProvider) {
     setFiles(files.filter((file) => file.id !== file_id));
   }
 
-  return (
-    <SignUpContext.Provider value={{ files, handleFiles, handleDeleteFile }}>
-      {children}
-    </SignUpContext.Provider>
-  );
-}
+  return { files, handleFiles, handleDeleteFile };
+};
