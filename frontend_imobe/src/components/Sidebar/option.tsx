@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { HTMLAttributes, useState } from "react";
 import { IconType } from "react-icons";
 import styles from "./option.module.scss";
 import cx from "classnames";
-type OptionProps = {
+
+interface OptionProps extends HTMLAttributes<HTMLDivElement> {
   icon: JSX.Element | IconType;
   name: string;
   sidebarIsActive: boolean;
   current?: boolean;
-};
+}
 
-export function Option({ name, icon, sidebarIsActive, current }: OptionProps) {
+export function Option({
+  name,
+  icon,
+  sidebarIsActive,
+  current,
+  ...rest
+}: OptionProps) {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -17,6 +24,7 @@ export function Option({ name, icon, sidebarIsActive, current }: OptionProps) {
       className={cx(styles.option_container, {
         [styles.isActive]: current,
       })}
+      {...rest}
     >
       <div
         className={styles.option}

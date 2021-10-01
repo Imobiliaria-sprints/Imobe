@@ -7,6 +7,7 @@ import {
   MdExitToApp,
   MdSort,
   MdDashboard,
+  MdAdd,
 } from "react-icons/md";
 import styles from "./style.module.scss";
 import Modal from "react-modal";
@@ -73,6 +74,12 @@ export function Sidebar() {
             }
             name="Favoritos"
             sidebarIsActive={isSidebarActive}
+          />
+          <Option
+            icon={<MdAdd color="#0ea490" style={{ width: 30, height: 30 }} />}
+            name="Criar anúncio"
+            sidebarIsActive={isSidebarActive}
+            onClick={() => Router.push("/user/create-announcement")}
           />
         </nav>
       </div>
