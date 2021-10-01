@@ -1,0 +1,33 @@
+.create_announcement {
+  display: flex;
+}
+
+.create_announcement_form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0rem;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+
+  > form {
+    background: var(--white);
+    display: flex;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    flex-direction: column;
+
+    > fieldset {
+      margin: 1rem 0;
+      border: none;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      > div:first-child {
+        width: 120px;
+      }
+    }
+  }
+}
