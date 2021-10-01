@@ -47,7 +47,9 @@
   background: var(--white);
   border-radius: 0 0 0.4rem 0.4rem;
   box-shadow: 4px 9px 9px rgba(0, 0, 0, 0.2);
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &::-webkit-scrollbar {
     width: 3px;
   }

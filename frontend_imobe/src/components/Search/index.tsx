@@ -45,9 +45,7 @@ export function Search() {
           <MdSearch size="20" color="#ffffff" />
         </button>
       </form>
-      {results.length > 0 && search.trim() && (
-        <AnnouncementItemList results={results} />
-      )}
+      {search.trim() && <AnnouncementItemList results={results} />}
     </div>
   );
 }
