@@ -1,4 +1,3 @@
-import { memo, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./style.module.scss";
 import cx from "classnames";
@@ -6,7 +5,7 @@ import { MdFileUpload } from "react-icons/md";
 import { FileList } from "./FileList";
 import { useDropzone as useDrop } from "../../hooks/useDropzone";
 
-const Dropzone = () => {
+export function Dropzone() {
   const { handleFiles, files } = useDrop();
 
   const { getInputProps, getRootProps, isDragAccept, isDragReject } =
@@ -36,6 +35,4 @@ const Dropzone = () => {
       <FileList files={files} />
     </div>
   );
-};
-
-export default memo(Dropzone);
+}
