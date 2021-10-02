@@ -12,7 +12,7 @@ interface Files extends File {
   preview: string;
 }
 
-export const useDropzone = (): DropzoneData => {
+export const useDrop = (): DropzoneData => {
   const [files, setFiles] = useState<Files[]>([]);
 
   function handleFiles(files_accept: File[]) {
@@ -30,6 +30,7 @@ export const useDropzone = (): DropzoneData => {
 
   function handleDeleteFile(file_id: string) {
     setFiles(files.filter((file) => file.id !== file_id));
+    console.log(files);
   }
 
   return { files, handleFiles, handleDeleteFile };
