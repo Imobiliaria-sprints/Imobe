@@ -1,11 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { Input } from "../../components/Input";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { api } from "../../services/api";
 import { v4 as uuid } from "uuid";
 import styles from "../../styles/pages/signUp.module.scss";
 import { useDropzone } from "react-dropzone";
@@ -13,9 +12,9 @@ import { MdAdd } from "react-icons/md";
 import cx from "classnames";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { phone } from "../../utils/InputMask";
 
 interface Files extends File {
-  id: string;
   preview: string;
 }
 
@@ -27,29 +26,22 @@ const signUpForm = yup.object().shape({
   avatar: yup.string(),
 });
 
-export default function SignUp(props) {
-  const route = useRouter();
+export default function SignUp() {
+  const [files, setFiles] = useState<Files>();
 
   const { validatePassword, validate, signUp } = useAuth();
 
-  const [files, setFiles] = useState<Files[]>([]);
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signUpForm),
   });
 
   const { errors } = formState;
 
-  function handleFile(files_accept: File[]) {
-    const uploadedFiles = files_accept.map((file) =>
-      Object.assign(file, {
-        id: uuid(),
-        preview: URL.createObjectURL(file),
-      })
-    );
+  function handleFile(files_accept: File) {
+    const uploadedFiles = Object.assign(files_accept, {
+      preview: URL.createObjectURL(files_accept),
+    });
 
-    if (files.length > 1) {
-      return;
-    }
     setFiles(uploadedFiles);
   }
 
@@ -61,7 +53,8 @@ export default function SignUp(props) {
   } = useDropzone({
     accept: ["image/jpeg", "image/png", "image/jpg", "image/pjpeg"],
     noKeyboard: false,
-    onDrop: (acceptedFiles) => handleFile(acceptedFiles),
+    onDrop: (acceptedFile) =>
+      handleFile(acceptedFile.length !== 0 && acceptedFile[0]),
     maxFiles: 1,
   });
 
@@ -88,22 +81,18 @@ export default function SignUp(props) {
             <div
               {...getRootProps()}
               className={cx(styles.input_file, {
-                [styles.is_accept]: files.length > 0,
+                [styles.is_accept]: !!files,
               })}
             >
               <input {...getInputProps()} />
               {acceptedFiles.length !== 0 ? (
-                files.map((file) => (
-                  <img key={file.id} src={file.preview} alt={file.name} />
-                ))
+                <img src={files?.preview} alt={files?.name} />
               ) : (
                 <MdAdd size="40" color="#bdbdbd" />
               )}
             </div>
             <span>
-              {files.map((file) => (
-                <p key={file.id}>{file.name}</p>
-              ))}
+              <p>{files?.name}</p>
             </span>
             <label>Escolha sua foto de perfil</label>
           </div>
@@ -117,15 +106,16 @@ export default function SignUp(props) {
             />
 
             <Input
-              label="phone"
+              label="Número de tele"
               type="phone"
               name="phone"
               error={errors.phone}
               {...register("phone")}
+              mask={phone}
             />
           </fieldset>
           <Input
-            label="email"
+            label="Email"
             type="email"
             name="email"
             error={errors.email}
@@ -133,12 +123,12 @@ export default function SignUp(props) {
           />
 
           <Input
-            label="password"
+            label="Senha"
             type="password"
             name="password"
             error={errors.password}
-            {...register("password")}
             onChange={(e) => validatePassword(e.target.value)}
+            {...register("password")}
           />
           <div
             className={cx(styles.verify_password, {
@@ -149,17 +139,8 @@ export default function SignUp(props) {
           >
             <div>{validate !== "null" && validate}</div>
           </div>
-          <div className={styles.input_block}>
-            <span>
-              Já tenho conta
-              <a onClick={() => route.push("/auth/sign-in")}>Clique aqui</a>
-            </span>
-          </div>
 
-          <button
-            type="submit"
-            disabled={validate === "low" || validate === "null"}
-          >
+          <button type="submit">
             {formState.isSubmitting ? (
               <Image
                 height="20"

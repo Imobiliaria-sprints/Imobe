@@ -32,7 +32,7 @@ type AuthContextData = {
   user: User | null;
   isAutheticated: boolean;
   validate: "null" | "low" | "medium" | "high";
-  signUp: (user: SignUpData, files: File[]) => Promise<void>;
+  signUp: (user: SignUpData, file: File) => Promise<void>;
   signIn: (data: SignInData) => Promise<void>;
   validatePassword: (password: string) => void;
 };
@@ -81,14 +81,13 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     Router.push("/dashboard");
   }
 
-  async function signUp(user: SignUpData, files: File[]) {
+  async function signUp(user: SignUpData, file: File) {
     const data = new FormData();
 
     data.append("name", user.name);
     data.append("phone", user.phone);
-    files.map((file) => {
-      data.append("avatar", file);
-    });
+
+    data.append("avatar", file);
     data.append("email", user.email);
     data.append("password", user.password);
 
@@ -129,6 +128,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     if (password.trim() === "") {
       setValidate("null");
     }
+    console.log(password);
   }
 
   return (

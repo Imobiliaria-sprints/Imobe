@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { Dropzone } from "../../components/Dropzone";
 import { Input } from "../../components/Input";
 import { Sidebar } from "../../components/Sidebar";
-import { useDropzone } from "../../hooks/useDropzone";
 import * as yup from "yup";
 import styles from "../../styles/pages/user/create-announcement.module.scss";
+import { FaBed, FaVectorSquare } from "react-icons/fa";
+import { useDrop } from "../../hooks/useDrop";
+import { currency } from "../../utils/InputMask";
 
 const createAnnouncementForm = yup.object().shape({
   title: yup.string().required("Titulo é obrigatório"),
@@ -15,11 +17,11 @@ const createAnnouncementForm = yup.object().shape({
 });
 
 export default function CreateAnnouncement(props) {
-  const { files } = useDropzone();
-
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createAnnouncementForm),
   });
+
+  const { files } = useDrop();
 
   const { errors } = formState;
 
@@ -30,26 +32,42 @@ export default function CreateAnnouncement(props) {
       <div className={styles.create_announcement_form}>
         <h1>Adicione seu imóvel</h1>
         <form>
-          <input name="title" type="text" {...register("title")} />
+          <Dropzone />
+          <Input
+            name="title"
+            label="Titulo"
+            type="text"
+            {...register("title")}
+            error={errors.title}
+          />
 
           <fieldset>
-            <input
+            <Input
               name="rooms"
               type="number"
               min="1"
               max="20"
+              icon={<FaBed size="25" color="#39e488" />}
               {...register("rooms")}
+              error={errors.rooms}
             />
-            <input
+            <Input
               name="square_meters"
-              type="number"
-              min="1"
-              max="20"
+              icon={<FaVectorSquare size="25" color="#39e488" />}
               {...register("square_meters")}
+              error={errors.square_meters}
             />
           </fieldset>
-          <input name="price" type="text" {...register("price")} />
-          <Dropzone />
+          <Input
+            label="Preço"
+            name="price"
+            type="price"
+            {...register("price")}
+            error={errors.price}
+            mask={currency}
+          />
+
+          <button type="submit">Criar anúncio</button>
         </form>
       </div>
     </div>
