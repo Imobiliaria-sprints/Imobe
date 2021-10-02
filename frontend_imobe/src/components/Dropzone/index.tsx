@@ -3,10 +3,10 @@ import styles from "./style.module.scss";
 import cx from "classnames";
 import { MdFileUpload } from "react-icons/md";
 import { FileList } from "./FileList";
-import { useDropzone as useDrop } from "../../hooks/useDropzone";
+import { useDrop } from "../../hooks/useDrop";
 
 export function Dropzone() {
-  const { handleFiles, files } = useDrop();
+  const { files, handleDeleteFile, handleFiles } = useDrop();
 
   const { getInputProps, getRootProps, isDragAccept, isDragReject } =
     useDropzone({
@@ -16,7 +16,6 @@ export function Dropzone() {
       maxFiles: 5,
     });
 
-  console.log(files);
   return (
     <div className={styles.dropzone_container}>
       <div
@@ -32,7 +31,7 @@ export function Dropzone() {
         <h3>Adicione as imagens do seu imóvel aqui!</h3>
         <span>Clique ou arraste a imagem até aqui</span>
       </div>
-      <FileList files={files} />
+      <FileList files={files} handleDeleteFile={handleDeleteFile} />
     </div>
   );
 }

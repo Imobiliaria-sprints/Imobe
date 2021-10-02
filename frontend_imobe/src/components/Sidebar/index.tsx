@@ -67,6 +67,7 @@ export function Sidebar() {
             }
             sidebarIsActive={isSidebarActive}
             name="Dashboard"
+            onClick={() => Router.push("/dashboard")}
           />
           <Option
             icon={

@@ -33,3 +33,26 @@
 .inputInvalid {
   border: 1px solid var(--red-500) !important;
 }
+
+.with_icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+
+  > svg {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 100%;
+    border-radius: 0.4rem 0 0 0.4rem;
+    width: 2.5rem;
+    padding: 0 0.5rem;
+  }
+
+  > input {
+    padding: 0 0.5rem 0 3rem;
+  }
+}

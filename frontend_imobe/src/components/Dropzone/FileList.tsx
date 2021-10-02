@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { memo } from "react";
 import { MdDelete } from "react-icons/md";
-import { useDropzone } from "../../hooks/useDropzone";
 import styles from "./style.module.scss";
 
 type FileListProps = {
   files: Files[];
+  handleDeleteFile: (file_id: string) => void;
 };
 
 interface Files extends File {
@@ -13,9 +13,7 @@ interface Files extends File {
   preview: string;
 }
 
-export function FileListComponent({ files }: FileListProps) {
-  const { handleDeleteFile } = useDropzone();
-
+export function FileListComponent({ files, handleDeleteFile }: FileListProps) {
   return (
     <section className={styles.file_list}>
       {files.map((file) => {
