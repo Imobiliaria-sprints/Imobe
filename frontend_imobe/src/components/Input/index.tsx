@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: FieldError;
   icon?: JSX.Element | IconType;
-  mask?: (value: string) => string;
+  mask?: (value: string) => string | boolean;
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
@@ -33,7 +33,9 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           name={name}
           ref={ref}
           {...rest}
-          onChange={(e) => (e.target.value = `${mask(e.target.value)}`)}
+          onChange={(e) =>
+            !!mask && (e.target.value = `${mask(e.target.value)}`)
+          }
           className={!!error && styles.inputInvalid}
         />
       </section>

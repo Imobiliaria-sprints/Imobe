@@ -12,6 +12,19 @@
     justify-content: space-between;
 
     > div {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      > span {
+        padding: 0.5em 1rem;
+        border-radius: 0.4rem;
+        background: var(--white);
+        font: 500 1rem Lato, sans-serif;
+        color: var(--black-smooth);
+        > svg {
+          margin-right: 0.5rem;
+        }
+      }
       > img {
         width: 45px;
         height: 45px;

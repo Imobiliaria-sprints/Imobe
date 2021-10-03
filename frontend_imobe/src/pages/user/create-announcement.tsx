@@ -13,6 +13,7 @@ import { parseCookies } from "nookies";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import id from "date-fns/esm/locale/id/index.js";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 const createAnnouncementForm = yup.object().shape({
   title: yup.string().required("Titulo é obrigatório"),
@@ -21,7 +22,9 @@ const createAnnouncementForm = yup.object().shape({
   price: yup.string().required("Preço é obrigatório"),
 });
 
-export default function CreateAnnouncement(props) {
+export default function CreateAnnouncement(
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createAnnouncementForm),
   });
@@ -45,16 +48,14 @@ export default function CreateAnnouncement(props) {
 
       const { "imobeflex.token": token } = parseCookies();
 
-      if (token) {
-        const { status } = await api.post("/announcement", announcement, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+      const { status } = await api.post("/announcement", announcement, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-        if (status === 200) {
-          toast.success("Seu imóvel foi divulgado!");
+      if (status === 200) {
+        toast.success("Seu imóvel foi divulgado!");
 
-          router.push("/dashboard");
-        }
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -92,7 +93,7 @@ export default function CreateAnnouncement(props) {
                 type="number"
                 min="1"
                 max="20"
-                icon={<FaBed size="25" color="#39e488" />}
+                icon={<FaBed size="25" color="#474747" />}
                 {...register("rooms")}
                 mask={without_text}
                 error={errors.rooms}
@@ -100,7 +101,7 @@ export default function CreateAnnouncement(props) {
               <Input
                 name="square_meters"
                 label="Quantos metros quadrados tem?"
-                icon={<FaVectorSquare size="20" color="#39e488" />}
+                icon={<FaVectorSquare size="20" color="#474747" />}
                 {...register("square_meters")}
                 mask={square_meters}
                 error={errors.square_meters}
@@ -122,3 +123,18 @@ export default function CreateAnnouncement(props) {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { ["imobeflex.token"]: token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+};

@@ -26,7 +26,7 @@ const signUpForm = yup.object().shape({
   avatar: yup.string(),
 });
 
-export default function SignUp() {
+export default function SignUp(props) {
   const [files, setFiles] = useState<Files>();
 
   const { validatePassword, validate, signUp } = useAuth();
@@ -127,10 +127,9 @@ export default function SignUp() {
             type="password"
             name="password"
             error={errors.password}
-            onChange={(e) => validatePassword(e.target.value)}
             {...register("password")}
           />
-          <div
+          {/* <div
             className={cx(styles.verify_password, {
               [styles.password_low]: validate === "low",
               [styles.password_medium]: validate === "medium",
@@ -138,7 +137,7 @@ export default function SignUp() {
             })}
           >
             <div>{validate !== "null" && validate}</div>
-          </div>
+          </div> */}
 
           <button type="submit">
             {formState.isSubmitting ? (

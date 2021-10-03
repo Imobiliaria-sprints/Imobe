@@ -128,7 +128,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     if (password.trim() === "") {
       setValidate("null");
     }
-    console.log(password);
   }
 
   return (

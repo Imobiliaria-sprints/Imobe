@@ -5,22 +5,31 @@ import { useAuth } from "../hooks/useAuth";
 import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import styles from "../styles/pages/dashboard.module.scss";
-import { getApiClient } from "../services/axios";
-import { FormatCurrency } from "../utils/FormatCurrency";
 import { Sidebar } from "../components/Sidebar";
+import { FaCalendarAlt } from "react-icons/fa";
 
-export default function Dashboard({
-  posts,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Dashboard(
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) {
   const { user } = useAuth();
+
+  const currentDate = format(new Date(), "d MMM yyyy", {
+    locale: ptBR,
+  });
 
   return (
     <div className={styles.dashboard}>
       <Sidebar />
       <div className={styles.dashboardContainer}>
         <header>
-          <h1>Olá, {user?.name}</h1>
           <div>
+            <h1>Olá, {user?.name}</h1>
+          </div>
+
+          <div>
+            <span>
+              <FaCalendarAlt size="14" color="#474747" /> {currentDate}
+            </span>
             <img src={user?.avatar} alt={user?.name} />
           </div>
         </header>
