@@ -9,20 +9,22 @@
     margin-bottom: 0.4rem;
   }
 
-  > input {
-    width: 100%;
-    height: 2.4rem;
-    padding: 0 0.5rem 0 0.5rem;
-    font-size: 0.9rem;
-    outline: none;
-    border: 1px solid var(--gray-300);
-    border-radius: 0.4rem;
-  }
+  > section {
+    flex: 1;
+    > input {
+      width: 100%;
+      height: 2.4rem;
+      padding: 0 0.5rem 0 0.5rem;
+      font-size: 0.9rem;
+      outline: none;
+      border: 1px solid var(--gray-300);
+      border-radius: 0.4rem;
+    }
 
-  > input:focus {
-    border: 1px solid var(--blue-500);
+    > input:focus {
+      border: 1px solid var(--blue-500);
+    }
   }
-
   > span {
     font-family: Poppins, sans-serif;
     font-size: 0.9rem;
@@ -34,25 +36,26 @@
   border: 1px solid var(--red-500) !important;
 }
 
-.with_icon {
+#with_icon {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
   position: relative;
 
-  > svg {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translate(0%, -50%);
-    height: 100%;
-    border-radius: 0.4rem 0 0 0.4rem;
-    width: 2.5rem;
-    padding: 0 0.5rem;
+  input {
+    padding: 0 0.5rem 0 2.8rem;
   }
 
-  > input {
-    padding: 0 0.5rem 0 3rem;
+  > svg {
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0%, -50%);
+    height: 100%;
+    padding: 0 0.5rem;
+    border-right: 1px solid var(--gray-300);
   }
 }

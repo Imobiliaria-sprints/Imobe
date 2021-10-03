@@ -2,9 +2,7 @@ import { forwardRef, InputHTMLAttributes } from "react";
 import { ForwardRefRenderFunction } from "react";
 import { FieldError } from "react-hook-form";
 import { IconType } from "react-icons/lib";
-import cx from "classnames";
 import styles from "./input.module.scss";
-import { Props } from "react-input-mask";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -26,21 +24,19 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   ref
 ) => {
   return (
-    <div
-      className={cx(styles.inputConstainer, {
-        [styles.with_icon]: !!icon,
-      })}
-    >
+    <div className={styles.inputConstainer}>
       {!!label && <label htmlFor={name}>{label}</label>}
-      {!!icon && icon}
-      <input
-        id={name}
-        name={name}
-        ref={ref}
-        {...rest}
-        onChange={(e) => (e.target.value = `${mask(e.target.value)}`)}
-        className={!!error && styles.inputInvalid}
-      />
+      <section id={!!icon && styles.with_icon}>
+        {!!icon && icon}
+        <input
+          id={name}
+          name={name}
+          ref={ref}
+          {...rest}
+          onChange={(e) => (e.target.value = `${mask(e.target.value)}`)}
+          className={!!error && styles.inputInvalid}
+        />
+      </section>
       {!!error && <span>{error.message}</span>}
     </div>
   );
