@@ -67,7 +67,7 @@ export function Sidebar() {
             }
             sidebarIsActive={isSidebarActive}
             name="Dashboard"
-            onClick={() => Router.push("/dashboard")}
+            path="dashboard"
           />
           <Option
             icon={
@@ -75,12 +75,13 @@ export function Sidebar() {
             }
             name="Favoritos"
             sidebarIsActive={isSidebarActive}
+            path=""
           />
           <Option
             icon={<MdAdd color="#0ea490" style={{ width: 30, height: 30 }} />}
             name="Criar anúncio"
             sidebarIsActive={isSidebarActive}
-            onClick={() => Router.push("/user/create-announcement")}
+            path="user/create-announcement"
           />
         </nav>
       </div>

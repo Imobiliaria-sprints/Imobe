@@ -41,6 +41,8 @@
   transition: background 0.2s;
   border-radius: 1rem;
   cursor: pointer;
+  border: none;
+  background: var(--white-alpha);
 
   > span {
     text-overflow: ellipsis;
@@ -59,5 +61,13 @@
   }
   & + & {
     margin-top: 2rem;
+  }
+}
+
+.current_path {
+  background: #0ea49a57;
+
+  &:disabled {
+    cursor: default;
   }
 }
