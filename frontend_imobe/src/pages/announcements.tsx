@@ -57,7 +57,7 @@ export default function Announcements(props) {
                             <MdKeyboardArrowLeft color="#fff" />
                           </div>
                           <img
-                            src={slideImages(announcement?.images).url}
+                            src={slideImages(announcement.images)?.url}
                             alt={announcement?.title}
                           />
                           <div onClick={nextImage}>
