@@ -26,7 +26,7 @@ export class CreateAnnouncement1627091251060 implements MigrationInterface {
           },
           {
             name: "price",
-            type: "float",
+            type: "varchar",
             unsigned: true,
           },
           {

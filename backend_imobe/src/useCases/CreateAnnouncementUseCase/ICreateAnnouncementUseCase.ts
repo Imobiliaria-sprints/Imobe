@@ -5,7 +5,7 @@ export interface ICreateAnnouncementUseCase {
   execute(
     title: string,
     slug_title: string,
-    price: number,
+    price: string,
     rooms: number,
     square_meters: number,
     images: AnnouncementImage[],

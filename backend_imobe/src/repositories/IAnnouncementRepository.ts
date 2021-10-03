@@ -5,7 +5,7 @@ export interface IAnnouncementDTO {
   title: string;
   slug_title: string;
   rooms: number;
-  price: number;
+  price: string;
   square_meters: number;
   images: AnnouncementImage[] | { path: string }[];
   user_id: string;

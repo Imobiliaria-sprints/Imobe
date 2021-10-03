@@ -33,8 +33,7 @@ export class Announcement {
   rooms: number;
 
   @Column()
-  @Min(1000)
-  price: number;
+  price: string;
 
   @Column()
   square_meters: number;

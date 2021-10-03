@@ -13,7 +13,7 @@ class CreateAnnouncementUseCase implements ICreateAnnouncementUseCase {
   /**
    *
    * @param {string} title
-   * @param {number} price
+   * @param {string} price
    * @param {number} rooms
    * @param {number} square_meters
    * @param {string} user_id
@@ -22,7 +22,7 @@ class CreateAnnouncementUseCase implements ICreateAnnouncementUseCase {
   async execute(
     title: string,
     slug_title: string,
-    price: number,
+    price: string,
     rooms: number,
     square_meters: number,
     images: AnnouncementImage[] | { path: string }[],
