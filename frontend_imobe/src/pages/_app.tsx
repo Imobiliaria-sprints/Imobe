@@ -5,22 +5,39 @@ import { QueryClientProvider } from "react-query";
 import { queryClient } from "../services/queryClient";
 import { SlideContextProvider } from "../context/SlideContext";
 import { DropzoneContextProvider } from "../context/DropzoneContext";
+import { ThemeProvider, CssBaseline } from "@material-ui/core";
+import theme from "../styles/theme";
+import { AppProps } from "next/app";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import createEmotionCache from "../services/createEmotionCache";
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
 
 if (typeof window !== "undefined") {
   Modal.setAppElement("body");
 }
 
-function MyApp({ Component, pageProps }) {
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp(props) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <DropzoneContextProvider>
-          <SlideContextProvider>
-            <Component {...pageProps} />
-          </SlideContextProvider>
-        </DropzoneContextProvider>
-      </AuthContextProvider>
-    </QueryClientProvider>
+    <CacheProvider value={emotionCache}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <AuthContextProvider>
+            <DropzoneContextProvider>
+              <SlideContextProvider>
+                <Component {...pageProps} />
+              </SlideContextProvider>
+            </DropzoneContextProvider>
+          </AuthContextProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </CacheProvider>
   );
 }
 

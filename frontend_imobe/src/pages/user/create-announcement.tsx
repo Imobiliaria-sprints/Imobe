@@ -10,7 +10,7 @@ import { useDrop } from "../../hooks/useDrop";
 import { currency, square_meters, without_text } from "../../utils/InputMask";
 import { api } from "../../services/api";
 import { parseCookies } from "nookies";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
 import id from "date-fns/esm/locale/id/index.js";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
@@ -30,8 +30,9 @@ export default function CreateAnnouncement(
   });
 
   const router = useRouter();
+
   const { files } = useDrop();
-  console.log(files);
+
   const { errors } = formState;
 
   async function handleCreateAnnouncement(data) {
@@ -54,9 +55,9 @@ export default function CreateAnnouncement(
 
       if (status === 200) {
         toast.success("Seu imóvel foi divulgado!");
-
-        router.push("/dashboard");
       }
+
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
       toast.error("Algo deu errado");
@@ -65,6 +66,7 @@ export default function CreateAnnouncement(
 
   return (
     <div className={styles.create_announcement}>
+      <Toaster />
       <Sidebar />
 
       <div className={styles.create_announcement_container}>
@@ -92,7 +94,6 @@ export default function CreateAnnouncement(
                 label="Quantos quartos tem?"
                 type="number"
                 min="1"
-                max="20"
                 icon={<FaBed size="25" color="#474747" />}
                 {...register("rooms")}
                 mask={without_text}

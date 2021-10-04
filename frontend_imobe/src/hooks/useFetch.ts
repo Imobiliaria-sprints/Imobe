@@ -9,7 +9,7 @@ export const useFetch = <Data = any, Error = any>(
     url,
     async (url) => {
       const { data } = await api.get(url, {
-        headers: { Authorization: `Bearer  ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       return data;

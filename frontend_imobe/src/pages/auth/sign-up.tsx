@@ -98,7 +98,7 @@ export default function SignUp(props) {
           </div>
           <fieldset>
             <Input
-              label="name"
+              label="Nome completo"
               type="name"
               name="name"
               error={errors.name}
@@ -106,7 +106,7 @@ export default function SignUp(props) {
             />
 
             <Input
-              label="Número de tele"
+              label="Número de telefone"
               type="phone"
               name="phone"
               error={errors.phone}
