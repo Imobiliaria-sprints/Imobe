@@ -30,7 +30,7 @@ type SignUpData = {
 
 type AuthContextData = {
   user: User | null;
-  isAutheticated: boolean;
+  isAuthenticated: boolean;
   validate: "null" | "low" | "medium" | "high";
   signUp: (user: SignUpData, file: File) => Promise<void>;
   signIn: (data: SignInData) => Promise<void>;
@@ -49,7 +49,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     "null"
   );
 
-  const isAutheticated = !!user;
+  const isAuthenticated = !!user;
 
   useEffect(() => {
     const { "imobeflex.token": token } = parseCookies();
@@ -134,7 +134,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     <AuthContext.Provider
       value={{
         user,
-        isAutheticated,
+        isAuthenticated: isAuthenticated,
         signIn,
         validatePassword,
         validate,

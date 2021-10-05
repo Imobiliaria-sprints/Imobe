@@ -20,7 +20,7 @@ export function AnnouncementItemComponent({
 }: AnnouncementItemProps) {
   return (
     <div className={styles.announcement_item}>
-      <img src={announcement.images?.url} alt={announcement.title} />
+      <img src={announcement?.images?.url} alt={announcement.title} />
       <span>{announcement.title}</span>
     </div>
   );

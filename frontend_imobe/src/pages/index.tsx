@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { MdHome } from "react-icons/md";
 import { Footer } from "../components/Footer";
+import {Button} from "@material-ui/core";
 
 export default function Home(props) {
   const router = useRouter();
@@ -25,9 +26,9 @@ export default function Home(props) {
             <li>Divulgue seu imóvel</li>
             <li>Torne seu sonho realidade</li>
           </ul>
-          <button onClick={() => router.push("/announcements")}>
+          <Button onClick={() => router.push("/announcements")} >
             Ver imóveis
-          </button>
+          </Button>
           <Divisor />
         </div>
         <div>

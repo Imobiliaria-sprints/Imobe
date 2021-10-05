@@ -5,8 +5,9 @@ import { Header } from "../components/Header";
 import { Pagination } from "../components/Pagination";
 import { useAnnouncement } from "../hooks/useAnnouncement";
 import styles from "../styles/pages/announcements.module.scss";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdRoom} from "react-icons/md";
 import { useSlide } from "../hooks/useSlide";
+import {FaBed} from "react-icons/fa";
 
 export default function Announcements(props) {
   const [page, setPage] = useState(1);
@@ -66,7 +67,7 @@ export default function Announcements(props) {
                         </figure>
                         <span>{announcement?.title}</span>
                         <ul>
-                          <li>{announcement?.rooms}</li>
+                          <li> <FaBed  size="20" color="#fff" /> {announcement?.rooms}</li>
                           <li>{announcement?.square_meters}</li>
                         </ul>
                         <h2>{announcement?.price}</h2>

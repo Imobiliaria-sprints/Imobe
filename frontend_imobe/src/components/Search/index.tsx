@@ -22,7 +22,7 @@ export function Search() {
       return {
         id: announcement.id,
         title: announcement.title,
-        images: announcement.images[1],
+        images: announcement.images[0],
       };
     });
 
