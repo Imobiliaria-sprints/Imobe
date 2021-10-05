@@ -8,11 +8,6 @@ services:
     ports:
       - "3333:3333"
     environment:
-      TYPEORM_DATABASE: postgres
-      TYPEORM_HOST: postgres.imobe.docker
-      TYPEORM_USER: postgres
-      TYPEORM_PASS: postgres
-      TYPEORM_DATABASE: server_imobe_flex
       HOST_PORT: 3333
       SECRET_KEY: ${SECRET_KEY}
     working_dir: /app

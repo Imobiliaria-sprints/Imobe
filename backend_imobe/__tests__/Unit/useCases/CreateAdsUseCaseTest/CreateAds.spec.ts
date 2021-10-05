@@ -28,13 +28,15 @@ describe("Create Announcement", () => {
       "12345"
     );
 
-    const file =
+
 
     const announcement = await createAnnouncementUseCase.execute(
       "Casa de teste",
-      5000.45,
+      "casa-de-teste",
+      "5000.45",
       2,
       53,
+      [],
       user.id
     );
 
@@ -44,11 +46,13 @@ describe("Create Announcement", () => {
   it("Should be not able to create a new Announcement with invalid user", async () => {
     await expect(
       createAnnouncementUseCase.execute(
-        "Casa de teste",
-        5000.45,
-        2,
-        53,
-        "1d856sa4684test#54616445%"
+          "Casa de teste",
+          "casa-de-teste",
+          "5000.45",
+          2,
+          53,
+          [],
+          "1d856sa4684test#54616445%"
       )
     ).rejects.toEqual(new Error("User not found"));
   });
