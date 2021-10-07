@@ -49,7 +49,7 @@ export default function CreateAnnouncement(
 
       const { "imobeflex.token": token } = parseCookies();
 
-      const { status } = await api.post("/announcement", announcement, {
+      const { status, data: redirect } = await api.post("/announcement", announcement, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -57,7 +57,7 @@ export default function CreateAnnouncement(
         toast.success("Seu imóvel foi divulgado!");
       }
 
-      router.push("/dashboard");
+      router.push(`/user/${redirect.id}`);
     } catch (error) {
       console.log(error);
       toast.error("Algo deu errado");
