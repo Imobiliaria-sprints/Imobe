@@ -16,6 +16,8 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
     zip_code,
     block,
     complement,
+    latitude,
+    longitude
   }: IAddressDTO): Promise<Address> {
     const ads = await this.adsRepository.findOneAnnouncementById(
       announcement_id
@@ -36,6 +38,8 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
       zip_code,
       block,
       complement,
+      latitude,
+      longitude
     });
 
     await addressRepository.save(address);

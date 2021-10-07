@@ -49,11 +49,11 @@ export class CreateAddress1628389802848 implements MigrationInterface {
           },
           {
             name: "latitude",
-            type: "int",
+            type: "float",
           },
           {
             name: "longitude",
-            type: "int",
+            type: "float",
           },
           {
             name: "created_at",

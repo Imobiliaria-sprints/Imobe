@@ -9,7 +9,7 @@ export const validationAddress = async (
   await yup
     .object()
     .shape({
-      ads_id: yup.string(),
+      announcement_id: yup.string(),
       street: yup.string().required(),
       city: yup.string().required().min(3),
       number: yup.string().required().min(0),

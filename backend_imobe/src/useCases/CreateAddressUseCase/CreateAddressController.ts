@@ -5,7 +5,7 @@ import { CreateAddressUseCase } from "./CreateAddressUseCase";
 
 class CreateAddressController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { street, city, block, complement, state, zip_code, number } =
+    const { street, city, block, complement, state, zip_code, number, latitude, longitude } =
       request.body;
 
     const { announcement_id } = request.params;
@@ -24,6 +24,8 @@ class CreateAddressController {
       zip_code,
       block,
       complement,
+      latitude,
+      longitude
     });
 
     return response.json(address);

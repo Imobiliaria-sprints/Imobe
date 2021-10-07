@@ -25,6 +25,7 @@
     "react-hook-form": "^7.12.2",
     "react-hot-toast": "^2.1.0",
     "react-icons": "^4.2.0",
+    "react-leaflet": "^3.2.1",
     "react-modal": "^3.14.3",
     "react-query": "^3.21.1",
     "sass": "^1.36.0",

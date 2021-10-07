@@ -9,6 +9,8 @@ export interface IAddressDTO {
   complement?: string;
   state: string;
   zip_code: string;
+  latitude: number,
+  longitude: number
 }
 
 export interface ICreateAddressUseCase {
@@ -21,5 +23,7 @@ export interface ICreateAddressUseCase {
     zip_code,
     block,
     complement,
+    latitude,
+    longitude,
   }: IAddressDTO): Promise<Address>;
 }

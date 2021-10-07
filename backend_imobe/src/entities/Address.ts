@@ -19,7 +19,7 @@ export class Address {
   @Column()
   announcement_id: string;
 
-  @JoinColumn({ name: "ads_id" })
+  @JoinColumn({ name: "announcement_id" })
   @OneToOne(() => Announcement)
   announcement: Announcement;
 
@@ -43,6 +43,12 @@ export class Address {
 
   @Column()
   zip_code: string;
+
+  @Column()
+  latitude: number
+
+  @Column()
+  longitude: number
 
   @CreateDateColumn()
   created_at: Date;
