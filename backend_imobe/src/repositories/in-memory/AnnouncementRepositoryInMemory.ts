@@ -42,10 +42,8 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
     return announcement;
   }
 
-  async deleteAnnouncement(id: string): Promise<DeleteResult | boolean> {
-    const announcements = await this.announcement.find(announce => id !== announce.id);
-
-    return !!announcements;
+  async deleteAnnouncement(id: string): Promise<void> {
+    await this.announcement.find(announce => id !== announce.id);
   }
 }
 

@@ -5,7 +5,7 @@ import {DeleteAnnouncementUseCase} from "@cases/DeleteAnnouncementUseCase/Delete
 
 class DeleteAnnouncementController {
     async handle(request: Request, response:Response): Promise<Response> {
-        const {announcement_id} = request.body;
+        const {announcement_id} = request.params;
 
         const {user_id} = request;
 
@@ -17,7 +17,6 @@ class DeleteAnnouncementController {
         await deleteAnnouncementUseCase.execute({announcement_id, user_id});
 
         return response.send();
-
     }
 }
 

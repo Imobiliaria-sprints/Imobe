@@ -36,7 +36,7 @@ class AnnouncementRepository
   }
 
   async findOneAnnouncementById(id: string): Promise<Announcement> {
-    const announcement = await this.findOne({ id });
+    const announcement = await this.findOne(id);
 
     return announcement;
   }
@@ -72,10 +72,8 @@ class AnnouncementRepository
     return announcement;
   }
 
-  async deleteAnnouncement(id: string): Promise<DeleteResult | boolean> {
-    const announcement = await this.delete(id)
-
-    return announcement;
+  async deleteAnnouncement(id: string): Promise<void> {
+    await this.delete({id});
   }
 }
 

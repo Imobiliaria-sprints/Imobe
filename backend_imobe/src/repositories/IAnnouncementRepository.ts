@@ -35,5 +35,5 @@ export interface IAnnouncementRepository {
 
   searchAnnouncement(title: string): Promise<Announcement[]>;
 
-  deleteAnnouncement(id: string): Promise<DeleteResult | boolean>;
+  deleteAnnouncement(id: string): Promise<void>;
 }

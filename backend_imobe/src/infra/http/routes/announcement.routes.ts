@@ -7,6 +7,7 @@ import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
 import { ListAllAnnouncementController } from "@cases/ListAllAnnouncementUseCase/ListAllAnnouncementController";
 import { SearchAnnouncementController } from "@cases/SearchAnnouncementUseCase/SearchAnnouncementController";
+import {DeleteAnnouncementController} from "@cases/DeleteAnnouncementUseCase/DeleteAnnouncementController";
 
 const upload = multer(uploadImageConfig);
 
@@ -16,6 +17,7 @@ const createAddressController = new CreateAddressController();
 const createAnnouncementController = new CreateAnnouncementController();
 const listAllAnnouncementController = new ListAllAnnouncementController();
 const searchAnnouncementController = new SearchAnnouncementController();
+const deleteAnnouncementController = new DeleteAnnouncementController();
 
 announcement.post(
   "/",
@@ -27,12 +29,14 @@ announcement.post(
 
 announcement.post(
   "/address/:announcement_id",
-  validationAddress,
+    ensureAuthenticated,
   createAddressController.handle
 );
 
 announcement.get("/:page", listAllAnnouncementController.handle);
 
 announcement.post("/search", searchAnnouncementController.handle);
+
+announcement.delete('/:announcement_id', ensureAuthenticated, deleteAnnouncementController.handle);
 
 export { announcement };
