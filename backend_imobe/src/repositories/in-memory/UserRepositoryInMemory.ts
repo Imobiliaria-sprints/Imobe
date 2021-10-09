@@ -1,6 +1,6 @@
 import { UpdateResult } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { User } from "../../entities/User";
+import { User } from "@entity/User";
 import { IUserDTO, IUserRepository } from "../IUserRepository";
 
 class UserRepositoryInMemory implements IUserRepository {

@@ -4,6 +4,7 @@ import {
   IAnnouncementRepository,
 } from "../IAnnouncementRepository";
 import { Announcement } from "@entity/Announcement";
+import {DeleteResult} from "typeorm/query-builder/result/DeleteResult";
 
 @EntityRepository(Announcement)
 class AnnouncementRepository
@@ -34,10 +35,10 @@ class AnnouncementRepository
     return announcement;
   }
 
-  async findOneAnnouncementById(id: string): Promise<boolean> {
+  async findOneAnnouncementById(id: string): Promise<Announcement> {
     const announcement = await this.findOne({ id });
 
-    return !!announcement;
+    return announcement;
   }
 
   async findAllAnnoucement(
@@ -67,6 +68,12 @@ class AnnouncementRepository
       },
       order: { created_at: "DESC" },
     });
+
+    return announcement;
+  }
+
+  async deleteAnnouncement(id: string): Promise<DeleteResult | boolean> {
+    const announcement = await this.delete(id)
 
     return announcement;
   }

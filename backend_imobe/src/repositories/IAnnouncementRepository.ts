@@ -1,5 +1,6 @@
 import { Announcement } from "@entity/Announcement";
 import { AnnouncementImage } from "@entity/AnnouncementImage";
+import {DeleteResult} from "typeorm/query-builder/result/DeleteResult";
 
 export interface IAnnouncementDTO {
   title: string;
@@ -22,7 +23,7 @@ export interface IAnnouncementRepository {
     user_id,
   }: IAnnouncementDTO): Promise<Announcement>;
 
-  findOneAnnouncementById(id: string): Promise<boolean>;
+  findOneAnnouncementById(id: string): Promise<Announcement>;
 
   findAllAnnoucement(
     page: number,
@@ -33,4 +34,6 @@ export interface IAnnouncementRepository {
   }>;
 
   searchAnnouncement(title: string): Promise<Announcement[]>;
+
+  deleteAnnouncement(id: string): Promise<DeleteResult | boolean>;
 }

@@ -1,8 +1,10 @@
 import { v4 as uuid } from "uuid";
-import { Announcement } from "../../entities/Announcement";
+import { Announcement } from "@entity/Announcement";
 import { IAnnouncementRepository } from "../IAnnouncementRepository";
+import {DeleteResult} from "typeorm/query-builder/result/DeleteResult";
 
 class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
+
   private announcement: Announcement[] = [];
 
   async createAnnouncement(announcement: Announcement): Promise<Announcement> {
@@ -17,10 +19,10 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
     return announcement;
   }
 
-  async findOneAnnouncementById(id: string): Promise<boolean> {
-    const announcements = this.announcement.filter((ad) => ad.id === id);
+  async findOneAnnouncementById(id: string): Promise<Announcement> {
+    const announcements = this.announcement.find((ad) => ad.id === id);
 
-    return !!announcements;
+    return announcements;
   }
 
   async findAllAnnoucement(): Promise<{
@@ -38,6 +40,12 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
     );
 
     return announcement;
+  }
+
+  async deleteAnnouncement(id: string): Promise<DeleteResult | boolean> {
+    const announcements = await this.announcement.find(announce => id !== announce.id);
+
+    return !!announcements;
   }
 }
 
