@@ -26,15 +26,14 @@ module.exports = {
       "module-resolver",
       {
         alias: {
-          "@cases": "./src/useCases",
           "@config": "./src/config",
           "@entity": "./src/entities",
-          "@repos": "./src/repositories",
           "@views": "./src/repositories",
           "@middle": "./src/infra/http/middlewares",
           "@provider": "./src/infra/provider",
-          "@dtos": "./src/dtos",
           "@app": "./src/infra/http",
+          "@infra": "./src/infra",
+          "@modules": "./src/modules"
         },
       },
     ],

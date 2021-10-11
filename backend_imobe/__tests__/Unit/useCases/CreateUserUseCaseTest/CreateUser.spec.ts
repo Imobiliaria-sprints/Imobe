@@ -1,6 +1,6 @@
-import { UserRepositoryInMemory } from "@repos/in-memory/UserRepositoryInMemory";
-import { IUserRepository } from "@repos/IUserRepository";
-import { CreateUserUseCase } from "@cases/CreateUserUseCase/CreateUserUseCase";
+import { UserRepositoryInMemory } from "@modules/imobeUsers/repositories/in-memory/UserRepositoryInMemory";
+import { IUserRepository } from "@modules/imobeUsers/repositories/IUserRepository";
+import { CreateUserUseCase } from "@modules/imobeUsers/useCases/CreateUserUseCase/CreateUserUseCase";
 import { compare } from "bcryptjs";
 
 describe("Create user", () => {

@@ -1,4 +1,4 @@
-import { ListAnnouncementController } from "@cases/ListAnnouncementUserUseCase/ListAnnouncementController";
+import { ListAnnouncementController } from "@modules/imobeAnnouncement/useCases/ListAnnouncementUserUseCase/ListAnnouncementController";
 import { ensureAuthenticated } from "@middle/ensureAuthenticated";
 import { Router } from "express";
 

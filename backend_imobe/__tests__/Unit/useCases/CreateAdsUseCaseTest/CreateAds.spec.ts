@@ -1,14 +1,15 @@
-import { IAnnouncementRepository } from "@repos/IAnnouncementRepository";
-import { AnnouncementRepositoryInMemory } from "@repos/in-memory/AnnouncementRepositoryInMemory";
-import { UserRepositoryInMemory } from "@repos/in-memory/UserRepositoryInMemory";
-import { IUserRepository } from "@repos/IUserRepository";
-import { CreateUserUseCase } from "@cases/CreateUserUseCase/CreateUserUseCase";
-import { CreateAnnouncementUseCase } from "@cases/CreateAnnouncementUseCase/CreateAnnouncementUseCase";
+import { IAnnouncementRepository } from "@modules/imobeAnnouncement/repositories/IAnnouncementRepository";
+import { AnnouncementRepositoryInMemory } from "@modules/imobeAnnouncement/repositories/in-memory/AnnouncementRepositoryInMemory";
+import { UserRepositoryInMemory } from "@modules/imobeUsers/repositories/in-memory/UserRepositoryInMemory";
+import { IUserRepository } from "@modules/imobeUsers/repositories/IUserRepository";
+import { CreateUserUseCase } from "@modules/imobeUsers/useCases/CreateUserUseCase/CreateUserUseCase";
+import { CreateAnnouncementUseCase } from "@modules/imobeAnnouncement/useCases/CreateAnnouncementUseCase/CreateAnnouncementUseCase";
 
 let announcementRepository: IAnnouncementRepository;
 let userRepository: IUserRepository;
 let createAnnouncementUseCase: CreateAnnouncementUseCase;
 let createUserUseCase: CreateUserUseCase;
+
 beforeAll(() => {
   announcementRepository = new AnnouncementRepositoryInMemory();
   userRepository = new UserRepositoryInMemory();

@@ -1,13 +1,12 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "@middle/ensureAuthenticated";
-import { CreateAddressController } from "@cases/CreateAddressUseCase/CreateAddressController";
-import { validationAddress } from "@cases/CreateAddressUseCase/validationAddress";
-import { CreateAnnouncementController } from "@cases/CreateAnnouncementUseCase/CreateAnnouncementController";
+import { CreateAddressController } from "@modules/imobeAddress/useCases/CreateAddressUseCase/CreateAddressController";
+import { CreateAnnouncementController } from "@modules/imobeAnnouncement/useCases/CreateAnnouncementUseCase/CreateAnnouncementController";
+import { ListAllAnnouncementController } from "@modules/imobeAnnouncement/useCases/ListAllAnnouncementUseCase/ListAllAnnouncementController";
+import { SearchAnnouncementController } from "@modules/imobeAnnouncement/useCases/SearchAnnouncementUseCase/SearchAnnouncementController";
+import {DeleteAnnouncementController} from "@modules/imobeAnnouncement/useCases/DeleteAnnouncementUseCase/DeleteAnnouncementController";
 import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
-import { ListAllAnnouncementController } from "@cases/ListAllAnnouncementUseCase/ListAllAnnouncementController";
-import { SearchAnnouncementController } from "@cases/SearchAnnouncementUseCase/SearchAnnouncementController";
-import {DeleteAnnouncementController} from "@cases/DeleteAnnouncementUseCase/DeleteAnnouncementController";
 
 const upload = multer(uploadImageConfig);
 

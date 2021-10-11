@@ -1,7 +1,7 @@
-import { CreateUserUseCase } from "@cases/CreateUserUseCase/CreateUserUseCase";
-import { ReturnUserAuthenticatedUseCase } from "@cases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedUseCase";
-import { UserRepositoryInMemory } from "@repos/in-memory/UserRepositoryInMemory";
-import { IUserRepository } from "@repos/IUserRepository";
+import { CreateUserUseCase } from "@modules/imobeUsers/useCases/CreateUserUseCase/CreateUserUseCase";
+import { ReturnUserAuthenticatedUseCase } from "@modules/imobeAuth/useCases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedUseCase";
+import { UserRepositoryInMemory } from "@modules/imobeUsers/repositories/in-memory/UserRepositoryInMemory";
+import { IUserRepository } from "@modules/imobeUsers/repositories/IUserRepository";
 
 let userRepository: IUserRepository;
 let createUserUseCase: CreateUserUseCase;

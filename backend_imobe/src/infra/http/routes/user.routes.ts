@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "@middle/ensureAuthenticated";
-import { CreateUserController } from "@cases/CreateUserUseCase/CreateUserController";
-import { ReturnUserAuthenticatedController } from "@cases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedController";
+import { CreateUserController } from "@modules/imobeUsers/useCases/CreateUserUseCase/CreateUserController";
+import { ReturnUserAuthenticatedController } from "@modules/imobeAuth/useCases/ReturnUserAuthenticatedUseCase/ReturnUserAuthenticatedController";
 import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
-import { ListAllUserController } from "@cases/ListAllUserUseCase/ListAllUserController";
+import { ListAllUserController } from "@modules/imobeUsers/useCases/ListAllUserUseCase/ListAllUserController";
 import { ensureAdmin } from "@middle/ensureAdmin";
 
 const user = Router();

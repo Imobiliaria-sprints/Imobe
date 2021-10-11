@@ -1,4 +1,4 @@
-import { UserRepository } from "@repos/factory/UserRepository";
+import { UserRepository } from "../../../modules/imobeUsers/repositories/factory/UserRepository";
 import { NextFunction, Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 
