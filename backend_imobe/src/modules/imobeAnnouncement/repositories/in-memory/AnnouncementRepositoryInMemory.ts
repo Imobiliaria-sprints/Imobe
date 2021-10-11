@@ -1,9 +1,9 @@
 import { v4 as uuid } from "uuid";
 import { Announcement } from "@entity/Announcement";
 import { IAnnouncementRepository } from "../IAnnouncementRepository";
+import { DeleteResult } from "typeorm";
 
 class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
-
   private announcement: Announcement[] = [];
 
   async createAnnouncement(announcement: Announcement): Promise<Announcement> {
@@ -42,7 +42,7 @@ class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
   }
 
   async deleteAnnouncement(id: string): Promise<void> {
-    await this.announcement.find(announce => id !== announce.id);
+    this.announcement.find((announce) => id !== announce.id);
   }
 }
 

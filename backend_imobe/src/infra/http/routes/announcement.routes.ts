@@ -4,7 +4,7 @@ import { CreateAddressController } from "@modules/imobeAddress/useCases/CreateAd
 import { CreateAnnouncementController } from "@modules/imobeAnnouncement/useCases/CreateAnnouncementUseCase/CreateAnnouncementController";
 import { ListAllAnnouncementController } from "@modules/imobeAnnouncement/useCases/ListAllAnnouncementUseCase/ListAllAnnouncementController";
 import { SearchAnnouncementController } from "@modules/imobeAnnouncement/useCases/SearchAnnouncementUseCase/SearchAnnouncementController";
-import {DeleteAnnouncementController} from "@modules/imobeAnnouncement/useCases/DeleteAnnouncementUseCase/DeleteAnnouncementController";
+import { DeleteAnnouncementController } from "@modules/imobeAnnouncement/useCases/DeleteAnnouncementUseCase/DeleteAnnouncementController";
 import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
 
@@ -28,7 +28,7 @@ announcement.post(
 
 announcement.post(
   "/address/:announcement_id",
-    ensureAuthenticated,
+  ensureAuthenticated,
   createAddressController.handle
 );
 
@@ -36,6 +36,10 @@ announcement.get("/:page", listAllAnnouncementController.handle);
 
 announcement.post("/search", searchAnnouncementController.handle);
 
-announcement.delete('/:announcement_id', ensureAuthenticated, deleteAnnouncementController.handle);
+announcement.delete(
+  "/:announcement_id",
+  ensureAuthenticated,
+  deleteAnnouncementController.handle
+);
 
 export { announcement };

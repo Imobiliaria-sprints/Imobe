@@ -1,5 +1,6 @@
 import { Announcement } from "@entity/Announcement";
 import { AnnouncementImage } from "@entity/AnnouncementImage";
+import { DeleteResult } from "typeorm";
 
 export interface IAnnouncementDTO {
   title: string;

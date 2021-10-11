@@ -1,4 +1,4 @@
-import { EntityRepository, Like, Repository } from "typeorm";
+import { DeleteResult, EntityRepository, Like, Repository } from "typeorm";
 import {
   IAnnouncementDTO,
   IAnnouncementRepository,
@@ -72,7 +72,7 @@ class AnnouncementRepository
   }
 
   async deleteAnnouncement(id: string): Promise<void> {
-    await this.delete({id});
+    await this.delete(id);
   }
 }
 
