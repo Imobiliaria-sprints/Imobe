@@ -20,6 +20,7 @@ export default {
         email: announcement.userId.email,
       },
       address: {
+        id: announcement.addressId.id,
         city: announcement.addressId.city,
         state: announcement.addressId.state,
         street: announcement.addressId.street,
