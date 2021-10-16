@@ -1,16 +1,5 @@
 import { Address } from "@entity/Address";
-
-export interface IAddressDTO {
-  street: string;
-  city: string;
-  number: string;
-  block?: string;
-  complement?: string;
-  state: string;
-  zip_code: string;
-  latitude: number,
-  longitude: number
-}
+import {IAddressDTO} from "@modules/imobeAddress/repositories/IAddressRepository";
 
 export interface ICreateAddressUseCase {
   execute({

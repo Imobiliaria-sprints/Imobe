@@ -2,18 +2,20 @@ import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { AnnouncementRepository } from "@modules/imobeAnnouncement/repositories/factory/AnnouncementRepository";
 import { CreateAddressUseCase } from "./CreateAddressUseCase";
+import {ICreateAddressUseCase} from "@modules/imobeAddress/useCases/CreateAddressUseCase/ICreateAddressUseCase";
 
 class CreateAddressController {
+
+  constructor(
+      private createAddressUseCase: ICreateAddressUseCase
+  ) {
+  }
+
   async handle(request: Request, response: Response): Promise<Response> {
     const { street, city, block, complement, state, zip_code, number, latitude, longitude } =
       request.body;
-
-    const announcementRepository = getCustomRepository(AnnouncementRepository);
-    const createAddressUseCase = new CreateAddressUseCase(
-      announcementRepository
-    );
-
-    const address = await createAddressUseCase.execute({
+    
+    const address = await this.createAddressUseCase.execute({
       city,
       state,
       street,

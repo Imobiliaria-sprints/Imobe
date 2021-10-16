@@ -1,11 +1,14 @@
 import { getCustomRepository } from "typeorm";
 import { Address } from "@entity/Address";
-import { IAddressDTO, ICreateAddressUseCase } from "./ICreateAddressUseCase";
+import {  ICreateAddressUseCase } from "./ICreateAddressUseCase";
 import { AddressRepository } from "../../repositories/factory/AddressRepository";
 import { IAnnouncementRepository } from "@modules/imobeAnnouncement/repositories/IAnnouncementRepository";
+import {IAddressDTO, IAddressRepository} from "@modules/imobeAddress/repositories/IAddressRepository";
 
 class CreateAddressUseCase implements ICreateAddressUseCase {
-  constructor(private adsRepository: IAnnouncementRepository) {}
+  constructor(
+      private addressRepository: IAddressRepository
+  ) {}
 
   async execute({
     city,
@@ -18,9 +21,8 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
     latitude,
     longitude
   }: IAddressDTO): Promise<Address> {
-    const addressRepository = getCustomRepository(AddressRepository);
 
-    const address = addressRepository.create({
+    const address = this.addressRepository.createAddress({
       city,
       state,
       street,
@@ -31,8 +33,6 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
       latitude,
       longitude
     });
-
-    await addressRepository.save(address);
 
     return address;
   }
