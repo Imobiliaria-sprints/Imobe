@@ -12,18 +12,17 @@ import { api } from "../../services/api";
 import { parseCookies } from "nookies";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
-import id from "date-fns/esm/locale/id/index.js";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import {Button} from "@material-ui/core";
 
 const createAnnouncementForm = yup.object().shape({
   title: yup.string().required("Titulo é obrigatório"),
-  rooms: yup.number().required("Quantidade de quertos é obrigatório"),
+  rooms: yup.number().required("Quantidade de quartos é obrigatório"),
   square_meters: yup.number().required("Metros quadrados é obrigatório"),
   price: yup.string().required("Preço é obrigatório"),
 });
 
-export default function CreateAnnouncement(
+export default function Announcement(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
   const { register, handleSubmit, formState } = useForm({

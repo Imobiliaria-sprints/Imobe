@@ -10,6 +10,7 @@ import theme from "../styles/theme";
 import { AppProps } from "next/app";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../services/createEmotionCache";
+import {AnnouncementContextProvider} from "../context/AnnouncementContext";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -30,9 +31,11 @@ function MyApp(props) {
           <CssBaseline />
           <AuthContextProvider>
             <DropzoneContextProvider>
+              <AnnouncementContextProvider>
               <SlideContextProvider>
                 <Component {...pageProps} />
               </SlideContextProvider>
+              </AnnouncementContextProvider>
             </DropzoneContextProvider>
           </AuthContextProvider>
         </ThemeProvider>

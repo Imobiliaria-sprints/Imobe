@@ -1,17 +1,22 @@
-import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
+import {MapContainer,  TileLayer, GeoJSON} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import {useMemo} from "react";
-import dynamic from 'next/dynamic'
+import {useCreateAnnouncement} from "../../hooks/useCreateAnnouncement";
+
+
+
 
 const MapComponent = () => {
+
+    const {handleMapClick, position} = useCreateAnnouncement();
+
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} style={{height: 400, width: "100%"}}>
+        <MapContainer center={[position.latitude, position.longitude]} zoom={13}  style={{height: 400, width: "100%", marginTop: 25}} onChange={handleMapClick} >
         <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}>
-        </Marker>
-    </MapContainer>);
+
+        </MapContainer>
+    );
 }
 
 export default MapComponent;

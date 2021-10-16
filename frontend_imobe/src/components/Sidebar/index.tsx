@@ -81,7 +81,7 @@ export function Sidebar() {
             icon={<MdAdd color="#0ea490" style={{ width: 30, height: 30 }} />}
             name="Criar anúncio"
             sidebarIsActive={isSidebarActive}
-            path="user/create-announcement"
+            path="user/address-announcement"
           />
         </nav>
       </div>

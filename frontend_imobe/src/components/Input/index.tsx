@@ -33,9 +33,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           name={name}
           ref={ref}
           {...rest}
-          onChange={(e) =>
-            !!mask && (e.target.value = `${mask(e.target.value)}`)
-          }
+          onChange={(e) => (e.target.value = `${mask(e.target.value)}`)}
           className={!!error && styles.inputInvalid}
         />
       </section>

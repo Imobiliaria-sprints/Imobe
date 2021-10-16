@@ -53,7 +53,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   useEffect(() => {
     const { "imobeflex.token": token } = parseCookies();
-    console.log(token);
+
     if (token) {
       api
         .get("users/verify/user", {
@@ -67,8 +67,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const {
       data: { token, user },
     } = await api.post("auth/session", { email, password });
-
-    console.log({ token, user });
 
     setCookie(undefined, "imobeflex.token", token, {
       maxAge: 60 * 60 * 24 * 1, // 1 day
