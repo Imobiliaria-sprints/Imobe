@@ -13,5 +13,8 @@ export interface IAddressDTO {
 }
 
 export interface IAddressRepository {
-    createAddress(data: IAddressDTO): Promise<Address>;
+    createAddress({
+      city, state, street, number, zip_code, block, complement, latitude, longitude
+    }: IAddressDTO): Promise<Address>;
+    findOneAddress(address_id: string): Promise<Address>
 }

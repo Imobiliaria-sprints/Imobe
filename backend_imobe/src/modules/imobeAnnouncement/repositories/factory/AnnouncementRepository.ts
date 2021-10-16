@@ -6,9 +6,7 @@ import {
 import { Announcement } from "@entity/Announcement";
 
 @EntityRepository(Announcement)
-class AnnouncementRepository
-  extends Repository<Announcement>
-  implements IAnnouncementRepository
+class AnnouncementRepository extends Repository<Announcement> implements IAnnouncementRepository
 {
   async createAnnouncement({
     title,
@@ -37,7 +35,9 @@ class AnnouncementRepository
   }
 
   async findOneAnnouncementById(id: string): Promise<Announcement> {
-    const announcement = await this.findOne(id);
+    const announcement = await this.findOne(id, {
+      relations: ["userId", "images", "addressId"],
+    });
 
     return announcement;
   }

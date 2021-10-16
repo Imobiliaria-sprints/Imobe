@@ -4,7 +4,7 @@ import { CreateAnnouncementController } from "@modules/imobeAnnouncement/useCase
 import { ListAllAnnouncementController } from "@modules/imobeAnnouncement/useCases/ListAllAnnouncementUseCase/ListAllAnnouncementController";
 import { SearchAnnouncementController } from "@modules/imobeAnnouncement/useCases/SearchAnnouncementUseCase/SearchAnnouncementController";
 import { DeleteAnnouncementController } from "@modules/imobeAnnouncement/useCases/DeleteAnnouncementUseCase/DeleteAnnouncementController";
-import {createAddressController} from "@modules/imobeAddress/useCases/CreateAddressUseCase";
+import { CreateAddressController } from "@modules/imobeAddress/useCases/CreateAddressUseCase/CreateAddressController";
 import uploadImageConfig from "@config/uploadImageConfig";
 import multer from "multer";
 
@@ -12,23 +12,23 @@ const upload = multer(uploadImageConfig);
 
 const announcement = Router();
 
+const createAddressController = new CreateAddressController();
 const createAnnouncementController = new CreateAnnouncementController();
 const listAllAnnouncementController = new ListAllAnnouncementController();
 const searchAnnouncementController = new SearchAnnouncementController();
 const deleteAnnouncementController = new DeleteAnnouncementController();
 
 announcement.post(
-  "/:address_id",
-  ensureAuthenticated,
-  // validationAnnouncement,
-  upload.array("images", 5),
-  createAnnouncementController.handle
-);
-
-announcement.post(
   "/address",
   ensureAuthenticated,
   createAddressController.handle
+);
+
+announcement.post(
+  "/:address_id",
+  ensureAuthenticated,
+  upload.array("images", 5),
+  createAnnouncementController.handle
 );
 
 announcement.get("/:page", listAllAnnouncementController.handle);

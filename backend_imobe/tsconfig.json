@@ -25,6 +25,7 @@
       "@app/*": ["./src/infra/http/*"],
       "@modules/*": ["./src/modules/*"],
       "@infra/*": ["./src/infra/*"],
+      "@core/*": ["./src/infra/*"]
     }
   },
   "include": ["src/**/*", "__tests__"]

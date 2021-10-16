@@ -29,6 +29,11 @@ class AddressRepositoryInMemory implements IAddressRepository{
         return address;
     }
 
+    async findOneAddress(address_id): Promise<Address> {
+        const address = this.addresses.find(address => address.id === address_id);
+        return address;
+    }
+
 }
 
 export {AddressRepositoryInMemory};

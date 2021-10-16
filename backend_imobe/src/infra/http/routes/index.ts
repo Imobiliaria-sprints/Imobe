@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { user } from "./routes/user.routes";
-import { announcement } from "./routes/announcement.routes";
-import { dashboard } from "./routes/dashboard.routes";
-import { authenticated } from "./routes/authenticated.routes";
+import { user } from "./user.routes";
+import { announcement } from "./announcement.routes";
+import { dashboard } from "./dashboard.routes";
+import { authenticated } from "./authenticated.routes";
 
 const router = Router();
 

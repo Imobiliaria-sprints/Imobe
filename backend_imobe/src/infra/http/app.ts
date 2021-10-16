@@ -2,7 +2,7 @@ import "reflect-metadata";
 import "express-async-errors";
 import "../../database";
 import express from "express";
-import { router } from "./router";
+import {router} from "./routes";
 import { errorResponse } from "./errors/errorResponse";
 import { createClient } from "redis";
 import cors from "cors";

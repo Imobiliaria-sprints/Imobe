@@ -5,6 +5,19 @@ import { DeleteResult } from "typeorm";
 
 class AnnouncementRepositoryInMemory implements IAnnouncementRepository {
   private announcement: Announcement[] = [];
+  private static instance: AnnouncementRepositoryInMemory;
+
+  constructor() {
+    this.announcement = [];
+  }
+
+  static getInstance(): AnnouncementRepositoryInMemory {
+    if(!AnnouncementRepositoryInMemory.instance) {
+      AnnouncementRepositoryInMemory.instance = new AnnouncementRepositoryInMemory();
+    }
+
+    return AnnouncementRepositoryInMemory.instance;
+  }
 
   async createAnnouncement(announcement: Announcement): Promise<Announcement> {
     Object.assign(announcement, {
