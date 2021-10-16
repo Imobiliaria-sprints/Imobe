@@ -13,6 +13,7 @@ import cx from "classnames";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { phone } from "../../utils/InputMask";
+import {Button} from "@material-ui/core";
 
 interface Files extends File {
   preview: string;
@@ -92,7 +93,7 @@ export default function SignUp(props) {
               )}
             </div>
             <span>
-              <p>{files?.name}</p>
+              <p>{acceptedFiles.length !== 0 ? files?.name : "campo obrigatório" }</p>
             </span>
             <label>Escolha sua foto de perfil</label>
           </div>
@@ -139,7 +140,7 @@ export default function SignUp(props) {
             <div>{validate !== "null" && validate}</div>
           </div> */}
 
-          <button type="submit">
+          <button type="submit" >
             {formState.isSubmitting ? (
               <Image
                 height="20"
@@ -148,7 +149,7 @@ export default function SignUp(props) {
                 alt="loading"
               />
             ) : (
-              "Próximo"
+              "Criar minha conta"
             )}
           </button>
         </form>
