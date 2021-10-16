@@ -76,7 +76,7 @@ export function AnnouncementContextProvider({children}: AnnouncementContextProvi
 
             const { "imobeflex.token": token } = parseCookies();
 
-            const { status, data: redirect } = await api.post("/announcement", announcement, {
+             const { status } = await api.post("/announcement", announcement, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -84,7 +84,7 @@ export function AnnouncementContextProvider({children}: AnnouncementContextProvi
                 toast.success("Seu imóvel foi divulgado!");
             }
 
-            Router.push(`/user/${redirect.id}`);
+            Router.push("/dashboard");
     }
 
     return (
