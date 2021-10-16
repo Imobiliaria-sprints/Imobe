@@ -56,8 +56,8 @@ export class Announcement {
   address_id: string;
 
   @JoinColumn({name: "address_id"})
-  @OneToOne(() => Address)
-  Address: Address
+  @ManyToOne(() => Address)
+  addressId: Address
 
   @CreateDateColumn()
   created_at: Date;

@@ -40,7 +40,7 @@ export class CreateAnnouncement1627091251060 implements MigrationInterface {
           },
           {
             name: "address_id",
-            type: "uuid"
+            type: "uuid",
           },
           {
             name: "created_at",
@@ -67,8 +67,8 @@ export class CreateAnnouncement1627091251060 implements MigrationInterface {
             referencedTableName: "address",
             referencedColumnNames: ["id"],
             columnNames: ["address_id"],
-            onUpdate: "CASCADE",
-            onDelete: "CASCADE",
+            onUpdate: "SET NULL",
+            onDelete: "SET NULL",
           },
         ],
       })

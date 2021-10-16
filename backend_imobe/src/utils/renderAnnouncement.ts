@@ -19,6 +19,17 @@ export default {
         phone: announcement.userId.phone,
         email: announcement.userId.email,
       },
+      address: {
+        city: announcement.addressId.city,
+        state: announcement.addressId.state,
+        street: announcement.addressId.street,
+        number: announcement.addressId.number,
+        zip_code: announcement.addressId.zip_code,
+        block: announcement.addressId.block,
+        complement: announcement.addressId.complement,
+        latitude: announcement.addressId.latitude,
+        longitude: announcement.addressId.longitude,
+      }
     };
   },
 

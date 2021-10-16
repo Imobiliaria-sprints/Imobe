@@ -18,6 +18,7 @@ class AnnouncementRepository
     square_meters,
     images,
     user_id,
+    address_id
   }: IAnnouncementDTO): Promise<Announcement> {
     const announcement = this.create({
       title,
@@ -27,6 +28,7 @@ class AnnouncementRepository
       square_meters,
       images,
       user_id,
+      address_id
     });
 
     await this.save(announcement);
@@ -50,7 +52,7 @@ class AnnouncementRepository
     const pageStart = (Number(page) - 1) * Number(per_page);
 
     const [announcements, total] = await this.findAndCount({
-      relations: ["userId", "images"],
+      relations: ["userId", "images", "addressId"],
       order: { created_at: "DESC" },
       take: per_page,
       skip: pageStart,

@@ -3,11 +3,13 @@ import { ICreateAnnouncementUseCase } from "./ICreateAnnouncementUseCase";
 import { IAnnouncementRepository } from "../../repositories/IAnnouncementRepository";
 import { IUserRepository } from "@modules/imobeUsers/repositories/IUserRepository";
 import { AnnouncementImage } from "@entity/AnnouncementImage";
+import {AddressRepository} from "@modules/imobeAddress/repositories/factory/AddressRepository";
 
 class CreateAnnouncementUseCase implements ICreateAnnouncementUseCase {
   constructor(
     private announcementRepository: IAnnouncementRepository,
-    private userRepository: IUserRepository
+    private userRepository: IUserRepository,
+    private addressRepository: AddressRepository
   ) {}
 
   /**
@@ -34,6 +36,12 @@ class CreateAnnouncementUseCase implements ICreateAnnouncementUseCase {
 
     if (!user) {
       throw new Error("User not found");
+    }
+
+    const addressAlreadyExists = await this.addressRepository.findOne(address_id);
+
+    if(!addressAlreadyExists) {
+      throw new Error("Address not found");
     }
 
     const announcement = await this.announcementRepository.createAnnouncement({

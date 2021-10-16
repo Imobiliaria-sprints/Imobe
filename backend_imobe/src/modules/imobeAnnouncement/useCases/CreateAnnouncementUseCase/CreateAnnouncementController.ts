@@ -4,6 +4,7 @@ import { AnnouncementRepository } from "../../repositories/factory/AnnouncementR
 import { UserRepository } from "@modules/imobeUsers/repositories/factory/UserRepository";
 import { CreateAnnouncementUseCase } from "./CreateAnnouncementUseCase";
 import slug from "slug";
+import {AddressRepository} from "@modules/imobeAddress/repositories/factory/AddressRepository";
 
 class CreateAnnouncementController {
 
@@ -19,10 +20,12 @@ class CreateAnnouncementController {
 
     const announcementRepository = getCustomRepository(AnnouncementRepository);
     const userRepository = getCustomRepository(UserRepository);
+    const addressRepository = getCustomRepository(AddressRepository);
 
     const createAnnouncementUseCase = new CreateAnnouncementUseCase(
       announcementRepository,
-      userRepository
+      userRepository,
+      addressRepository
     );
 
     const requestImages = request.files as Express.Multer.File[];

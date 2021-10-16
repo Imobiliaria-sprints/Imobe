@@ -12,10 +12,6 @@ export class CreateAddress1627091251059 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: "announcement_id",
-            type: "uuid",
-          },
-          {
             name: "street",
             type: "varchar",
           },

@@ -19,7 +19,7 @@ const searchAnnouncementController = new SearchAnnouncementController();
 const deleteAnnouncementController = new DeleteAnnouncementController();
 
 announcement.post(
-  "/",
+  "/:address_id",
   ensureAuthenticated,
   // validationAnnouncement,
   upload.array("images", 5),
@@ -27,7 +27,7 @@ announcement.post(
 );
 
 announcement.post(
-  "/address/:announcement_id",
+  "/address",
   ensureAuthenticated,
   createAddressController.handle
 );
