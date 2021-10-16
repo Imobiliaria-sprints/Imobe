@@ -39,6 +39,10 @@ export class CreateAnnouncement1627091251060 implements MigrationInterface {
             type: "uuid",
           },
           {
+            name: "address_id",
+            type: "uuid"
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -51,10 +55,18 @@ export class CreateAnnouncement1627091251060 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: "FKUserCreateAds",
+            name: "FKUserAnnouncement",
             referencedTableName: "users",
             referencedColumnNames: ["id"],
             columnNames: ["user_id"],
+            onUpdate: "CASCADE",
+            onDelete: "CASCADE",
+          },
+          {
+            name: "FKAddressAnnouncement",
+            referencedTableName: "address",
+            referencedColumnNames: ["id"],
+            columnNames: ["address_id"],
             onUpdate: "CASCADE",
             onDelete: "CASCADE",
           },

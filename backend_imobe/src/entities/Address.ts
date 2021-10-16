@@ -17,13 +17,6 @@ export class Address {
   id: string;
 
   @Column()
-  announcement_id: string;
-
-  @JoinColumn({ name: "announcement_id" })
-  @OneToOne(() => Announcement)
-  announcement: Announcement;
-
-  @Column()
   street: string;
 
   @Column()

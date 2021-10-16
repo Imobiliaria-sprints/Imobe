@@ -11,13 +11,14 @@ class CreateAnnouncementUseCase implements ICreateAnnouncementUseCase {
   ) {}
 
   /**
-   *
-   * @param {string} title
-   * @param {string} price
-   * @param {number} rooms
-   * @param {number} square_meters
-   * @param {string} user_id
-   * @returns {Promise<Announcement>} Return promise
+   * @param title
+   * @param slug_title
+   * @param price
+   * @param rooms
+   * @param square_meters
+   * @param images
+   * @param user_id
+   * @param address_id
    */
   async execute(
     title: string,
@@ -26,7 +27,8 @@ class CreateAnnouncementUseCase implements ICreateAnnouncementUseCase {
     rooms: number,
     square_meters: number,
     images: AnnouncementImage[] | { path: string }[],
-    user_id: string
+    user_id: string,
+    address_id: string
   ): Promise<Announcement> {
     const user = await this.userRepository.findOneUserById(user_id);
 
@@ -42,6 +44,7 @@ class CreateAnnouncementUseCase implements ICreateAnnouncementUseCase {
       square_meters,
       images,
       user_id,
+      address_id
     });
 
     return announcement;

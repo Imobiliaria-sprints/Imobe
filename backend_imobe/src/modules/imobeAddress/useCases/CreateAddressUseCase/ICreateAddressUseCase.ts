@@ -1,7 +1,6 @@
 import { Address } from "@entity/Address";
 
 export interface IAddressDTO {
-  announcement_id: string;
   street: string;
   city: string;
   number: string;
@@ -15,7 +14,6 @@ export interface IAddressDTO {
 
 export interface ICreateAddressUseCase {
   execute({
-    announcement_id,
     city,
     state,
     street,

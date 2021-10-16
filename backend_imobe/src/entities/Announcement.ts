@@ -4,7 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
+  OneToMany, OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -14,6 +14,7 @@ import { User } from "./User";
 
 import { Length, IsInt, Min } from "class-validator";
 import { AnnouncementImage } from "./AnnouncementImage";
+import {Address} from "@entity/Address";
 
 @Entity("announcement")
 export class Announcement {
@@ -50,6 +51,13 @@ export class Announcement {
   })
   @JoinColumn({ name: "announcement_id" })
   images: AnnouncementImage[];
+
+  @Column()
+  address_id: string;
+
+  @JoinColumn({name: "address_id"})
+  @OneToOne(() => Address)
+  Address: Address
 
   @CreateDateColumn()
   created_at: Date;

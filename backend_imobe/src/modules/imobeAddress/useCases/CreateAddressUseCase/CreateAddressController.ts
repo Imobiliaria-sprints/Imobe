@@ -8,15 +8,12 @@ class CreateAddressController {
     const { street, city, block, complement, state, zip_code, number, latitude, longitude } =
       request.body;
 
-    const { announcement_id } = request.params;
-
     const announcementRepository = getCustomRepository(AnnouncementRepository);
     const createAddressUseCase = new CreateAddressUseCase(
       announcementRepository
     );
 
     const address = await createAddressUseCase.execute({
-      announcement_id,
       city,
       state,
       street,

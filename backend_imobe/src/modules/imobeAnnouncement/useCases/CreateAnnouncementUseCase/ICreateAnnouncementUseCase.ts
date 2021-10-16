@@ -9,6 +9,7 @@ export interface ICreateAnnouncementUseCase {
     rooms: number,
     square_meters: number,
     images: AnnouncementImage[],
-    user_id: string
+    user_id: string,
+    address_id: string
   ): Promise<Announcement>;
 }

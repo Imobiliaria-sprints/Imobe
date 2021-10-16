@@ -6,14 +6,15 @@ import { CreateAnnouncementUseCase } from "./CreateAnnouncementUseCase";
 import slug from "slug";
 
 class CreateAnnouncementController {
+
   /**
-   *
    * @param {Request} request
    * @param {Response} response
    * @returns {Response} This method returns the response Announcement
    */
   async handle(request: Request, response: Response): Promise<Response> {
     const { title, rooms, price, square_meters } = request.body;
+    const { address_id } = request.params;
     const { user_id } = request;
 
     const announcementRepository = getCustomRepository(AnnouncementRepository);
@@ -40,7 +41,8 @@ class CreateAnnouncementController {
         rooms,
         square_meters,
         images,
-        user_id
+        user_id,
+        address_id
       );
 
       return response.json(announcement);

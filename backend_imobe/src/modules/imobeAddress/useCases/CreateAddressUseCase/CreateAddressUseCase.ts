@@ -8,7 +8,6 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
   constructor(private adsRepository: IAnnouncementRepository) {}
 
   async execute({
-    announcement_id,
     city,
     state,
     street,
@@ -19,18 +18,9 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
     latitude,
     longitude
   }: IAddressDTO): Promise<Address> {
-    const ads = await this.adsRepository.findOneAnnouncementById(
-      announcement_id
-    );
-
-    if (!ads) {
-      throw new Error("Cannot found ads");
-    }
-
     const addressRepository = getCustomRepository(AddressRepository);
 
     const address = addressRepository.create({
-      announcement_id,
       city,
       state,
       street,

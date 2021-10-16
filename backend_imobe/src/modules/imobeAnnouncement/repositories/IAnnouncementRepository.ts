@@ -10,6 +10,7 @@ export interface IAnnouncementDTO {
   square_meters: number;
   images: AnnouncementImage[] | { path: string }[];
   user_id: string;
+  address_id: string;
 }
 
 export interface IAnnouncementRepository {
@@ -21,6 +22,7 @@ export interface IAnnouncementRepository {
     square_meters,
     images,
     user_id,
+    address_id
   }: IAnnouncementDTO): Promise<Announcement>;
 
   findOneAnnouncementById(id: string): Promise<Announcement>;
