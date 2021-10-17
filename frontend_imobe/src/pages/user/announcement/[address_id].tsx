@@ -14,6 +14,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import {Button} from "@material-ui/core";
+import {useCreateAnnouncement} from "../../../hooks/useCreateAnnouncement";
 
 const createAnnouncementForm = yup.object().shape({
   title: yup.string().required("Titulo é obrigatório"),
@@ -35,31 +36,12 @@ export default function Address_id(
 
   const { errors } = formState;
 
-  console.log(router.)
+  const {address_id} = router.query;
 
+  const {createAnnouncement} = useCreateAnnouncement();
   async function handleCreateAnnouncement(data) {
     try {
-      const announcement = new FormData();
-
-      announcement.append("title", data.title);
-      announcement.append("rooms", data.rooms);
-      announcement.append("square_meters", data.square_meters);
-      files.map((file) => {
-        return announcement.append("images", file);
-      });
-      announcement.append("price", data.price);
-
-      const { "imobeflex.token": token } = parseCookies();
-
-      const { status, data: redirect } = await api.post("/announcement", announcement, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (status === 200) {
-        toast.success("Seu imóvel foi divulgado!");
-      }
-
-      router.push(`/user/${redirect.id}`);
+      await createAnnouncement(data, files, address_id.toString());
     } catch (error) {
       console.log(error);
       toast.error("Algo deu errado");

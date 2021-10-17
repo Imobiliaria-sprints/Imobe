@@ -5,9 +5,12 @@ import {cep} from "../../utils/InputMask";
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useState} from "react";
+import {FormEvent, useState} from "react";
 import styles from '../../styles/pages/user/announcement-address.module.scss';
 import {useCreateAnnouncement} from "../../hooks/useCreateAnnouncement";
+import AsyncSelect from "react-select/async";
+import {GetServerSideProps, InferGetServerSidePropsType} from "next";
+import {parseCookies} from "nookies";
 
 const createAddressForm = yup.object().shape({
     zip_code: yup.string().required("CEP é obrigatório").matches(/^[0-9]{5}-[0-9]{3}$/, {message: "CEP inválido"}),
@@ -19,27 +22,38 @@ const createAddressForm = yup.object().shape({
     complements: yup.string()
 });
 
-export default function Address() {
+export default function Address(
+    props: InferGetServerSidePropsType<typeof getServerSideProps>
+) {
+    const [zipCode, setZipCode] = useState("");
+    const [number, setNumber] = useState("");
+    const [complement, setComplement] = useState("");
+
+
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(createAddressForm),
     });
 
     const {errors} = formState;
 
-    const [position, setPosition] = useState({ latitude: -23.5080806, longitude: -46.3702072 });
+    const {loadOptions, handleChangeSelect, place, handleSubmitAddress, position} = useCreateAnnouncement();
 
-    const {createAddress} = useCreateAnnouncement();
+    async function handleCreateAddress(event: FormEvent) {
+        event.preventDefault();
 
-    async function handleCreateAddress(data) {
         try {
-            const { latitude, longitude} = position;
+            const { latitude, longitude } = position;
 
-            const address = Object.assign(data, {
+            const data = {
+                address: place.value,
+                zip_code: zipCode,
+                number,
+                complement,
                 latitude,
                 longitude
-            })
+            }
 
-            await createAddress(address);
+            await handleSubmitAddress(data);
         } catch (err) {
             console.log(err);
         }
@@ -52,15 +66,31 @@ export default function Address() {
                 <section className={styles.create_address_form}>
                     <h2>Localização do imóvel</h2>
 
-                    <form onSubmit={handleSubmit(handleCreateAddress)} >
-                        <Input name={"zip_code"} label={"CEP"}  mask={cep} error={errors.zip_code}  {...register("zip_code")}/>
+                    <form onSubmit={handleCreateAddress}>
+                        <div className={styles.asyncSelect}>
+                            <label>Endereço</label>
+                            <AsyncSelect placeholder="Digite seu endereço" cacheOptions loadOptions={loadOptions} onChange={handleChangeSelect} value={place} />
+                        </div>
                         <fieldset>
-                            <Input name={"state"} label={"Estado"} error={errors.state} {...register("state")} />
-                            <Input name={"number"} label={"Número"} error={errors.number} {...register("number")} />
+                            <Input name={"zip_code"} label={"CEP"}
+                                   error={errors.zip_code}
+                                   {...register("zip_code")}
+                                   onChange={(e) => setZipCode(e.target.value)}
+                            />
+                            <Input name={"number"}
+                                   label={"Número"}
+                                   error={errors.number}
+                                   {...register("number")}
+                                   onChange={(e) => setNumber(e.target.value)}
+                            />
                         </fieldset>
-                        <Input name={"city"} label={"Cidade"}  error={errors.city} {...register("city")}/>
-                        <Input name={"street"} label={"Rua"}  error={errors.street} {...register("street")} />
-                        <Input name={'complement'} label={"Complemento"} error={errors.complement} {...register("complement")} />
+                        <Input
+                            name={'complement'}
+                            label={"Complemento"}
+                            error={errors.complement}
+                            {...register("complement")}
+                            onChange={(e) => setComplement(e.target.value)}
+                        />
                         <Map  />
 
                         <button type="submit">Próximo</button>
@@ -72,3 +102,17 @@ export default function Address() {
     );
 }
 
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const { ["imobeflex.token"]: token } = parseCookies(ctx);
+
+    if (!token) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            },
+        };
+    }
+
+    return { props: {} };
+};
