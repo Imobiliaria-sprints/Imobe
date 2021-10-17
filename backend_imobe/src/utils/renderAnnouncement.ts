@@ -21,9 +21,7 @@ export default {
       },
       address: {
         id: announcement.addressId.id,
-        city: announcement.addressId.city,
-        state: announcement.addressId.state,
-        street: announcement.addressId.street,
+        address: announcement.addressId.address,
         number: announcement.addressId.number,
         zip_code: announcement.addressId.zip_code,
         block: announcement.addressId.block,
