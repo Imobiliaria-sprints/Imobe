@@ -1,14 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Dropzone } from "../../components/Dropzone";
-import { Input } from "../../components/Input";
-import { Sidebar } from "../../components/Sidebar";
+import { Dropzone } from "../../../components/Dropzone";
+import { Input } from "../../../components/Input";
+import { Sidebar } from "../../../components/Sidebar";
 import * as yup from "yup";
-import styles from "../../styles/pages/user/create-announcement.module.scss";
+import styles from "../../../styles/pages/user/create-announcement.module.scss";
 import { FaBed, FaVectorSquare } from "react-icons/fa";
-import { useDrop } from "../../hooks/useDrop";
-import { currency, square_meters, without_text } from "../../utils/InputMask";
-import { api } from "../../services/api";
+import { useDrop } from "../../../hooks/useDrop";
+import { currency, square_meters, without_text } from "../../../utils/InputMask";
+import { api } from "../../../services/api";
 import { parseCookies } from "nookies";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
@@ -22,7 +22,7 @@ const createAnnouncementForm = yup.object().shape({
   price: yup.string().required("Preço é obrigatório"),
 });
 
-export default function Announcement(
+export default function Address_id(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
   const { register, handleSubmit, formState } = useForm({
@@ -34,6 +34,8 @@ export default function Announcement(
   const { files } = useDrop();
 
   const { errors } = formState;
+
+  console.log(router.)
 
   async function handleCreateAnnouncement(data) {
     try {
@@ -96,7 +98,6 @@ export default function Announcement(
                 min="1"
                 icon={<FaBed size="25" color="#474747" />}
                 {...register("rooms")}
-                mask={without_text}
                 error={errors.rooms}
               />
               <Input
@@ -104,7 +105,7 @@ export default function Announcement(
                 label="Quantos metros quadrados tem?"
                 icon={<FaVectorSquare size="20" color="#474747" />}
                 {...register("square_meters")}
-                mask={square_meters}
+
                 error={errors.square_meters}
               />
             </fieldset>
@@ -114,7 +115,7 @@ export default function Announcement(
               type="price"
               {...register("price")}
               error={errors.price}
-              mask={currency}
+
             />
 
             <Button type="submit" color={"primary"}>Criar anúncio</Button>
