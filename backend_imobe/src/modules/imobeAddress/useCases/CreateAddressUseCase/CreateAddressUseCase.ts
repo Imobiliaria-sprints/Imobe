@@ -8,9 +8,7 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
   ) {}
 
   async execute({
-    city,
-    state,
-    street,
+    address,
     number,
     zip_code,
     block,
@@ -18,10 +16,8 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
     latitude,
     longitude
   }: IAddressDTO): Promise<Address> {
-    const address = await this.addressRepository.createAddress({
-      city,
-      state,
-      street,
+    const address_data = await this.addressRepository.createAddress({
+      address,
       number,
       zip_code,
       block,
@@ -30,7 +26,7 @@ class CreateAddressUseCase implements ICreateAddressUseCase {
       longitude
     });
 
-    return address;
+    return address_data;
   }
 }
 

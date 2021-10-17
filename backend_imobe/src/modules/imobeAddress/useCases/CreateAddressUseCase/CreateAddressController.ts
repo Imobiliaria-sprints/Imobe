@@ -9,12 +9,10 @@ class CreateAddressController {
     const addressRepository = getCustomRepository(AddressRepository);
     const createAddressUseCase = new CreateAddressUseCase(addressRepository);
 
-    const { city, state, street, number, zip_code, block, complement, latitude, longitude } = request.body;
+    const { address, number, zip_code, block, complement, latitude, longitude } = request.body;
 
-    const address = await createAddressUseCase.execute({
-        city,
-        state,
-        street,
+    const address_data = await createAddressUseCase.execute({
+        address,
         number,
         zip_code,
         block,
@@ -23,7 +21,7 @@ class CreateAddressController {
         longitude
     });
 
-      return response.json(address);
+      return response.json(address_data);
   }
 }
 

@@ -12,11 +12,7 @@ export class CreateAddress1627091251059 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: "street",
-            type: "varchar",
-          },
-          {
-            name: "city",
+            name: "address",
             type: "varchar",
           },
           {
@@ -28,10 +24,6 @@ export class CreateAddress1627091251059 implements MigrationInterface {
             name: "block",
             type: "varchar",
             isNullable: true,
-          },
-          {
-            name: "state",
-            type: "varchar",
           },
           {
             name: "number",

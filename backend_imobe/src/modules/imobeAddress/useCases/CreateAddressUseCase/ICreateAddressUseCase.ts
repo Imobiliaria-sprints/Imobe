@@ -3,9 +3,7 @@ import {IAddressDTO} from "@modules/imobeAddress/repositories/IAddressRepository
 
 export interface ICreateAddressUseCase {
   execute({
-    city,
-    state,
-    street,
+    address,
     number,
     zip_code,
     block,

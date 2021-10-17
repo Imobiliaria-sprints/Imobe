@@ -17,10 +17,7 @@ export class Address {
   id: string;
 
   @Column()
-  street: string;
-
-  @Column()
-  city: string;
+  address: string;
 
   @Column()
   complement?: string;
@@ -30,9 +27,6 @@ export class Address {
 
   @Column()
   block?: string;
-
-  @Column()
-  state: string;
 
   @Column()
   zip_code: string;
