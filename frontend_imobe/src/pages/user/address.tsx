@@ -103,6 +103,7 @@ export default function Address(
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
     const { ["imobeflex.token"]: token } = parseCookies(ctx);
 
     if (!token) {

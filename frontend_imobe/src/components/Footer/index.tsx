@@ -10,15 +10,17 @@ export function Footer() {
       <div className={styles.contain_logo}>
         <Image height="60" width="200" src="/icons/logo.svg" alt="logomark" />
       </div>
-      <Topic name="Sobre">
-        <li>Lorem ipsum dolar</li>
-        <li>Lorem ipsum dolar</li>
-        <li>Lorem ipsum dolar</li>
-      </Topic>
-      <Topic name="Política">
-        <li>Política de privacidade</li>
-        <li>Sobre nós</li>
-      </Topic>
+        <div className={styles.content_topic}>
+          <Topic name="Sobre">
+            <li>Lorem ipsum dolar</li>
+            <li>Lorem ipsum dolar</li>
+            <li>Lorem ipsum dolar</li>
+          </Topic>
+          <Topic name="Política">
+            <li>Política de privacidade</li>
+            <li>Sobre nós</li>
+          </Topic>
+        </div>
       <div className={styles.send_notification}>
         <span>Quer receber as novidades da Imobe?</span>
         <section>

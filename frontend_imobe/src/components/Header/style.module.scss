@@ -17,6 +17,13 @@
     justify-content: space-between;
     max-width: 1400px;
     margin: 0 auto;
+    gap: 10px;
+
+    > div {
+      img {
+        max-width: 10rem;
+      }
+    }
   }
 }
 

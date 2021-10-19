@@ -79,7 +79,7 @@ export default function Dashboard(
           ) : (
             <h3>
               Não há nenhum imóvel cadastrado na sua conta,{" "}
-              <a onClick={() => router.push("/user/create-announcement")}>
+              <a onClick={() => router.push("/user/address")}>
                 clique aqui
               </a>{" "}
               para criar anúnciar seu imóvel

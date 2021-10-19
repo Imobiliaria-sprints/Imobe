@@ -3,12 +3,30 @@
   margin-top: 2rem;
   padding: 1.2rem 1rem;
   display: grid;
-  grid-template-columns: 300px 1fr 1fr 450px;
+  grid-template-columns: minmax(0, 300px)  1fr minmax(5rem, 450px);
   grid-template-rows: 200px 100px;
   gap: 25px;
 
+  @media screen and (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+      width: 100%;
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
   > .contain_logo {
     align-self: flex-start;
+  }
+
+  .content_topic {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
