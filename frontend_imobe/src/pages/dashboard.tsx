@@ -31,7 +31,7 @@ export default function Dashboard(
 
   const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
 
-  const { data } = useFetch("dashboard", token);
+  const { data } = useFetch("announcement/user", token);
 
   useEffect(() => {
     const announcement = data
