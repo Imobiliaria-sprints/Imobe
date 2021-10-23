@@ -10,6 +10,7 @@ type CurrentLocation = {
 
 type MapComponentProps = {
     current_location?: CurrentLocation | undefined,
+    isDraggingAndZoom?: boolean
 }
 
 const mapPinIcon = Leaflet.icon({
@@ -19,12 +20,18 @@ const mapPinIcon = Leaflet.icon({
     popupAnchor: [170, 2],
 });
 
-const MapComponent = ({current_location}: MapComponentProps) => {
+const MapComponent = ({current_location, isDraggingAndZoom = true}: MapComponentProps) => {
 
     const {position, location} = useCreateAnnouncement();
 
     return (
-        <MapContainer center={!!current_location ? current_location : location} zoom={10}  style={{height: 400, width: "100%", marginTop: 25}}  >
+        <MapContainer
+            center={!!current_location ? current_location : location}
+            zoom={10}
+            scrollWheelZoom={isDraggingAndZoom}
+            dragging={isDraggingAndZoom}
+            style={{height: 400, width: "100%", marginTop: 25, borderRadius: 10}}
+        >
         <TileLayer
             url={`https://a.tile.openstreetmap.org/{z}/{x}/{y}.png`}
         />

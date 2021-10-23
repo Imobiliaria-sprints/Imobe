@@ -10,7 +10,9 @@ import {MdArrowBack, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdPermContactCal
 import {Header} from "../../components/Header";
 import {v4} from "uuid";
 import {Map} from "../../components/Map";
-import {FaBed} from "react-icons/fa";
+import {FaBed, FaEnvelope, FaMailchimp, FaRegEnvelope, FaWhatsapp} from "react-icons/fa";
+import {Divisor} from "../../components/Divisor";
+import {Footer} from "../../components/Footer";
 
 type AnnouncementData = {
     id: string;
@@ -155,6 +157,21 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                       </section>
                       <span> <MdPermContactCalendar size={24}/> {announcement.created_at}</span>
                   </div>
+
+                  <div className={styles.socials}>
+                      <h3>Entre em contato para saber mais</h3>
+                      <section>
+                          <a href="" target="_blank">
+                              <FaWhatsapp size={25} />
+                              {announcement.user.phone}
+                          </a>
+                          <a href="" target="_blank">
+                              <FaRegEnvelope size={25}/>
+                              {announcement.user.email}
+                          </a>
+                      </section>
+                  </div>
+                  <Divisor />
               </div>
               <div className={styles.content_publish_price}>
                   <p>Clique aqui para entender mais sobre o funcionamento da visita aos imóveis da Imobe Flex</p>
@@ -173,8 +190,9 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                     </div>
                 </section>
               </div>
-              <Map current_location={{lat: announcement.address.latitude, lng: announcement.address.longitude}}/>
+              <Map current_location={{lat: announcement.address.latitude, lng: announcement.address.longitude}} isDraggingAndZoom={false}/>
           </div>
+          <Footer />
       </div>
     );
 }
