@@ -1,0 +1,225 @@
+.announcement_container {
+  max-width: 1200px;
+  margin: 4rem auto 0 auto;
+  padding: 1rem;
+}
+
+.proprietary_user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+
+  > button {
+    border: none;
+    background: transparent;
+    transition: filter 0.2s;
+    svg {
+      fill: var(--gray-700)
+    }
+
+    &:hover {
+      filter: brightness(0.7);
+    }
+
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    > span {
+      color: var(--black-smooth);
+      max-width: 120px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      overflow: hidden;
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(100deg, var(--blue-400) 40%, var(--green-400) 100%);
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--background-imobe);
+      }
+    }
+
+  }
+}
+
+.container_publish_info {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 0.857rem 0;
+
+  .content_publish_price {
+    max-width: 25rem;
+    margin-top: 0.4rem;
+
+    padding: 1.4rem 1rem;
+    border-radius: 0.4rem;
+    background: var(--white);
+
+    > p {
+      padding: 0.4rem 0.3rem;
+      color: var(--gray-700);
+      border: 1px dashed var(--gray-300);
+      border-radius: 0.6rem;
+    }
+    > h2 {
+      margin: 1rem 0 1rem 0.2rem;
+    }
+    > button {
+      width: 100%;
+      height: 2.8rem;
+      border: 0;
+      border-radius: 0.4rem;
+
+      background: var(--green-300-alpha);
+      color: var(--black-smooth);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+
+    }
+  }
+
+}
+
+.content_publish_info {
+  flex: 1;
+  padding: 0.857rem 0;
+  .publish_title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    > span {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gray-700);
+    }
+
+    > section {
+
+      > div {
+        display: flex;
+        gap: 10px;
+        margin: 0.5rem 0;
+        > span {
+          display: flex;
+          align-items: center;
+          border: 1px solid var(--green-400);
+          background: var(--green-300-alpha);
+          padding: 0.2rem 1rem;
+          border-radius: 1rem;
+          color: var(--green-500);
+          svg {
+            fill: var(--green-500);
+            margin-right: 0.4rem;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.publish_images {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+  height: 25rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+
+  > section {
+    height: 100%;
+    position: absolute;
+    width: 45px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    cursor: pointer;
+    svg {
+      fill: var(--white);
+    }
+
+    &:nth-child(2) {
+      left: 0;
+    }
+
+    &:nth-child(3) {
+      right: 0;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+  }
+}
+
+
+.content_address_info {
+
+  display: flex;
+  flex-direction: column;
+  .address_info {
+    margin-top: 0.8rem;
+    > div {
+      padding: 0.5rem 0;
+      span {
+        text-align: center;
+        color: var(--gray-700);
+        font-size: 1.1rem;
+        font-weight: 500;
+        position: relative;
+      }
+
+      span:not(:first-child) {
+        margin-left: 1rem;
+      }
+
+      span:not(:first-child)::before {
+        content: '';
+        background: var(--blue-800);
+        position: absolute;
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        left: -8px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
