@@ -6,13 +6,13 @@ import { Pagination } from "../components/Pagination";
 import { useAnnouncement } from "../hooks/useAnnouncement";
 import styles from "../styles/pages/announcements.module.scss";
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdRoom} from "react-icons/md";
-import { useSlide } from "../hooks/useSlide";
 import {FaBed} from "react-icons/fa";
+import {useRouter} from "next/router";
 
 export default function Announcements(props) {
-  const [page, setPage] = useState(1);
+    const router = useRouter();
 
-  const { lastImage, nextImage, slideImages } = useSlide();
+  const [page, setPage] = useState(1);
 
   const { data, isLoading, isFetching, error } = useAnnouncement(page);
   console.log(data);
@@ -42,6 +42,7 @@ export default function Announcements(props) {
                       <div
                         key={announcement?.id}
                         className={styles.announcement}
+                        onClick={() => router.push(`publish/${announcement?.id}`)}
                       >
                         <header>
                           <div>
@@ -54,16 +55,12 @@ export default function Announcements(props) {
                           <span>{announcement?.created_at}</span>
                         </header>
                         <figure className={styles.slide_image}>
-                          <div onClick={lastImage}>
-                            <MdKeyboardArrowLeft color="#fff" />
-                          </div>
+
                           <img
-                            src={slideImages(announcement.images)?.url}
+                            src={announcement.images.pop()?.url}
                             alt={announcement?.title}
                           />
-                          <div onClick={nextImage}>
-                            <MdKeyboardArrowRight color="#fff" />
-                          </div>
+
                         </figure>
                         <span>{announcement?.title}</span>
                         <ul>
