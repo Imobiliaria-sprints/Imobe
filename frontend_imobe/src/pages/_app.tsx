@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import "../styles/global.scss";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "../services/queryClient";
-import { SlideContextProvider } from "../context/SlideContext";
 import { DropzoneContextProvider } from "../context/DropzoneContext";
 import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import theme from "../styles/theme";
@@ -32,9 +31,7 @@ function MyApp(props) {
           <AuthContextProvider>
             <DropzoneContextProvider>
               <AnnouncementContextProvider>
-              <SlideContextProvider>
                 <Component {...pageProps} />
-              </SlideContextProvider>
               </AnnouncementContextProvider>
             </DropzoneContextProvider>
           </AuthContextProvider>
