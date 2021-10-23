@@ -16,7 +16,7 @@ export function Search() {
       return;
     }
 
-    const { data } = await api.post("announcement/search", { title: search });
+    const { data } = await api.post("publish/search", { title: search });
 
     const announcements = data.map((announcement) => {
       return {
