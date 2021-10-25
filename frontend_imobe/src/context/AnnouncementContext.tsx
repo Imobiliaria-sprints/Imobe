@@ -142,7 +142,7 @@ export function AnnouncementContextProvider({children}: AnnouncementContextProvi
 
         const { ["imobeflex.token"]: token } = parseCookies();
 
-        const {data: address_response, status} = await api.post("publish/address", data, {
+        const {data: address_response, status} = await api.post("announcement/address", data, {
             headers: { Authorization: `Bearer ${token}`},
         });
 

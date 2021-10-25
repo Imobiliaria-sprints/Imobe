@@ -5,7 +5,6 @@ import { Header } from "../components/Header";
 import { Pagination } from "../components/Pagination";
 import { useAnnouncement } from "../hooks/useAnnouncement";
 import styles from "../styles/pages/announcements.module.scss";
-import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdRoom} from "react-icons/md";
 import {FaBed} from "react-icons/fa";
 import {useRouter} from "next/router";
 
@@ -14,8 +13,7 @@ export default function Announcements(props) {
 
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching, error } = useAnnouncement(page);
-  console.log(data);
+  const { data, isLoading, isFetching, error } =  useAnnouncement(page);
   return (
     <div>
       <Header />
@@ -47,20 +45,18 @@ export default function Announcements(props) {
                         <header>
                           <div>
                             <img
-                              src={announcement?.user.avatar}
-                              alt={announcement?.user.name}
+                              src={announcement?.userId?.avatar}
+                              alt={announcement?.userId.name}
                             />
-                            <span>{announcement?.user.name}</span>
+                            <span>{announcement?.userId.name}</span>
                           </div>
                           <span>{announcement?.created_at}</span>
                         </header>
                         <figure className={styles.slide_image}>
-
                           <img
-                            src={announcement.images.pop()?.url}
-                            alt={announcement?.title}
+                            src={announcement.images[0].path}
+                            alt={announcement.title}
                           />
-
                         </figure>
                         <span>{announcement?.title}</span>
                         <ul>

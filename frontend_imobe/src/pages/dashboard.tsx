@@ -20,7 +20,7 @@ type AnnouncementData = {
 
 type AnnouncementImage = {
   id: string;
-  url: string;
+  path: string;
 };
 
 export default function Dashboard(
@@ -31,7 +31,7 @@ export default function Dashboard(
 
   const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
 
-  const { data } = useFetch("publish/user", token);
+  const { data } = useFetch("announcement/user", token);
 
   useEffect(() => {
     const announcement = data
@@ -39,7 +39,7 @@ export default function Dashboard(
         return {
           id: announcement.id,
           title: announcement.title,
-          images: announcement.images[0].url,
+          images: announcement.images[0].path,
           created_at: format(parseISO(announcement.created_at), "dd MMM yy", {
             locale: ptBR,
           }),
@@ -54,7 +54,6 @@ export default function Dashboard(
     locale: ptBR,
   });
 
-  console.log(data);
 
   return (
     <div className={styles.dashboard}>
@@ -88,11 +87,11 @@ export default function Dashboard(
           <div className={styles.post_list}>
             {announcements?.map((announcement) => {
               return (
-                <div key={announcement.id}>
-                  <img src={announcement.images} alt={announcement.title} />
+                <div key={announcement?.id}>
+                  <img src={announcement?.images} alt={announcement?.title} />
                   <div>
-                    <span>{announcement.title}</span>
-                    <p>{announcement.created_at}</p>
+                    <span>{announcement?.title}</span>
+                    <p>{announcement?.created_at}</p>
                   </div>
                 </div>
               );

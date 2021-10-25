@@ -13,12 +13,12 @@ type Announcement = {
   price: number;
   created_at: string;
   images: AnnouncementImage[];
-  user: User;
+  userId: User;
 };
 
 type AnnouncementImage = {
   id: string;
-  url: string;
+  path: string;
 };
 
 type User = {
@@ -34,8 +34,8 @@ type GetResponse = {
 };
 
 export async function getAnnouncement(page: number): Promise<GetResponse> {
-  const { data, headers } = await api.get(`announcement/list/${page}?per_page=9`);
-
+    const { data, headers } = await api.get(`announcement/list/${page}?per_page=9`);
+    console.log(data);
   const totalCount = Number(headers["x-total-count"]);
 
   const announcements = data.map((announcement: Announcement) => {
@@ -49,18 +49,12 @@ export async function getAnnouncement(page: number): Promise<GetResponse> {
       created_at: format(parseISO(announcement.created_at), "d MMM yyyy", {
         locale: ptBR,
       }),
-      images: announcement.images.map((image) => {
-        return {
-          id: image.id,
-          url: image.url,
-        };
-      }),
-
-      user: {
-        name: announcement.user.name,
-        phone: announcement.user.phone,
-        avatar: announcement.user.avatar,
-        email: announcement.user.email,
+      images: announcement.images,
+      userId: {
+        name: announcement.userId.name,
+        phone: announcement.userId.phone,
+        avatar: announcement.userId.avatar,
+        email: announcement.userId.email,
       },
     };
   });

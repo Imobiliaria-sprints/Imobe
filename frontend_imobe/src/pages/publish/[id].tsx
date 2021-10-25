@@ -23,13 +23,13 @@ type AnnouncementData = {
     price: number;
     created_at: string;
     images: AnnouncementImage[];
-    user: User;
-    address: Address
+    userId: User;
+    addressId: Address
 };
 
 type AnnouncementImage = {
     id: string;
-    url: string;
+    path: string;
 };
 
 type User = {
@@ -100,7 +100,7 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
 
     useEffect(() => {
         fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${announcement.address.latitude}&lon=${announcement.address.longitude}`
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${announcement.addressId.latitude}&lon=${announcement.addressId.longitude}`
         )
         .then(response => response.json())
         .then(data => setAddressDetail(data.address));
@@ -129,10 +129,10 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
               </button>
 
               <div>
-                  <span>{announcement?.user.name}</span>
+                  <span>{announcement?.userId.name}</span>
 
                   <div>
-                    <img src={`https://github.com/Lucas-Duarte-dev.png`} alt={announcement.user.name}/>
+                    <img src={announcement?.userId.avatar} alt={announcement?.userId.name}/>
                   </div>
               </div>
           </section>
@@ -140,7 +140,7 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
               <section onClick={() => prevImage()}>
                   <MdKeyboardArrowLeft size={35}/>
               </section>
-              <img src={slideImages(fakeImages).url} />
+              <img src={slideImages(announcement.images).path} />
               <section onClick={() => prevImage()}>
                   <MdKeyboardArrowRight size={35}/>
               </section>
@@ -163,11 +163,11 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                       <section>
                           <a href="" target="_blank">
                               <FaWhatsapp size={25} />
-                              {announcement.user.phone}
+                              {announcement.userId.phone}
                           </a>
                           <a href="" target="_blank">
                               <FaRegEnvelope size={25}/>
-                              {announcement.user.email}
+                              {announcement.userId.email}
                           </a>
                       </section>
                   </div>
@@ -183,14 +183,14 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
               <div className={styles.content_address_info}>
                 <h1>Localização</h1>
                 <section className={styles.address_info}>
-                    <h3>{announcement.address.address}</h3>
+                    <h3>{announcement.addressId.address}</h3>
                     <div>
                         <span>{addressDetail?.region}</span>
                         <span>{addressDetail?.road}</span>
                     </div>
                 </section>
               </div>
-              <Map current_location={{lat: announcement.address.latitude, lng: announcement.address.longitude}} isDraggingAndZoom={false}/>
+              <Map current_location={{lat: announcement.addressId.latitude, lng: announcement.addressId.longitude}} isDraggingAndZoom={false}/>
           </div>
           <Footer />
       </div>
@@ -210,7 +210,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     });
 
     return {
-        paths,
+         paths,
         fallback: "blocking",
     };
 };
@@ -228,35 +228,30 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
         rooms: data.rooms,
         square_meters: `${data.square_meters}m²`,
         price: FormatCurrency(data.price),
-        created_at: format(parseISO(data.created_at), "d MMM yyyy", {
+        created_at: format(parseISO(data?.created_at), "d MMM yyyy", {
             locale: ptBR,
         }),
-        images: data.images.map((image) => {
-            return {
-                id: image.id,
-                url: image.url,
-            };
-        }),
-        user: {
-            name: data.user.name,
-            phone: data.user.phone,
-            avatar: data.user.avatar,
-            email: data.user.email,
+        images: data.images,
+        userId: {
+            name: data.userId.name,
+            phone: data.userId.phone,
+            avatar: data.userId.avatar,
+            email: data.userId.email,
         },
-        address: {
-            address: data.address.address,
-            zip_code: data.address.zip_code,
-            complement: data.address.complement,
-            number: data.address.number,
-            latitude: data.address.latitude,
-            longitude: data.address.longitude
+        addressId: {
+            address: data.addressId.address,
+            zip_code: data.addressId.zip_code,
+            complement: data.addressId.complement,
+            number: data.addressId.number,
+            latitude: data.addressId.latitude,
+            longitude: data.addressId.longitude
         }
     };
 
 
     return {
         props: {
-            announcement,
+            announcement: announcement || null,
         },
         revalidate: 60 * 60 * 5, // 5 horas
     };
