@@ -8,7 +8,7 @@ export const useFetch = <Data = any, Error = any>(
   const { data, error, mutate, isValidating } = useSWR<Data, Error>(
     url,
     async (url) => {
-      const { data } = await api.get(url, {
+      const { data } = await api.get<Data>(url, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

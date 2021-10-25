@@ -9,7 +9,7 @@ import { Sidebar } from "../components/Sidebar";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useFetch } from "../hooks/useFetch";
 import { useEffect, useState } from "react";
-import router from "next/router";
+import {useRouter} from "next/router";
 
 type AnnouncementData = {
   id: string;
@@ -30,6 +30,8 @@ export default function Dashboard(
   const { ["imobeflex.token"]: token } = parseCookies();
 
   const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
+
+  const router = useRouter();
 
   const { data } = useFetch("announcement/user", token);
 
@@ -87,7 +89,7 @@ export default function Dashboard(
           <div className={styles.post_list}>
             {announcements?.map((announcement) => {
               return (
-                <div key={announcement?.id}>
+                <div key={announcement?.id} onClick={() => router.push(`publish/${announcement?.id}`)}>
                   <img src={announcement?.images} alt={announcement?.title} />
                   <div>
                     <span>{announcement?.title}</span>

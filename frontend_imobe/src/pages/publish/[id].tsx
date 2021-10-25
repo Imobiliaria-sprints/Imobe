@@ -141,7 +141,7 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                   <MdKeyboardArrowLeft size={35}/>
               </section>
               <img src={slideImages(announcement.images).path} />
-              <section onClick={() => prevImage()}>
+              <section onClick={() => nextImage()}>
                   <MdKeyboardArrowRight size={35}/>
               </section>
           </div>
@@ -151,7 +151,7 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                       <section>
                         <h1>{announcement.title}</h1>
                          <div>
-                             <span> <FaBed  size="20" /> {announcement.rooms}</span>
+                             {announcement.rooms !== 0 ? <span> <FaBed  size="20" /> {announcement.rooms}</span> : <span>Terreno</span>}
                              <span>{announcement.square_meters}</span>
                          </div>
                       </section>

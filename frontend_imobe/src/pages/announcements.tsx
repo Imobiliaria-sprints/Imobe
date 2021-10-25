@@ -58,10 +58,10 @@ export default function Announcements(props) {
                             alt={announcement.title}
                           />
                         </figure>
-                        <span>{announcement?.title}</span>
+                          <span>{announcement?.title} {announcement.rooms === 0 && <span>Terreno</span>}</span>
                         <ul>
-                          <li> <FaBed  size="20" color="#fff" /> {announcement?.rooms}</li>
-                          <li>{announcement?.square_meters}</li>
+                            {announcement.rooms !== 0 &&  <li> <FaBed  size="20" color="#fff" /> {announcement?.rooms}</li>}
+                            <li>{announcement?.square_meters}</li>
                         </ul>
                         <h2>{announcement?.price}</h2>
                       </div>

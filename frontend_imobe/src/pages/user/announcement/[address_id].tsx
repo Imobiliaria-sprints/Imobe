@@ -18,7 +18,7 @@ import {useCreateAnnouncement} from "../../../hooks/useCreateAnnouncement";
 
 const createAnnouncementForm = yup.object().shape({
   title: yup.string().required("Titulo é obrigatório"),
-  rooms: yup.number().required("Quantidade de quartos é obrigatório"),
+  rooms: yup.number(),
   square_meters: yup.number().required("Metros quadrados é obrigatório"),
   price: yup.string().required("Preço é obrigatório"),
 });
@@ -77,7 +77,6 @@ export default function Address_id(
                 name="rooms"
                 label="Quantos quartos tem?"
                 type="number"
-                min="1"
                 icon={<FaBed size="25" color="#474747" />}
                 {...register("rooms")}
                 error={errors.rooms}

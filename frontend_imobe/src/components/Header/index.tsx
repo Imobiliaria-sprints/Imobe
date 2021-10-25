@@ -36,13 +36,9 @@ export function Header() {
               <button onClick={() => router.push("/auth/sign-in")}>
                 Entrar
               </button>
-              <div>
+              <div onClick={() => router.push("/user/my-announcements")}>
                 <MdHome size="25" color="#294461" />
                 <span>Ver meu anúncios</span>
-              </div>
-              <div>
-                <MdFavorite size="25" color="#294461" />
-                <span>Minhas curtidas</span>
               </div>
             </Dropdown>
           )}

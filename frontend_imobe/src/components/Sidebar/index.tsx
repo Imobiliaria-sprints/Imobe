@@ -3,7 +3,6 @@
 import Image from "next/image";
 import {
   MdHome,
-  MdFavorite,
   MdExitToApp,
   MdSort,
   MdDashboard,
@@ -71,11 +70,11 @@ export function Sidebar() {
           />
           <Option
             icon={
-              <MdFavorite color="#3B4A5B" style={{ width: 30, height: 30 }} />
+              <MdHome color="#3B4A5B" style={{ width: 30, height: 30 }} />
             }
-            name="Favoritos"
+            name="Meus Anúncios"
             sidebarIsActive={isSidebarActive}
-            path=""
+            path="user/my-announcements"
           />
           <Option
             icon={<MdAdd color="#0ea490" style={{ width: 30, height: 30 }} />}

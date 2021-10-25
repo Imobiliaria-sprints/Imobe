@@ -8,6 +8,6 @@ export const modalCustomStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     boxShadow: "5px 5px 15px rgba(0, 0, 0, 0.4)",
-    zIndex: 100,
+    zIndex: 9000,
   },
 };
