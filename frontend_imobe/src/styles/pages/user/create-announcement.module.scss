@@ -17,6 +17,8 @@
   border-radius: 0.5rem;
   padding: 1rem 2rem;
 
+
+
   > div {
     display: flex;
     flex-direction: column;
@@ -28,12 +30,24 @@
     }
   }
 
+
   > form {
     display: flex;
     max-width: 900px;
     width: 43rem;
     margin-top: 1rem;
     flex-direction: column;
+
+    .isActiveField {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0 0.8rem 0;
+
+      > label {
+        margin-left: 0.5rem;
+        color: var(--black-smooth);
+      }
+    }
 
     > fieldset {
       margin: 1rem 0;
