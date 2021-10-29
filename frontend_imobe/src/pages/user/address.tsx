@@ -64,8 +64,10 @@ export default function Address(
             <Sidebar />
             <div className={styles.create_address_container}>
                 <section className={styles.create_address_form}>
-                    <h2>Localização do imóvel</h2>
-
+                    <div>
+                        <h2>Localização do imóvel</h2>
+                        <span>Adicione as informações da localização do imóvel</span>
+                    </div>
                     <form onSubmit={handleCreateAddress}>
                         <div className={styles.asyncSelect}>
                             <label>Endereço</label>
@@ -74,11 +76,13 @@ export default function Address(
                         <fieldset>
                             <Input name={"zip_code"} label={"CEP"}
                                    error={errors.zip_code}
+                                   placeholder="Digite o CEP do imóvel"
                                    {...register("zip_code")}
                                    onChange={(e) => setZipCode(e.target.value)}
                             />
                             <Input name={"number"}
                                    label={"Número"}
+                                   placeholder="Digite o número da casa"
                                    error={errors.number}
                                    {...register("number")}
                                    onChange={(e) => setNumber(e.target.value)}
@@ -87,12 +91,11 @@ export default function Address(
                         <Input
                             name={'complement'}
                             label={"Complemento"}
+                            placeholder="Casa / Apartamento / etc"
                             error={errors.complement}
                             {...register("complement")}
                             onChange={(e) => setComplement(e.target.value)}
                         />
-                        <Map  />
-
                         <button type="submit">Próximo</button>
                     </form>
 
