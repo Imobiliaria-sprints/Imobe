@@ -8,17 +8,16 @@ import styles from "../../../styles/pages/user/create-announcement.module.scss";
 import { FaBed, FaVectorSquare } from "react-icons/fa";
 import { useDrop } from "../../../hooks/useDrop";
 import { currency, square_meters, without_text } from "../../../utils/InputMask";
-import { api } from "../../../services/api";
 import { parseCookies } from "nookies";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import {Button} from "@material-ui/core";
 import {useCreateAnnouncement} from "../../../hooks/useCreateAnnouncement";
+import {useState} from "react";
 
 const createAnnouncementForm = yup.object().shape({
   title: yup.string().required("Titulo é obrigatório"),
-  rooms: yup.number(),
+  rooms: yup.number().min(0).max(10),
   square_meters: yup.number().required("Metros quadrados é obrigatório"),
   price: yup.string().required("Preço é obrigatório"),
 });
@@ -26,6 +25,9 @@ const createAnnouncementForm = yup.object().shape({
 export default function Address_id(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
+  const [isActive, setIsActive] = useState(false);
+  const [rooms, setRooms] = useState(0);
+
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createAnnouncementForm),
   });
@@ -41,6 +43,9 @@ export default function Address_id(
   const {createAnnouncement} = useCreateAnnouncement();
   async function handleCreateAnnouncement(data) {
     try {
+      Object.assign(data, {
+        rooms: isActive ? 0 : rooms
+      })
       await createAnnouncement(data, files, address_id.toString());
     } catch (error) {
       console.log(error);
@@ -64,26 +69,40 @@ export default function Address_id(
           </div>
           <form onSubmit={handleSubmit(handleCreateAnnouncement)}>
             <Dropzone />
+            <div className={styles.isActiveField}>
+              <input type="checkbox" onChange={(e) => setIsActive(e.target.checked)}/>
+              <label>Você está vendendo um terreno?</label>
+            </div>
             <Input
               name="title"
               label="Titulo"
+              placeholder="Escreva um pouco sobre a casa"
               type="text"
               {...register("title")}
               error={errors.title}
             />
 
             <fieldset>
-              <Input
-                name="rooms"
-                label="Quantos quartos tem?"
-                type="number"
-                icon={<FaBed size="25" color="#474747" />}
-                {...register("rooms")}
-                error={errors.rooms}
-              />
+              {!isActive && <Input
+                  name="rooms"
+                  label="Quantos quartos tem?"
+                  min={0}
+                  max={10}
+                  value={rooms}
+                  placeholder="Quantidade de quartos o imóvel tem"
+                  type="number"
+                  icon={<FaBed size="25" color="#474747" />}
+                  {...register("rooms", {
+                    setValueAs: (v) => setRooms(v),
+                    value: isActive ? 0 : rooms
+                  })}
+                  error={errors.rooms}
+              />}
+
               <Input
                 name="square_meters"
                 label="Quantos metros quadrados tem?"
+                placeholder="Metragem da casa"
                 icon={<FaVectorSquare size="20" color="#474747" />}
                 {...register("square_meters")}
 
@@ -93,13 +112,14 @@ export default function Address_id(
             <Input
               label="Preço"
               name="price"
+              placeholder="Qual o valor da sua casa?"
               type="price"
               {...register("price")}
               error={errors.price}
-
             />
 
-            <Button type="submit" color={"primary"}>Criar anúncio</Button>
+
+            <button type="submit" color={"primary"}>Criar anúncio</button>
           </form>
         </section>
       </div>
