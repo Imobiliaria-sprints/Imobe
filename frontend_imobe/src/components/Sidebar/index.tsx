@@ -21,6 +21,7 @@ import { Option } from "./option";
 export function Sidebar() {
   const [isSidebarActive, setIsSidebarActive] = useState(true);
   const [isActive, setIsActive] = useState(false);
+  const [load, setLoad] = useState(false);
 
   const { user } = useAuth();
 
@@ -90,7 +91,7 @@ export function Sidebar() {
         })}
       >
         <div>
-          <img src={user?.avatar} alt={user?.name} />
+          <img src={user?.avatar} alt={user?.name} style={{opacity: load ? 1 : 0}} onLoad={() => setLoad(true)}/>
           <div>
             <h3>{user?.name}</h3>
             <p>Bem vindo</p>
@@ -101,10 +102,10 @@ export function Sidebar() {
         </button>
       </section>
       <Modal
-        isOpen={isActive}
-        style={modalCustomStyles}
-        onRequestClose={handleModalOpen}
-        contentLabel="Exit to app Modal"
+          isOpen={isActive}
+          style={modalCustomStyles}
+          onRequestClose={handleModalOpen}
+          contentLabel="Exit to app Modal"
       >
         <div className={styles.exitToApp}>
           <h2>Você tem certeza que deseja sair?</h2>
