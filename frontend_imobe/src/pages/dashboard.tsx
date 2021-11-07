@@ -30,6 +30,7 @@ export default function Dashboard(
   const { ["imobeflex.token"]: token } = parseCookies();
 
   const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
+  const [load, setLoad] = useState(false);
 
   const router = useRouter();
 
@@ -70,7 +71,7 @@ export default function Dashboard(
             <span>
               <FaCalendarAlt size="14" color="#474747" /> {currentDate}
             </span>
-            <img src={user?.avatar} alt={user?.name} />
+            <img src={user?.avatar} alt={user?.name} style={{opacity: load ? 1 : 0}} onLoad={() => {setLoad(true)}}/>
           </div>
         </header>
 

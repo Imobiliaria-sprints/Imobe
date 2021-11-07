@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { useState } from "react";
-import { Header } from "../components/Header";
+import {Header} from "../components/Header";
 import { Pagination } from "../components/Pagination";
 import { useAnnouncement } from "../hooks/useAnnouncement";
 import styles from "../styles/pages/announcements.module.scss";

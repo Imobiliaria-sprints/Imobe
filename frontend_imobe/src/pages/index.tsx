@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 import { Divisor } from "../components/Divisor";
-import { Header } from "../components/Header";
+import {Header} from "../components/Header";
 import styles from "../styles/pages/home.module.scss";
 import { useRouter } from "next/router";
 import React from "react";
@@ -14,6 +14,7 @@ export default function Home(props) {
   const router = useRouter();
 
   return (
+      <>
     <div id={styles.home}>
       <Header />
 
@@ -64,7 +65,8 @@ export default function Home(props) {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
+      <Footer />
+      </>
   );
 }

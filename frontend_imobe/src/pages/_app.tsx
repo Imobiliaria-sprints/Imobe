@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import { AuthContextProvider } from "../context/AuthContext";
 import Modal from "react-modal";
 import "../styles/global.scss";
@@ -8,7 +10,6 @@ import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import theme from "../styles/theme";
 import { AppProps } from "next/app";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import createEmotionCache from "../services/createEmotionCache";
 import {AnnouncementContextProvider} from "../context/AnnouncementContext";
 
 interface MyAppProps extends AppProps {
@@ -19,12 +20,10 @@ if (typeof window !== "undefined") {
   Modal.setAppElement("body");
 }
 
-const clientSideEmotionCache = createEmotionCache();
 
 function MyApp(props) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { Component, pageProps } = props;
   return (
-    <CacheProvider value={emotionCache}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -37,7 +36,6 @@ function MyApp(props) {
           </AuthContextProvider>
         </ThemeProvider>
       </QueryClientProvider>
-    </CacheProvider>
   );
 }
 

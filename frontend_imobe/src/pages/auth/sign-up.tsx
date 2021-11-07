@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -112,7 +113,6 @@ export default function SignUp(props) {
               name="phone"
               error={errors.phone}
               {...register("phone")}
-              mask={phone}
             />
           </fieldset>
           <Input

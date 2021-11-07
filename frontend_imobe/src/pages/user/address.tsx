@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import {Sidebar} from "../../components/Sidebar";
 import {Input} from "../../components/Input";
 import {Map} from "../../components/Map";

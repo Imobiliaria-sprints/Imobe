@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps, InferGetServerSidePropsType} from "next";
 import {api} from "../../services/api";
@@ -13,6 +15,8 @@ import {Map} from "../../components/Map";
 import {FaBed, FaEnvelope, FaMailchimp, FaRegEnvelope, FaWhatsapp} from "react-icons/fa";
 import {Divisor} from "../../components/Divisor";
 import {Footer} from "../../components/Footer";
+import Modal from "react-modal";
+import {modalCustomStyles} from "../../utils/ModalStyleConf";
 
 type AnnouncementData = {
     id: string;
@@ -69,7 +73,7 @@ type AnnouncementProps = {
 const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
 
     const [currentImage, setCurrentImage] = useState(0);
-
+    const [isActive, setIsActive] = useState(false);
     const [addressDetail, setAddressDetail] = useState<AddressRequest | undefined>();
 
     function nextImage(): void {
@@ -98,6 +102,10 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
         return image;
     }
 
+    function handleModalOpen(): void {
+        return setIsActive(!isActive);
+    }
+
     useEffect(() => {
         fetch(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${announcement.addressId.latitude}&lon=${announcement.addressId.longitude}`
@@ -106,94 +114,104 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
         .then(data => setAddressDetail(data.address));
     }, []);
 
-    console.log(addressDetail);
-
-    const fakeImages = [
-        {
-            id: v4(),
-            url: "https://www.decorfacil.com/wp-content/uploads/2017/03/20171011fachada-casa-simples-pequena-99-960x600.jpg"
-        },
-        {
-            id: v4(),
-            url: "https://www.decorfacil.com/wp-content/uploads/2015/04/imagem-176.jpg"
-        }
-    ]
-
     return (
-      <div className={styles.announcement_container}>
-          <Header />
-          <section className={styles.proprietary_user} >
+        <>
+          <div className={styles.announcement_container}>
+              <Header />
+              <section className={styles.proprietary_user} >
 
-              <button onClick={() => history.back()}>
-                  <MdArrowBack size={33}/>
-              </button>
-
-              <div>
-                  <span>{announcement?.userId.name}</span>
+                  <button onClick={() => history.back()}>
+                      <MdArrowBack size={33}/>
+                  </button>
 
                   <div>
-                    <img src={announcement?.userId.avatar} alt={announcement?.userId.name}/>
-                  </div>
-              </div>
-          </section>
-          <div className={styles.publish_images}>
-              <section onClick={() => prevImage()}>
-                  <MdKeyboardArrowLeft size={35}/>
-              </section>
-              <img src={slideImages(announcement.images).path} />
-              <section onClick={() => nextImage()}>
-                  <MdKeyboardArrowRight size={35}/>
-              </section>
-          </div>
-          <section className={styles.container_publish_info}>
-              <div className={styles.content_publish_info} >
-                  <div className={styles.publish_title}>
-                      <section>
-                        <h1>{announcement.title}</h1>
-                         <div>
-                             {announcement.rooms !== 0 ? <span> <FaBed  size="20" /> {announcement.rooms}</span> : <span>Terreno</span>}
-                             <span>{announcement.square_meters}</span>
-                         </div>
-                      </section>
-                      <span> <MdPermContactCalendar size={24}/> {announcement.created_at}</span>
-                  </div>
+                      <span>{announcement?.userId.name}</span>
 
-                  <div className={styles.socials}>
-                      <h3>Entre em contato para saber mais</h3>
-                      <section>
-                          <a href="" target="_blank">
-                              <FaWhatsapp size={25} />
-                              {announcement.userId.phone}
-                          </a>
-                          <a href="" target="_blank">
-                              <FaRegEnvelope size={25}/>
-                              {announcement.userId.email}
-                          </a>
-                      </section>
+                      <div>
+                        <img src={announcement?.userId.avatar} alt={announcement?.userId.name}/>
+                      </div>
                   </div>
-                  <Divisor />
+              </section>
+              <div className={styles.publish_images}>
+                  <section onClick={() => prevImage()}>
+                      <MdKeyboardArrowLeft size={35}/>
+                  </section>
+                  <img src={slideImages(announcement.images).path} />
+                  <section onClick={() => nextImage()}>
+                      <MdKeyboardArrowRight size={35}/>
+                  </section>
               </div>
-              <div className={styles.content_publish_price}>
-                  <p>Clique aqui para entender mais sobre o funcionamento da visita aos imóveis da Imobe Flex</p>
-                  <h2>R$ {announcement.price}</h2>
-                  <button>Quero visitar o imóvel</button>
+              <section className={styles.container_publish_info}>
+                  <div className={styles.content_publish_info} >
+                      <div className={styles.publish_title}>
+                          <section>
+                            <h1>{announcement.title}</h1>
+                             <div>
+                                 {announcement.rooms !== 0 ? <span> <FaBed  size="20" /> {announcement.rooms}</span> : <span>Terreno</span>}
+                                 <span>{announcement.square_meters}</span>
+                             </div>
+                          </section>
+                          <span> <MdPermContactCalendar size={24}/> {announcement.created_at}</span>
+                      </div>
+                      <div className={styles.content_address_info}>
+                          <h1>Localização</h1>
+                          <section className={styles.address_info}>
+                              <h3>{announcement.addressId.address}</h3>
+                              <div>
+                                  <span>{addressDetail?.region}</span>
+                                  <span>{addressDetail?.road}</span>
+                              </div>
+                              <div className={styles.address_info_detail}>
+                                <h4>Informações detalhadas</h4>
+                                <p>
+                                    <strong>País:</strong> {addressDetail?.country}, {""}
+                                    <strong>Cidade:</strong> {addressDetail?.city}, {""}
+                                    <strong>Estado:</strong> {addressDetail?.state}, {""}
+                                    <strong>Bairro:</strong> {addressDetail.suburb}, {""}
+                                    <strong>Região:</strong> {addressDetail.region}, {""}
+                                    <strong>Rua: </strong> {addressDetail.road}
+                                </p>
+
+                              </div>
+
+                          </section>
+                      </div>
+
+                      <Divisor />
+                  </div>
+                  <div className={styles.content_publish_price}>
+                      <p>Clique aqui para entender mais sobre o funcionamento da visita aos imóveis da Imobe Flex</p>
+                      <h2>R$ {announcement.price}</h2>
+                      <button onClick={() => handleModalOpen()}>Quero visitar o imóvel</button>
+                  </div>
+              </section>
+              <div>
+
+                  <Map current_location={{lat: announcement.addressId.latitude, lng: announcement.addressId.longitude}} isDraggingAndZoom={false}/>
               </div>
-          </section>
-          <div>
-              <div className={styles.content_address_info}>
-                <h1>Localização</h1>
-                <section className={styles.address_info}>
-                    <h3>{announcement.addressId.address}</h3>
-                    <div>
-                        <span>{addressDetail?.region}</span>
-                        <span>{addressDetail?.road}</span>
-                    </div>
-                </section>
-              </div>
-              <Map current_location={{lat: announcement.addressId.latitude, lng: announcement.addressId.longitude}} isDraggingAndZoom={false}/>
           </div>
+            <Modal
+                isOpen={isActive}
+                style={modalCustomStyles}
+                onRequestClose={handleModalOpen}
+                contentLabel="Exit to app Modal"
+            >
+                <div className={styles.socials}>
+                    <h3>Entre em contato com o dono do imóvel</h3>
+                    <section className={styles.socials_links}>
+                        <a href={`https://api.whatsapp.com/send?phone=55${announcement.userId.phone}&text=Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20an%C3%BAncio%20na%20Imobe%20Flex%3A%20${announcement.title}`} target="_blank" rel="noreferrer">
+                            <FaWhatsapp size={25} color="#0ea490" />
+                            {announcement.userId.phone}
+                        </a>
+                        <a href="" target="_blank">
+                            <FaRegEnvelope size={25} color="#0ea490" />
+                            {announcement.userId.email}
+                        </a>
+                    </section>
+                </div>
+            </Modal>
           <Footer />
-      </div>
+        </>
     );
 }
 
