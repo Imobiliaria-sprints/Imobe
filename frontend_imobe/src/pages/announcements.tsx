@@ -54,13 +54,13 @@ export default function Announcements(props) {
                         </header>
                         <figure className={styles.slide_image}>
                           <img
-                            src={announcement.images[0].path}
+                            src={announcement.images[0]?.path}
                             alt={announcement.title}
                           />
                         </figure>
                           <span>{announcement?.title} {announcement.rooms === 0 && <span>Terreno</span>}</span>
                         <ul>
-                            {announcement.rooms !== 0 &&  <li> <FaBed  size="20" color="#fff" /> {announcement?.rooms}</li>}
+                            {announcement?.rooms !== 0 &&  <li> <FaBed  size="20" color="#fff" /> {announcement?.rooms}</li>}
                             <li>{announcement?.square_meters}</li>
                         </ul>
                         <h2>R$ {announcement?.price}</h2>

@@ -51,7 +51,7 @@ export default function Dashboard(
         return {
           id: announcement.id,
           title: announcement.title,
-          images: announcement.images[0].path,
+          images: announcement?.images[0]?.path,
           created_at: format(parseISO(announcement.created_at), "dd MMM yy", {
             locale: ptBR,
           }),
@@ -102,20 +102,22 @@ export default function Dashboard(
           )}
           <div className={styles.post_list}>
             <div>
-              <div className={styles.publish} >
-                <img src={announcements?.images} alt={announcements?.title} />
-                <div className={styles.publish_info}>
-                  <div>
-                    <span>{announcements?.title}</span>
-                    <p>{announcements?.addressId?.address}</p>
-                    <small>{announcements?.created_at}</small>
-                  </div>
+              {!!announcements && (
+                  <div className={styles.publish} >
+                    <img src={announcements?.images} alt={announcements?.title} />
+                    <div className={styles.publish_info}>
+                      <div>
+                        <span>{announcements?.title}</span>
+                        <p>{announcements?.addressId?.address}</p>
+                        <small>{announcements?.created_at}</small>
+                      </div>
 
-                  <button onClick={() => router.push(`publish/${announcements?.id}`)}>
-                    <MdArrowForward size={25} color="#f3f3f3" />
-                  </button>
-                  </div>
+                      <button onClick={() => router.push(`publish/${announcements?.id}`)}>
+                        <MdArrowForward size={25} color="#f3f3f3" />
+                      </button>
+                    </div>
               </div>
+              )}
               <div className={styles.content_options}>
                 <button onClick={() => router.push("/")} title="Home Page">
                   <img src="/img/imobe.png" alt="Home Page"/>

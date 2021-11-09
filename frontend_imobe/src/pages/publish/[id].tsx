@@ -136,7 +136,7 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                   <section onClick={() => prevImage()}>
                       <MdKeyboardArrowLeft size={35}/>
                   </section>
-                  <img src={slideImages(announcement?.images).path} />
+                  <img src={slideImages(announcement?.images)?.path} />
                   <section onClick={() => nextImage()}>
                       <MdKeyboardArrowRight size={35}/>
                   </section>
@@ -153,9 +153,9 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                           </section>
                           <span> <MdPermContactCalendar size={24}/> {announcement.created_at}</span>
                       </div>
-                      <div className={styles.content_address_info}>
+                      <div className={styles?.content_address_info}>
                           <h1>Localização</h1>
-                          <section className={styles.address_info}>
+                          <section className={styles?.address_info}>
                               <h3>{announcement.addressId.address} - N° {announcement.addressId.number}</h3>
                               <div>
                                   <span>{addressDetail?.region}</span>
