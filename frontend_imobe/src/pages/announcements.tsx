@@ -63,7 +63,7 @@ export default function Announcements(props) {
                             {announcement.rooms !== 0 &&  <li> <FaBed  size="20" color="#fff" /> {announcement?.rooms}</li>}
                             <li>{announcement?.square_meters}</li>
                         </ul>
-                        <h2>{announcement?.price}</h2>
+                        <h2>R$ {announcement?.price}</h2>
                       </div>
                     );
                   })}

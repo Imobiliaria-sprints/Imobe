@@ -136,7 +136,7 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                   <section onClick={() => prevImage()}>
                       <MdKeyboardArrowLeft size={35}/>
                   </section>
-                  <img src={slideImages(announcement.images).path} />
+                  <img src={slideImages(announcement?.images).path} />
                   <section onClick={() => nextImage()}>
                       <MdKeyboardArrowRight size={35}/>
                   </section>
@@ -156,7 +156,7 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                       <div className={styles.content_address_info}>
                           <h1>Localização</h1>
                           <section className={styles.address_info}>
-                              <h3>{announcement.addressId.address}</h3>
+                              <h3>{announcement.addressId.address} - N° {announcement.addressId.number}</h3>
                               <div>
                                   <span>{addressDetail?.region}</span>
                                   <span>{addressDetail?.road}</span>
@@ -167,9 +167,9 @@ const Announcement: React.FC<AnnouncementProps> = ({announcement}) =>  {
                                     <strong>País:</strong> {addressDetail?.country}, {""}
                                     <strong>Cidade:</strong> {addressDetail?.city}, {""}
                                     <strong>Estado:</strong> {addressDetail?.state}, {""}
-                                    <strong>Bairro:</strong> {addressDetail.suburb}, {""}
-                                    <strong>Região:</strong> {addressDetail.region}, {""}
-                                    <strong>Rua: </strong> {addressDetail.road}
+                                    <strong>Bairro:</strong> {addressDetail?.suburb}, {""}
+                                    <strong>Região:</strong> {addressDetail?.region}, {""}
+                                    <strong>Rua: </strong> {addressDetail?.road}
                                 </p>
 
                               </div>

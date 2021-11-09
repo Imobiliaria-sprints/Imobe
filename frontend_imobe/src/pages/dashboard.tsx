@@ -10,12 +10,14 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { useFetch } from "../hooks/useFetch";
 import { useEffect, useState } from "react";
 import {useRouter} from "next/router";
+import {MdArrowForward, MdKeyboardArrowRight} from "react-icons/md";
 
 type AnnouncementData = {
   id: string;
   title: string;
   images: string;
   created_at: Date;
+  addressId: AnnouncementAddress;
 };
 
 type AnnouncementImage = {
@@ -23,13 +25,20 @@ type AnnouncementImage = {
   path: string;
 };
 
+type AnnouncementAddress = {
+  address: string
+  number: string,
+  complement?: string,
+}
+
+
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
   const { user } = useAuth();
   const { ["imobeflex.token"]: token } = parseCookies();
 
-  const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
+  const [announcements, setAnnouncements] = useState<AnnouncementData | null>(null);
   const [load, setLoad] = useState(false);
 
   const router = useRouter();
@@ -46,9 +55,13 @@ export default function Dashboard(
           created_at: format(parseISO(announcement.created_at), "dd MMM yy", {
             locale: ptBR,
           }),
+          addressId: {
+            address: announcement.addressId.address,
+            number: announcement.addressId.number,
+            complement: announcement.addressId.complement
+          }
         };
-      })
-      .slice(0, 2);
+      }).pop();
 
     setAnnouncements(announcement);
   }, [data]);
@@ -76,8 +89,8 @@ export default function Dashboard(
         </header>
 
         <section className={styles.post_list_container}>
-          {announcements?.length !== 0 ? (
-            <h3>Últimas publicações</h3>
+          {!!announcements  ? (
+            <h3>Última publicação</h3>
           ) : (
             <h3>
               Não há nenhum imóvel cadastrado na sua conta,{" "}
@@ -88,17 +101,33 @@ export default function Dashboard(
             </h3>
           )}
           <div className={styles.post_list}>
-            {announcements?.map((announcement) => {
-              return (
-                <div key={announcement?.id} onClick={() => router.push(`publish/${announcement?.id}`)}>
-                  <img src={announcement?.images} alt={announcement?.title} />
+            <div>
+              <div className={styles.publish} >
+                <img src={announcements?.images} alt={announcements?.title} />
+                <div className={styles.publish_info}>
                   <div>
-                    <span>{announcement?.title}</span>
-                    <p>{announcement?.created_at}</p>
+                    <span>{announcements?.title}</span>
+                    <p>{announcements?.addressId?.address}</p>
+                    <small>{announcements?.created_at}</small>
                   </div>
-                </div>
-              );
-            })}
+
+                  <button onClick={() => router.push(`publish/${announcements?.id}`)}>
+                    <MdArrowForward size={25} color="#f3f3f3" />
+                  </button>
+                  </div>
+              </div>
+              <div className={styles.content_options}>
+                <button onClick={() => router.push("/")} title="Home Page">
+                  <img src="/img/imobe.png" alt="Home Page"/>
+                </button>
+                <section>
+                  <h2>Ver todos os imóveis da imobiliária </h2>
+                  <button onClick={() => router.push("/announcements")}>
+                    <MdArrowForward size={25} color="#f3f3f3" />
+                  </button>
+                </section>
+              </div>
+            </div>
           </div>
         </section>
       </div>
