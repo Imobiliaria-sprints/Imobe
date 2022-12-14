@@ -54,7 +54,7 @@
     "cors": "^2.8.5",
     "dayjs": "^1.10.6",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
     "express-handler-errors": "^2.3.1",
     "handlebars": "^4.7.7",
