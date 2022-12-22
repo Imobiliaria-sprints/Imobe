@@ -58,7 +58,7 @@
     "express-async-errors": "^3.1.1",
     "express-handler-errors": "^2.3.1",
     "handlebars": "^4.7.7",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "multer": "^1.4.3",
     "nodemailer": "^6.6.3",
     "pg": "^8.6.0",
